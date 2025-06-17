@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AnchorStack</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+  <header>
+    <h1>AnchorStack</h1>
+    <p>Digital tools for calm creators.</p>
+  </header>
+
+  <main>
+    <section id="products">
+      <h2>Product Cards</h2>
+      <div class="product-card">
+        <h3>The Calm Clarity Blueprint</h3>
+        <p>Your ultimate digital kit for creators seeking peace and focus.</p>
+        <a href="https://tr.ee/CTwJ-1HvY8" target="_blank">Get It</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function(user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function() {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>
