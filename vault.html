@@ -60,16 +60,18 @@
       gap: 1.5rem;
     }
 
-    .product-card {
-      background-color: white;
-      border-radius: 12px;
-      text-align: center;
-      padding: 1rem;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      text-decoration: none;
-      color: #222;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
+   .product-card {
+  position: relative;  /* ← add this line */
+  background-color: white;
+  border-radius: 12px;
+  text-align: center;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  text-decoration: none;
+  color: #222;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
 
     .product-card:hover {
       transform: scale(1.03);
