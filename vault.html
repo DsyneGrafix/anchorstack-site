@@ -172,6 +172,22 @@
     ← Return to AnchorStack Home
   </a>
 </div>
+<script>
+  function filterTier(tier) {
+    const allCards = document.querySelectorAll('.product-card');
+    allCards.forEach(card => {
+      if (tier === 'all') {
+        card.style.display = 'block';
+      } else {
+        if (card.classList.contains(`tier-${tier}`)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      }
+    });
+  }
+</script>
 
 </body>
 </html>
