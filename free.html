@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-QL8N3YFW6B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QL8N3YFW6B');
+</script>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta charset="utf-8"/>
+<title>AnchorStack Product Tiles</title>
+<style>
+        body {
+            font-family: sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 2rem;
+        }
+    .vault-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.product-card {
+  background-color: white;
+  border-radius: 12px;
+  text-align: center;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  text-decoration: none;
+  color: #222;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.product-card img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+}
+
+        }
+        .link {
+            text-decoration: none;
+            color: white;
+            background: #4CAF50;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+    
+.card-wrapper {
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: crimson;
+  color: white;
+  font-size: 0.7rem;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-weight: bold;
+  z-index: 10;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.product-card h3 {
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+  font-weight: 600;
+}
+
+.product-card img {
+  border-radius: 12px 12px 0 0;
+}
+
+.hero-logo {
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom, #2f2f2f, #3a3a3a);
+  margin-bottom: 2rem;
+}
+
+.hero-logo img {
+  max-width: 300px;
+  height: auto;
+  filter: drop-shadow(0 0 10px rgba(0, 123, 255, 0.5));
+}
+
+.vault-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+.tier-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+</style>
+</head>
+<body><div class="hero-logo"><img alt="AnchorStack Logo" src="images/Logo.png"/></div>
+<h1>AnchorStack Product Vault</h1>
+<div style="text-align:center; margin-bottom: 2rem;">
+<h2>What are you looking for today?</h2>
+<button class="button" onclick="filterTier('free')">🆓 Free</button>
+<button class="button" onclick="filterTier('mid')">💡 Midrange</button>
+<button class="button" onclick="filterTier('top')">🚀 Top Tier</button>
+<button class="button" onclick="filterTier('all')">🔄 Show All</button>
+</div>
+<div style="height: 2rem;"></div><div class="vault-grid"><h2 style="text-align: center; color: #00BFFF; margin: 2rem 0 1rem; border-bottom: 1px solid #ccc; padding-bottom: 0.5rem;">🆓 Free Resources</h2><div class="tier-section"><a class="product-card tier-free" href="https://grafixartistry6.gumroad.com/l/msenf?utm_source=vault&amp;utm_medium=web&amp;utm_campaign=launch" rel="noopener noreferrer" target="_blank"><span class="badge">New</span>
+<img alt="Clarity Core Bundle" src="images/clarity-core-bundle.jpg"/>
+<h3>Clarity Core Bundle</h3><p class="price">$39</p>
+</a><a class="product-card tier-free" href="https://grafixartistry6.gumroad.com/l/nupwf?utm_source=vault&amp;utm_medium=web&amp;utm_campaign=launch" rel="noopener noreferrer" target="_blank"><span class="badge">New</span>
+<img alt="Calm Clarity Kit – 7-Day Edition" src="images/calm-clarity-kit.jpg"/>
+<h3>Calm Clarity Kit – 7-Day Edition</h3><p class="price">$15</p>
+</a><a class="product-card tier-free" href="https://grafixartistry6.gumroad.com/l/jqzdtq?utm_source=vault&amp;utm_medium=web&amp;utm_campaign=launch" rel="noopener noreferrer" target="_blank"><span class="badge">New</span>
+<img alt="Launch &amp; Earn Combo Pack" src="images/launch-earn-combo.jpg"/>
+<h3>Launch &amp; Earn Combo Pack</h3><p class="price">$15</p>
+</a></div></div>
+<script>
+function filterTier(tier) {
+  const allCards = document.querySelectorAll('.product-card');
+  allCards.forEach(card => {
+    if (tier === 'all' || card.classList.contains('tier-' + tier)) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
+</body>
+</html>
