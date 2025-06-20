@@ -13,6 +13,17 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>AnchorStack Vault</title>
 <style>
+.product-card .badge {
+  display: inline-block;
+  background-color: #e53935;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: bold;
+  border-radius: 999px;
+  padding: 2px 8px;
+  margin-bottom: 8px;
+}
+
 .vault-container {
   display: flex;
   flex-wrap: wrap;
@@ -195,8 +206,11 @@
 </div>
 
   <section class="vault-extras">
-  
-    <div class="vault-blurbs" style="margin-top: 3rem;">
+  <details style="margin-top: 3rem;">
+    <summary style="font-size: 1.2rem; cursor: pointer;">📬 Get Vault Updates</summary>
+    </details>
+
+  <div class="vault-blurbs" style="margin-top: 3rem;">
     <div style="margin-bottom: 2rem;">
       <h3>💸 Become an Affiliate</h3>
       <p>Want to earn by sharing the Vault? Join our affiliate program and get paid when others unlock access.</p>
