@@ -135,16 +135,27 @@
       Thank you for being a Vault Member. You're unlocking tools designed to bring clarity, momentum, and peace to your creative work.
     </div>
 
-    <div class="main-products">
-      <h2>🎁 Free Tier Access</h2>
-      <div class="vault-grid">
-        <a class="product-card tier-free" href="https://grafixartistry6.gumroad.com/l/mbxcud" target="_blank">
-          <span class="badge">Free</span>
-          <img src="images/calm-clarity-kit.jpg" alt="Calm Clarity Kit">
-          <h3>Calm Clarity Kit – 7-Day Edition</h3>
-          <p class="price">FREE</p>
-        </a>
-      </div>
+    <a class="product-card tier-free" href="https://grafixartistry6.gumroad.com/l/mbxcud" target="_blank">
+  <span class="badge">Free</span>
+  <img src="images/calm-clarity-kit.jpg" alt="Calm Clarity Kit">
+  <h3>Calm Clarity Kit – 7-Day Edition</h3>
+  <p class="price">FREE</p>
+</a>
+
+<a class="product-card tier-free" href="https://grafixartistry6.gumroad.com/l/mbxcud" target="_blank">
+  <span class="badge">Free</span>
+  <img src="images/vault-insider-pack.jpg" alt="Vault Insider Pack">
+  <h3>Vault Insider Welcome Pack</h3>
+  <p class="price">FREE</p>
+</a>
+
+<a class="product-card tier-free" href="https://grafixartistry6.gumroad.com/l/mbxcud" target="_blank">
+  <span class="badge">Free</span>
+  <img src="images/3-day-habit-stack.jpg" alt="Habit Stack">
+  <h3>3-Day Habit Stack Strategy</h3>
+  <p class="price">FREE</p>
+</a>
+
 
       <h2>⚡ Mid Tier Access</h2>
       <div class="vault-grid">
@@ -198,10 +209,17 @@
         </a>
       </div>
 
-      <button id="substack-toggle" style="margin: 3rem 0 1rem 0;">📬 Get Vault Updates</button>
-      <div id="substack-box" style="display: none;">
-        <iframe src="https://rickyjarnagin.substack.com/embed" width="100%" height="320" style="border:1px solid #ccc; border-radius:4px;" frameborder="0" scrolling="no"></iframe>
-      </div>
+     <script>
+  const toggle = document.getElementById("substack-toggle");
+  const box = document.getElementById("substack-box");
+  if (toggle && box) {
+    toggle.addEventListener("click", () => {
+      box.style.display = box.style.display === "none" ? "block" : "none";
+    });
+  }
+</script>
+
+      
 
       <div class="vault-blurbs" style="margin-top: 3rem;">
         <div style="margin-bottom: 2rem;">
