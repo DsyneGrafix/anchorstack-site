@@ -1,59 +1,48 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QL8N3YFW6B"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-QL8N3YFW6B');
-  </script>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AnchorStack Vault</title>
   <link rel="icon" href="images/favicon.png" type="image/png" />
-
   <style>
-    .product-card .badge {
-      display: inline-block;
-      background-color: #e53935;
-      color: white;
-      font-size: 0.75rem;
-      font-weight: bold;
-      border-radius: 999px;
-      padding: 2px 8px;
-      margin-bottom: 8px;
+    body {
+      font-family: sans-serif;
+      background: #f9f9f9;
+      color: #333;
+      padding: 2rem;
+      margin: 0;
     }
-    .vault-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 2rem;
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
     }
-    .main-products {
-      flex: 1 1 65%;
-      min-width: 300px;
+    .tier-heading {
+      font-size: 1.5rem;
+      margin: 3rem 0 1rem;
+      text-align: left;
     }
-    .substack-sidebar {
-      flex: 1 1 30%;
-      min-width: 280px;
-      max-width: 360px;
+    .vault-banner {
+      background: #6c5ce7;
+      color: #fff;
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+      text-align: center;
+      font-size: 1.2rem;
     }
     .vault-grid {
-  align-items: stretch;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
-      max-width: 1000px;
-      margin: auto;
+      justify-content: center;
     }
     .product-card {
       background-color: white;
       border-radius: 12px;
       text-align: center;
       padding: 1rem;
-      max-width: 240px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       text-decoration: none;
       color: #222;
@@ -73,165 +62,127 @@
     .product-card h3 {
       font-size: 1rem;
       margin: 0.5rem 0;
-      overflow-wrap: break-word;
     }
     .product-card .price {
       font-weight: bold;
       color: #6c5ce7;
     }
-    .product-card::before {
-      content: "";
+    .badge {
       display: inline-block;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      margin-right: 6px;
-      vertical-align: middle;
+      background-color: #e53935;
+      color: white;
+      font-size: 0.75rem;
+      font-weight: bold;
+      border-radius: 999px;
+      padding: 2px 8px;
+      margin-bottom: 8px;
     }
-    .tier-free::before {
-      background-color: #00C853;
-    }
-    .tier-mid::before {
-      background-color: #FFD600;
-    }
-    .tier-top::before {
-      background-color: #D50000;
-    }
-    body {
-      font-family: sans-serif;
-      background: #f9f9f9;
-      color: #333;
-      padding: 2rem;
-      margin: 0;
-    }
-    h1, h2 {
-      text-align: center;
-    }
-    .vault-banner {
-      background: #6c5ce7;
-      color: #fff;
-      padding: 1.5rem;
-      border-radius: 10px;
-      margin-bottom: 2rem;
-      text-align: center;
-      font-size: 1.2rem;
-    }
-    .substack-form {
-      text-align: center;
-      margin-top: 3rem;
-    }
-    .substack-form iframe {
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      width: 100%;
-      max-width: 480px;
-      height: 180px;
-    }
+    .tier-free::before { background-color: #00C853; }
+    .tier-mid::before { background-color: #FFD600; }
+    .tier-top::before { background-color: #D50000; }
   </style>
 </head>
 <body>
-  <div class="vault-container">
-    <h1>🚪 Welcome to the AnchorStack Vault</h1>
-    <div class="vault-banner">
-      Thank you for being a Vault Member. You're unlocking tools designed to bring clarity, momentum, and peace to your creative work.
-    </div>
 
-    <h2>🎁 Free Tier Access</h2>
+<h1>🚪 Welcome to the AnchorStack Vault</h1>
+<div class="vault-banner">
+  Thank you for being a Vault Member. You're unlocking tools designed to bring clarity, momentum, and peace to your creative work.
+</div>
+
+<h2 class="tier-heading">🎁 Free Tier Access</h2>
 <div class="vault-grid">
-<a class="product-card tier-free" href="https://grafixartistry6.gumroad.com/l/mbxcud" target="_blank">
-  <span class="badge">Free</span>
-  <img src="images/calm-clarity-kit.jpg" alt="Calm Clarity Kit">
-  <h3>Calm Clarity Kit – 7-Day Edition</h3>
-  <p class="price">FREE</p>
-</a>
-
-<a class="product-card tier-free" href="https://grafixartistry6.gumroad.com/l/mbxcud" target="_blank">
-  <span class="badge">Free</span>
-  <img src="images/vault-insider-pack.jpg" alt="Vault Insider Pack">
-  <h3>Vault Insider Welcome Pack</h3>
-  <p class="price">FREE</p>
-</a>
-
-<a class="product-card tier-free" href="https://grafixartistry6.gumroad.com/l/mbxcud" target="_blank">
-  <span class="badge">Free</span>
-  <img src="images/3-day-habit-stack.jpg" alt="Habit Stack">
-  <h3>3-Day Habit Stack Strategy</h3>
-  <p class="price">FREE</p>
-</a>
-
-
-     
+  <a class="product-card tier-free" href="#" target="_blank">
+    <span class="badge">Free</span>
+    <img src="images/calm-clarity-kit.jpg" alt="Calm Clarity Kit">
+    <h3>Calm Clarity Kit – 7-Day Edition</h3>
+    <p class="price">FREE</p>
+  </a>
+  <a class="product-card tier-free" href="#" target="_blank">
+    <span class="badge">Free</span>
+    <img src="images/vault-insider-pack.jpg" alt="Vault Insider Pack">
+    <h3>Vault Insider Welcome Pack</h3>
+    <p class="price">FREE</p>
+  </a>
+  <a class="product-card tier-free" href="#" target="_blank">
+    <span class="badge">Free</span>
+    <img src="images/3-day-habit-stack.jpg" alt="Habit Stack">
+    <h3>3-Day Habit Stack Strategy</h3>
+    <p class="price">FREE</p>
+  </a>
 </div>
-<div> <h2>⚡ Mid Tier Access</h2>
-      <div class="vault-grid">
-        <a class="product-card tier-mid" href="https://grafixartistry6.gumroad.com/l/msenf" target="_blank">
-          <span class="badge">New</span>
-          <img src="images/clarity-core-bundle.jpg" alt="Clarity Core Bundle">
-<!-- Forced update at 2:33 PM -->
-         
- <h3>Clarity Core Bundle</h3>
-          <p class="price">$39</p>
-        </a>
-        <a class="product-card tier-mid" href="https://grafixartistry6.gumroad.com/l/lapqw" target="_blank">
-          <span class="badge">New</span>
-          <img src="images/work-life-integration.jpg" alt="Work-Life Integration Mastery">
-          <h3>Work-Life Integration Mastery</h3>
-          <p class="price">$9</p>
-        </a>
-        <a class="product-card tier-mid" href="https://grafixartistry6.gumroad.com/l/jfkdn" target="_blank">
-          <span class="badge">New</span>
-          <img src="images/hustlemode-command-center.jpg" alt="HustleMode Command Center">
-          <h3>HustleMode Notion Command Center</h3>
-          <p class="price">$29</p>
-        </a>
-        <a class="product-card tier-mid" href="https://grafixartistry6.gumroad.com/l/npruu" target="_blank">
-          <span class="badge">New</span>
-          <img src="images/momentum-toolkit.jpg" alt="Momentum Mapping Toolkit">
-          <h3>Momentum Mapping Toolkit</h3>
-          <p class="price">$15</p>
-        </a>
-      </div>
+
+<h2 class="tier-heading">⚡ Mid Tier Access</h2>
+<div class="vault-grid">
+  <a class="product-card tier-mid" href="#" target="_blank">
+    <span class="badge">New</span>
+    <img src="images/clarity-core-bundle.jpg" alt="Clarity Core Bundle">
+    <h3>Clarity Core Bundle</h3>
+    <p class="price">$39</p>
+  </a>
+  <a class="product-card tier-mid" href="#" target="_blank">
+    <span class="badge">New</span>
+    <img src="images/work-life-integration.jpg" alt="Work-Life Integration Mastery">
+    <h3>Work-Life Integration Mastery</h3>
+    <p class="price">$9</p>
+  </a>
+  <a class="product-card tier-mid" href="#" target="_blank">
+    <span class="badge">New</span>
+    <img src="images/hustlemode-command-center.jpg" alt="HustleMode Command Center">
+    <h3>HustleMode Notion Command Center</h3>
+    <p class="price">$29</p>
+  </a>
+  <a class="product-card tier-mid" href="#" target="_blank">
+    <span class="badge">New</span>
+    <img src="images/momentum-toolkit.jpg" alt="Momentum Mapping Toolkit">
+    <h3>Momentum Mapping Toolkit</h3>
+    <p class="price">$15</p>
+  </a>
 </div>
-      <h2>🚀 Top Tier Access</h2>
-      <div class="vault-grid">
-        <a class="product-card tier-top" href="https://grafixartistry6.gumroad.com/l/gxpksf" target="_blank">
-          <span class="badge">Top</span>
-          <img src="images/clarity-master-bundle.jpg" alt="Clarity Master Bundle">
-          <h3>Clarity Master Bundle</h3>
-          <p class="price">$99</p>
-        </a>
-        <a class="product-card tier-top" href="https://grafixartistry6.gumroad.com/l/eylhzc" target="_blank">
-          <span class="badge">Top</span>
-          <img src="images/digital-clarity-kit.jpg" alt="Digital Clarity Kit">
-          <h3>Calm Clarity Blueprint</h3>
-          <p class="price">$199</p>
-        </a>
-        <a class="product-card tier-top" href="https://grafixartistry6.gumroad.com/l/jqzdtq" target="_blank">
-          <span class="badge">Top</span>
-          <img src="images/launch-earn-combo.jpg" alt="Launch & Earn Combo">
-          <h3>Launch & Earn Combo Pack</h3>
-          <p class="price">$49</p>
-        </a>
-      </div>
 
-     <script>
-  const toggle = document.getElementById("substack-toggle");
-  const box = document.getElementById("substack-box");
-  if (toggle && box) {
-    toggle.addEventListener("click", () => {
-      box.style.display = box.style.display === "none" ? "block" : "none";
-    });
-  }
-</script>
-
-      
-
-      <div class="vault-blurbs" style="margin-top: 3rem;">
-        <div style="margin-bottom: 2rem;">
-          <h3>💸 Become an Affiliate</h3>
-          <p>Want to earn by sharing the Vault? Join our affiliate program and get paid when others unlock access.</p>
-          <a href="mailto:support@anchorstack.pro?subject=Affiliate Inquiry">Email us to Join the Program</a>
+<h2 class="tier-heading">🚀 Top Tier Access</h2>
+<div class="vault-grid">
+  <a class="product-card tier-top" href="#" target="_blank">
+    <span class="badge">Top</span>
+    <img src="images/clarity-master-bundle.jpg" alt="Clarity Master Bundle">
+    <h3>Clarity Master Bundle</h3>
+    <p class="price">$99</p>
+  </a>
+  <a class="product-card tier-top" href="#" target="_blank">
+    <span class="badge">Top</span>
+    <img src="images/digital-clarity-kit.jpg" alt="Digital Clarity Kit">
+    <h3>Calm Clarity Blueprint</h3>
+    <p class="price">$199</p>
+  </a>
+  <a class="product-card tier-top" href="#" target="_blank">
+    <span class="badge">Top</span>
+    <img src="images/launch-earn-combo.jpg" alt="Launch & Earn Combo">
+    <h3>Launch & Earn Combo Pack</h3>
+    <p class="price">$49</p>
+  </a>
+</div>
 
 
+<div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #ddd;">
+  <div style="margin-bottom: 2rem;">
+    <h3>💸 Become an Affiliate</h3>
+    <p>Want to earn by sharing the Vault? Join our affiliate program and get paid when others unlock access.</p>
+    <a href="mailto:support@anchorstack.pro?subject=Affiliate Inquiry">Email us to Join the Program</a>
+  </div>
+
+  <div style="margin-bottom: 2rem;">
+    <h3>🤝 Partner or Contribute</h3>
+    <p>Have a product idea, resource, or tool to add to the Vault? Let’s build something together.</p>
+    <a href="mailto:support@anchorstack.pro?subject=Vault Collaboration Idea">Pitch Your Idea</a>
+  </div>
+
+  <div class="substack-form" style="text-align: center;">
+    <h3>📬 Stay Updated</h3>
+    <p>Get notified when new tools drop. No noise. Just clarity.</p>
+    <iframe src="https://rickyjarnagin.substack.com/embed" frameborder="0" loading="lazy"
+      style="border:1px solid #ccc; border-radius: 10px; width: 100%; max-width: 480px; height: 180px;">
+    </iframe>
+  </div>
+</div>
 </body>
 </html>
+
