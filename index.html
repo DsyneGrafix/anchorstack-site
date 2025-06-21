@@ -137,7 +137,19 @@
     <h1>Reset Your Focus in 30 Days</h1>
     <p class="subhead">Join thousands of creators reclaiming clarity and momentum — one day at a time.</p>
     <div class="form-container">
-      <form name="focus-challenge" method="POST" data-netlify="true" action="/welcome/index.html">Welcome</a>">
+     <div class="form-container">
+  <form name="focus-challenge"
+        method="POST"
+        data-netlify="true"
+        action="/welcome/index.html">
+    <!-- your form fields here, e.g.: -->
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <button type="submit">Submit</button>
+  </form>
+</div>
+
         <input type="text" name="name" placeholder="Your first name" required />
         <input type="email" name="email" placeholder="Your email address" required />
         <button type="submit">Start Challenge + Unlock Vault</button>
