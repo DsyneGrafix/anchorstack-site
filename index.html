@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -136,27 +135,24 @@
   <div class="hero">
     <h1>Reset Your Focus in 30 Days</h1>
     <p class="subhead">Join thousands of creators reclaiming clarity and momentum — one day at a time.</p>
-   
-     <div class="form-container">
-  <form name="focus-challenge"
-        method="POST"
-        data-netlify="true"
-        action="/welcome/index.html">
-    <!-- your form fields here, e.g.: -->
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
 
-    <button type="submit">Submit</button>
-  </form>
-</div>
+    <div class="form-container">
+      <form name="focus-challenge"
+            method="POST"
+            data-netlify="true"
+            action="/welcome/index.html">
+        <label for="name">First Name:</label>
+        <input type="text" id="name" name="name" placeholder="Your first name" required />
 
-        <input type="text" name="name" placeholder="Your first name" required />
-        <input type="email" name="email" placeholder="Your email address" required />
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Your email address" required />
+
         <button type="submit">Start Challenge + Unlock Vault</button>
-      
-      <p class="bonus">You’ll receive Day 1 instantly — plus a free pass to the AnchorStack Vault.</p>
-      <div class="badge">🎁 Includes FREE Vault Access</div>
+      </form>
     </div>
+
+    <p class="bonus">You’ll receive Day 1 instantly — plus a free pass to the AnchorStack Vault.</p>
+    <div class="badge">🎁 Includes FREE Vault Access</div>
   </div>
 
   <div class="cta-bar">🚀 Next wave starts July 1 — Join now and get the Momentum Toolkit bonus!</div>
@@ -181,3 +177,4 @@
 
 </body>
 </html>
+
