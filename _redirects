@@ -28,3 +28,5 @@
 /mid         /vault   301!
 /free        /vault   301!
 /about /vault 301!
+/welcome     /welcome.html   200
+
