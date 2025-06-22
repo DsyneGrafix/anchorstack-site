@@ -74,5 +74,28 @@
   </div>
 
   <iframe src="https://rickyjarnagin.substack.com/embed" width="100%" height="180" frameborder="0" scrolling="no"></iframe>
+
+<!-- Challenge Modal -->
+<div id="challengeModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#000000a8; z-index:1000;">
+  <div style="background:#fff; max-width:500px; margin:10% auto; padding:2rem; border-radius:8px; box-shadow:0 4px 10px rgba(0,0,0,0.3); text-align:center;">
+    <h2>🧠 Ready to Focus?</h2>
+    <p>Join the free <strong>30-Day Focus Challenge</strong> — daily prompts, bite-sized tools, and no distractions.</p>
+    <a href="challenge.html" style="background:#007f7f; color:#fff; padding:0.6rem 1.2rem; display:inline-block; margin-top:1rem; border-radius:5px; text-decoration:none;">✅ Join the Challenge</a>
+    <br/><br/>
+    <button onclick="closeModal()" style="background:none; border:none; color:#007f7f; text-decoration:underline; font-size:0.9rem;">No thanks, just show me the Vault</button>
+  </div>
+</div>
+
+<script>
+  function closeModal() {
+    document.getElementById('challengeModal').style.display = 'none';
+  }
+  window.onload = () => {
+    setTimeout(() => {
+      document.getElementById('challengeModal').style.display = 'block';
+    }, 5000);
+  };
+</script>
+
 </body>
 </html>
