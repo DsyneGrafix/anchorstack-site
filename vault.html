@@ -1,7 +1,4 @@
-
 <!DOCTYPE html>
-<html lang="en">
-<head><!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -31,10 +28,10 @@
     }
     .container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      padding: 1rem 2rem;
-      max-width: 1200px;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      padding: 0 1.5rem 2rem;
+      max-width: 600px;
       margin: auto;
     }
     .tile {
@@ -42,31 +39,40 @@
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
       overflow: hidden;
-      transition: transform 0.2s;
       text-align: center;
-    }
-    .tile:hover {
-      transform: scale(1.015);
-    }
-    .tile img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
+      padding: 1.5rem;
     }
     .tile h3 {
-      margin: 0.75rem;
+      margin: 0.5rem 0;
       font-size: 1.2rem;
       color: #004f4f;
     }
+    .tile p {
+      font-size: 0.95rem;
+      margin: 0.5rem 0 1rem;
+    }
     .tile a {
       display: inline-block;
-      margin-bottom: 1.25rem;
+      margin-top: 0.5rem;
       color: white;
       background: #007f7f;
       padding: 0.6rem 1.25rem;
       border-radius: 6px;
       text-decoration: none;
       font-weight: bold;
+    }
+    .highlight {
+      background: #fff9db;
+      border-left: 4px solid #ffc107;
+      padding: 1rem;
+      margin: 2rem auto 1rem;
+      max-width: 600px;
+      border-radius: 8px;
+    }
+    .highlight h3 {
+      margin-top: 0;
+      font-size: 1.1rem;
+      color: #b36b00;
     }
     footer {
       text-align: center;
@@ -82,277 +88,47 @@
     <h1>Welcome to the AnchorStack Vault</h1>
   </header>
 
-  <h2 class="section-header">🟦 Free Tier Access</h2>
-  <section class="container">
-    <div class="tile">
-      <img src="/images/calm_clarity_kit.png" alt="Calm Clarity Kit" />
-      <h3>Calm Clarity Kit – 7-Day Edition</h3>
-      <a href="https://grafixartistry6.gumroad.com/l/nupwf">View Product</a>
-    </div>
-    <div class="tile">
-      <img src="/images/creator_vault_starter.png" alt="AnchorStack Creator Vault" />
-      <h3>Creator Vault Starter Pack</h3>
-      <a href="https://grafixartistry6.gumroad.com/l/mbxcud">View Product</a>
-    </div>
-  </section>
+  <div class="highlight">
+    <h3>🌟 Product of the Week: Momentum Mapping Toolkit</h3>
+    <p>Streamline your focus and boost productivity with this actionable toolkit. Special pricing this week only!</p>
+    <a href="https://grafixartistry6.gumroad.com/l/npruu">Grab it Now for $15</a>
+  </div>
 
-  <h2 class="section-header">🟩 Mid Tier Vault – $29/mo Access</h2>
   <section class="container">
     <div class="tile">
-      <img src="/images/clarity_core_bundle.png" alt="Clarity Core Bundle" />
-      <h3>Clarity Core Bundle</h3>
-      <a href="https://grafixartistry6.gumroad.com/l/msenf">View Product</a>
+      <h3>📦 Free Vault Access</h3>
+      <p>Start your journey with access to starter packs and clarity tools — 100% free.</p>
+      <a href="https://grafixartistry6.gumroad.com/l/mbxcud">Get Started</a>
     </div>
     <div class="tile">
-      <img src="/images/work_life_integration_mastery.png" alt="Work-Life Integration Mastery" />
-      <h3>Work-Life Integration Mastery</h3>
-      <a href="https://grafixartistry6.gumroad.com/l/lapqw">View Product</a>
+      <h3>📈 Mid Tier Vault – $29/mo</h3>
+      <p>Includes exclusive tools like the 30-Day Product Sprint, habit systems, and creator workflows.</p>
+      <a href="https://grafixartistry6.gumroad.com/l/xalvnc">Upgrade Now</a>
     </div>
     <div class="tile">
-      <img src="/images/momentum_mapping_toolkit.png" alt="Momentum Mapping Toolkit" />
-      <h3>Momentum Mapping Toolkit</h3>
-      <a href="https://grafixartistry6.gumroad.com/l/npruu">View Product</a>
-    </div>
-  </section>
-
-  <h2 class="section-header">🟨 Top Tier Vault – $129/yr Bundle</h2>
-  <section class="container">
-    <div class="tile">
-      <img src="/images/clarity_master_bundle.png" alt="Clarity Master Bundle" />
-      <h3>Clarity Master Bundle</h3>
-      <a href="https://grafixartistry6.gumroad.com/l/gxpksf">View Product</a>
+      <h3>🚀 Top Tier Vault – $129/yr</h3>
+      <p>Unlock all premium bundles plus future drops. No monthly fees. One upgrade = full access.</p>
+      <a href="https://grafixartistry6.gumroad.com/l/uebseh">Unlock Everything</a>
     </div>
     <div class="tile">
-      <img src="/images/hustlemode_notion_command.png" alt="HustleMode Command Center" />
-      <h3>HustleMode Notion Command Center</h3>
-      <a href="https://grafixartistry6.gumroad.com/l/jfkdn">View Product</a>
+      <h3>📬 Substack Newsletter</h3>
+      <p>Get notified when new tools drop. No noise. Just clarity.</p>
+      <a href="https://rickyjarnagin.substack.com/">Subscribe Free</a>
     </div>
     <div class="tile">
-      <img src="/images/digital_clarity_kit.png" alt="Digital Clarity Kit" />
-      <h3>The Calm Clarity Blueprint – Digital Kit</h3>
-      <a href="https://grafixartistry6.gumroad.com/l/eylhzc">View Product</a>
-    </div>
-  </section>
-
-  <h2 class="section-header">📬 Substack, Affiliate & Collaboration</h2>
-  <section class="container">
-    <div class="tile">
-      <img src="/images/substack_join.png" alt="Substack Newsletter" />
-      <h3>Join Our Substack</h3>
-      <a href="https://rickyjarnagin.substack.com/">Subscribe</a>
+      <h3>🤝 Affiliate Program</h3>
+      <p>Earn 20% recurring commissions by sharing AnchorStack with your network.</p>
+      <a href="https://grafixartistry6.gumroad.com/affiliates">Join the Program</a>
     </div>
     <div class="tile">
-      <img src="/images/affiliate_program.png" alt="Affiliate Program" />
-      <h3>Become an Affiliate</h3>
-      <a href="https://grafixartistry6.gumroad.com/affiliates">Join Now</a>
-    </div>
-    <div class="tile">
-      <img src="/images/collaborate_with_us.png" alt="Collaborate With Us" />
-      <h3>Collaborate With AnchorStack</h3>
-      <a href="mailto:hello@anchorstack.pro">Pitch an Idea</a>
+      <h3>🧠 Collaborate With Us</h3>
+      <p>Got an idea, toolkit, or template you want to launch with us? Let’s build it together.</p>
+      <a href="mailto:hello@anchorstack.pro">Pitch Your Idea</a>
     </div>
   </section>
 
   <footer>
-    © 2025 AnchorStack • Clarity. Momentum. Creation.
+    © 2025 AnchorStack • Curated clarity for creators
   </footer>
 </body>
 </html>
-
-
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AnchorStack Vault</title>
-  <link rel="icon" href="images/favicon.ico" type="image/png" />
-  <style>
-    body {
-      font-family: sans-serif;
-      background: #f9f9f9;
-      color: #333;
-      padding: 2rem;
-      margin: 0;
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-    .tier-heading {
-      font-size: 1.5rem;
-      margin: 3rem 0 1rem;
-      text-align: left;
-    }
-    .vault-banner {
-      background: #6c5ce7;
-      color: #fff;
-      padding: 1.5rem;
-      border-radius: 10px;
-      margin-bottom: 2rem;
-      text-align: center;
-      font-size: 1.2rem;
-    }
-    .vault-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      justify-content: center;
-    }
-    .product-card {
-      background-color: white;
-      border-radius: 12px;
-      text-align: center;
-      padding: 1rem;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      text-decoration: none;
-      color: #222;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .product-card:hover {
-      transform: scale(1.03);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-    }
-    .product-card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 8px;
-      background: #e0e0e0;
-    }
-    .product-card h3 {
-      font-size: 1rem;
-      margin: 0.5rem 0;
-    }
-    .product-card .price {
-      font-weight: bold;
-      color: #6c5ce7;
-    }
-    .badge {
-      display: inline-block;
-      background-color: #e53935;
-      color: white;
-      font-size: 0.75rem;
-      font-weight: bold;
-      border-radius: 999px;
-      padding: 2px 8px;
-      margin-bottom: 8px;
-    }
-    .tier-free::before { background-color: #00C853; }
-    .tier-mid::before { background-color: #FFD600; }
-    .tier-top::before { background-color: #D50000; }
-  </style>
-</head>
-<body>
-
-<h1>🚪 Welcome to the AnchorStack Vault</h1>
-<div class="vault-banner">
-  Thank you for being a Vault Member. You're unlocking tools designed to bring clarity, momentum, and peace to your creative work.
-</div>
-
-<h2 class="tier-heading">🎁 Free Tier Access</h2>
-<div class="vault-grid">
-  <a class="product-card tier-free" href="#" target="_blank">
-    <span class="badge">Free</span>
-    <img src="images/calm-clarity-kit.jpg" alt="Calm Clarity Kit">
-    <h3>Calm Clarity Kit – 7-Day Edition</h3>
-    <p class="price">FREE</p>
-  </a>
-  <a class="product-card tier-free" href="#" target="_blank">
-    <span class="badge">Free</span>
-    <img src="images/vault-insider-pack.jpg" alt="Vault Insider Pack">
-    <h3>Vault Insider Welcome Pack</h3>
-    <p class="price">FREE</p>
-  </a>
-  <a class="product-card tier-free" href="#" target="_blank">
-    <span class="badge">Free</span>
-    <img src="images/3-day-habit-stack.jpg" alt="Habit Stack">
-    <h3>3-Day Habit Stack Strategy</h3>
-    <p class="price">FREE</p>
-  </a>
-</div>
-
-<h2 class="tier-heading">⚡ Mid Tier Access</h2>
-<section class="sprint-banner" style="background: #fff9c4; border: 1px solid #f4e04d; padding: 1.5rem; border-radius: 12px; margin: 3rem 0; text-align: center;">
-  <h2 style="margin-top: 0;">🚀 Featured Drop: The 30-Day Product Sprint</h2>
-  <p style="font-size: 1rem; max-width: 600px; margin: 0 auto;">
-    Launch your next digital product in 30 days — with clarity, speed, and zero fluff.
-    <br><strong>Free with Mid Tier Vault access.</strong> Stay 90 days to unlock a bonus worth $19.
-  </p>
-  <div style="margin-top: 1.5rem;">
-    <a href="/sprint.html" style="display: inline-block; background: #6c5ce7; color: white; padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: bold;">Learn More</a>
-  </div>
-</section>
-
-
-<div class="vault-grid">
-  <a class="product-card tier-mid" href="#" target="_blank">
-    <span class="badge">New</span>
-    <img src="images/clarity-core-bundle.jpg" alt="Clarity Core Bundle">
-    <h3>Clarity Core Bundle</h3>
-    <p class="price">$39</p>
-  </a>
-  <a class="product-card tier-mid" href="#" target="_blank">
-    <span class="badge">New</span>
-    <img src="images/work-life-integration.jpg" alt="Work-Life Integration Mastery">
-    <h3>Work-Life Integration Mastery</h3>
-    <p class="price">$9</p>
-  </a>
-  <a class="product-card tier-mid" href="#" target="_blank">
-    <span class="badge">New</span>
-    <img src="images/hustlemode-command-center.jpg" alt="HustleMode Command Center">
-    <h3>HustleMode Notion Command Center</h3>
-    <p class="price">$29</p>
-  </a>
-  <a class="product-card tier-mid" href="#" target="_blank">
-    <span class="badge">New</span>
-    <img src="images/momentum-toolkit.jpg" alt="Momentum Mapping Toolkit">
-    <h3>Momentum Mapping Toolkit</h3>
-    <p class="price">$15</p>
-  </a>
-</div>
-
-<h2 class="tier-heading">🚀 Top Tier Access</h2>
-<div class="vault-grid">
-  <a class="product-card tier-top" href="#" target="_blank">
-    <span class="badge">Top</span>
-    <img src="images/clarity-master-bundle.jpg" alt="Clarity Master Bundle">
-    <h3>Clarity Master Bundle</h3>
-    <p class="price">$99</p>
-  </a>
-  <a class="product-card tier-top" href="#" target="_blank">
-    <span class="badge">Top</span>
-    <img src="images/digital-clarity-kit.jpg" alt="Digital Clarity Kit">
-    <h3>Calm Clarity Blueprint</h3>
-    <p class="price">$199</p>
-  </a>
-  <a class="product-card tier-top" href="#" target="_blank">
-    <span class="badge">Top</span>
-    <img src="images/launch-earn-combo.jpg" alt="Launch & Earn Combo">
-    <h3>Launch & Earn Combo Pack</h3>
-    <p class="price">$49</p>
-  </a>
-</div>
-
-
-<div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #ddd;">
-  <div style="margin-bottom: 2rem;">
-    <h3>💸 Become an Affiliate</h3>
-    <p>Want to earn by sharing the Vault? Join our affiliate program and get paid when others unlock access.</p>
-    <a href="mailto:support@anchorstack.pro?subject=Affiliate Inquiry">Email us to Join the Program</a>
-  </div>
-
-  <div style="margin-bottom: 2rem;">
-    <h3>🤝 Partner or Contribute</h3>
-    <p>Have a product idea, resource, or tool to add to the Vault? Let’s build something together.</p>
-    <a href="mailto:support@anchorstack.pro?subject=Vault Collaboration Idea">Pitch Your Idea</a>
-  </div>
-
-  <div class="substack-form" style="text-align: center;">
-    <h3>📬 Stay Updated</h3>
-    <p>Get notified when new tools drop. No noise. Just clarity.</p>
-    <iframe src="https://rickyjarnagin.substack.com/embed" frameborder="0" loading="lazy"
-      style="border:1px solid #ccc; border-radius: 10px; width: 100%; max-width: 480px; height: 180px;">
-    </iframe>
-  </div>
-</div>
-</body>
-</html>
-
