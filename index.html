@@ -1,98 +1,78 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<link rel="icon" href="/favicon.ico" type="image/x-icon" />
-<!-- Google tag (gtag.js) -->
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-QL8N3YFW6B"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-QL8N3YFW6B');
-</script>
-
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Home – AnchorStack</title>
-<style>
-        body {
-            font-family: sans-serif;
-            margin: 0;
-            padding: 2rem;
-            background: #2f2f2f;
-            color: #f0f0f0;
-            line-height: 1.6;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        a {
-            color: #00BFFF;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .button {
-            display: inline-block;
-            background: #00BFFF;
-            color: #fff;
-            padding: 0.75rem 1.5rem;
-            border-radius: 6px;
-            margin-top: 1rem;
-            text-decoration: none;
-        }
-        h1, h2 {
-            color: #ffffff;
-        }
-    </style>
+ <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to AnchorStack</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fdfdfd;
+      color: #222;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    header img {
+      height: 100px;
+      margin-bottom: 1rem;
+    }
+    h1 {
+      font-size: 2.2rem;
+      color: #004f4f;
+      margin-bottom: 0.5rem;
+    }
+    h2 {
+      font-size: 1.2rem;
+      color: #555;
+      margin-bottom: 2rem;
+    }
+    .teaser {
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      line-height: 1.6;
+    }
+    .cta {
+      margin: 2rem 0;
+    }
+    .cta a {
+      color: white;
+      background: #007f7f;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+    .cta a:hover {
+      background: #005f5f;
+    }
+    iframe {
+      margin-top: 2rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+  </style>
 </head>
 <body>
-<div class="container">
-<h1>AnchorStack</h1>
-<p>Tools for creators who want to build better, not busier.</p>
-<form id="focus-form" action="https://formspree.io/f/xyzjdany" method="POST">
-  <label for="name">First Name:</label>
-  <input type="text" id="name" name="name" required>
+  <header>
+    <img src="/images/anchorstack_logo.png" alt="AnchorStack Logo" />
+  </header>
 
-  <label for="email">Email:</label>
-  <input type="email" id="email" name="email" required>
+  <h1>AnchorStack</h1>
+  <h2>Clarity Kits & Momentum Tools for Creators</h2>
 
-  <button type="submit">Start Challenge + Unlock Vault</button>
-</form>
+  <div class="teaser">
+    <p><strong>Most creators aren’t short on ideas. They’re short on systems.</strong></p>
+    <p>The Focus Vault isn’t just another collection of templates — it’s a launch-ready toolkit built for clarity, consistency, and real momentum. Inside, you’ll find editable planners, workflow accelerators, promo visuals, and white-label bundles that help you build fast and sell with integrity.</p>
+    <p>This is your unfair advantage — packaged, polished, and ready to deploy.</p>
+  </div>
 
-<script>
-  const form = document.getElementById("focus-form");
-  form.addEventListener("submit", async function(e) {
-    e.preventDefault();
-    const data = new FormData(form);
+  <div class="cta">
+    <a href="/vault.html">→ Enter the Vault</a>
+  </div>
 
-    try {
-      const response = await fetch(form.action, {
-        method: "POST",
-        body: data,
-        headers: {
-          Accept: "application/json"
-        }
-      });
-
-      if (response.ok) {
-        window.location.href = "/thank-you.html";
-      } else {
-        alert("Something went wrong. Please try again.");
-      }
-    } catch (error) {
-      console.error("Submission error:", error);
-      alert("Submission failed. Please try again.");
-    }
-  });
-</script>
-
-
-
-<p style="margin-top: 2rem;">Clarity. Momentum. Creation — without the noise.</p>
-</div>
+  <iframe src="https://rickyjarnagin.substack.com/embed" width="100%" height="180" frameborder="0" scrolling="no"></iframe>
 </body>
 </html>
