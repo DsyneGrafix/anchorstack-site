@@ -1,0 +1,25 @@
+# 🛍️ Gumroad Product Redirects
+/focus         https://grafixartistry6.gumroad.com/l/npruu        301
+/clarity       https://grafixartistry6.gumroad.com/l/nupwf        301
+/core          https://grafixartistry6.gumroad.com/l/msenf        301
+/masterbundle  https://grafixartistry6.gumroad.com/l/gxpksf       301
+/worklife      https://grafixartistry6.gumroad.com/l/lapqw        301
+/hustlemode    https://grafixartistry6.gumroad.com/l/jfkdn        301
+/blueprint     https://grafixartistry6.gumroad.com/l/eylhzc       301
+/combopack     https://grafixartistry6.gumroad.com/l/jqzdtq       301
+
+# 🧠 Substack & Vault
+/drops         https://rickyjarnagin.substack.com                 302
+/vault-news    https://rickyjarnagin.substack.com                 302
+/vault         /vault/index.html                                  200
+/focus-substack    https://grafixartistry6.gumroad.com/l/npruu?utm_source=substack&utm_campaign=vault_june   302
+
+# Site shortcuts
+/subscribe     /vault                                           301!
+/mid           /vault                                           301!
+/free          /vault                                           301!
+/about         /vault                                           301!
+
+# Welcome page “pretty URL” redirect
+/welcome       /welcome/                                        301!
+
