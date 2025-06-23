@@ -13,6 +13,7 @@
 /vault-news    https://rickyjarnagin.substack.com                 302
 /vault         /vault/index.html                                  200
 /focus-substack    https://grafixartistry6.gumroad.com/l/npruu?utm_source=substack&utm_campaign=vault_june   302
+/bonus  https://grafixartistry6.gumroad.com/l/stakzj  302
 
 # Site-internal shortcuts
 /subscribe     /vault                                           301!
