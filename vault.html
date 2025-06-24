@@ -253,7 +253,8 @@
     ];
 
     // ---- A/B Assignment ----
-    const variant = Math.random() < 0.5 ? 'banner' : 'sidebar';
+   const variant = 'banner';
+
     const pool    = variant === 'banner' ? bannerQuotes : sidebarQuotes;
     const quote   = pool[Math.floor(Math.random() * pool.length)];
 
@@ -268,6 +269,19 @@
       el.style.display = 'block';
     }
 
-    // ---- Click Handler (alert) ----
-    document.querySelectorAll('.show-thought
+       // ---- Click Handler (alert) ----
+    document.querySelectorAll('.show-thought').forEach(el =>
+      el.addEventListener('click', e => {
+        e.preventDefault();
+        alert(`${quote}\n— AnchorStack`);
+      })
+    );
+  </script>
+
+  <footer>
+    © 2025 AnchorStack • Curated clarity for creators
+  </footer>
+</body>
+</html>
+
 
