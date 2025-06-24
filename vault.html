@@ -1,289 +1,364 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <!-- SEO & Social Meta Tags -->
+<meta name="description" content="Discover tools, templates, and clarity kits to help creators stay focused and productive. AnchorStack Vault gives you instant access to digital products designed to help you build and grow—without the noise." />
+<meta name="keywords" content="creator tools, digital products, clarity kits, productivity, anchorstack, notion dashboards, hustlemode, reset kits, focus tools, passive income, templates" />
+<meta name="author" content="Ricky Jarnagin" />
+
+<!-- Open Graph (Facebook, LinkedIn) -->
+<meta property="og:title" content="AnchorStack Vault – Creator Tools Without the Noise" />
+<meta property="og:description" content="Explore clarity kits, Notion dashboards, productivity systems, and white-label bundles — all built for creative independence." />
+<meta property="og:image" content="https://anchorstack.pro/images/anchorstack-og-image.jpg" />
+<meta property="og:url" content="https://anchorstack.pro/vault" />
+<meta property="og:type" content="website" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="AnchorStack Vault – Creator Tools Without the Noise" />
+<meta name="twitter:description" content="Explore clarity kits, Notion dashboards, productivity systems, and white-label bundles — all built for creative independence." />
+<meta name="twitter:image" content="https://anchorstack.pro/images/anchorstack-og-image.jpg" />
+<style>
+  .trending-box {
+    background: linear-gradient(to bottom, #e8faff, #f7fcff);
+    padding: 2rem 1rem;
+    margin-top: 2rem;
+    border-radius: 8px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .trending-box.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .trending-title {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .trending-list {
+    list-style: none;
+    text-align: center;
+    margin-top: 1rem;
+    padding: 0;
+  }
+</style>
+
+<!-- Favicon (Optional) -->
+<link rel="icon" href="/images/favicon.png" type="image/png" />
+
+<meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AnchorStack Vault</title>
-  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-  <link rel="stylesheet" href="styles.css">
   <style>
-    /* ---------- Body & Layout ---------- */
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: system-ui, sans-serif;
       margin: 0;
       padding: 0;
-      background: #fdfdfd;
-      color: #222;
+      background-color: #fff;
     }
-    header {
-      text-align: center;
-      padding: 2rem 1rem 0.5rem;
-    }
-    header img {
-      height: 100px;
-    }
-
-    /* Banner (full-width) */
-    .thoughts-banner {
-      display: none;               /* shown via JS */
-      width: 100%;
-      height: 60px;
-      background: var(--accent-color, #007f7f);
-      color: #fff;
-      font-weight: bold;
-      font-size: 1rem;
-      align-items: center;
-      justify-content: center;
-      display: flex;
-    }
-    .thoughts-banner a {
-      margin-left: 0.5rem;
-      text-decoration: underline;
-      color: #fff;
-    }
-
-    /* Two-column layout wrapper */
-    .layout {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 2rem;
-      max-width: 1000px;
-      margin: 2rem auto;
-      padding: 0 1.5rem;
-    }
-
-    /* Main content */
-    .layout main {
-      max-width: 100%;
-    }
-    .layout main h1 {
-      margin-bottom: 1.5rem;
-    }
-    .highlight {
-      background: #fff9db;
-      border-left: 4px solid #ffc107;
-      padding: 1rem;
-      margin-bottom: 2rem;
-      border-radius: 8px;
-    }
-    .highlight h3 {
-      margin-top: 0;
-      font-size: 1.1rem;
-      color: #b36b00;
-    }
-    .container {
-      display: grid;
-      gap: 1rem;
-    }
-    .tile {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      padding: 1.5rem;
-      text-align: center;
-    }
-    .tile h3 { margin: 0.5rem 0; color: #004f4f; }
-    .tile p { margin: 0.5rem 0 1rem; font-size: 0.95rem; }
-    .tile a {
-      display: inline-block;
-      margin-top: 0.5rem;
-      background: #007f7f;
-      color: white;
-      padding: 0.6rem 1.25rem;
-      border-radius: 6px;
+    a {
       text-decoration: none;
-      font-weight: bold;
     }
-
-    /* Sidebar */
-    .thoughts-sidebar {
-      display: none;               /* shown via JS */
-      padding: 1rem;
-      border: 2px solid var(--accent-color, #007f7f);
-      background: var(--accent-light, #e0f7f7);
-      font-style: italic;
-      position: sticky;
-      top: 100px;
+    .cta-button {
+      display: inline-block;
+      margin: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background-color: #008080;
+      color: #fff;
       border-radius: 8px;
     }
-    .thoughts-sidebar a {
-      display: block;
+    .hero-section {
+      text-align: center;
+      padding: 3rem 1rem;
+      background-color: #f9f9f9;
+    }
+    .sticky-banner {
+      position: sticky;
+      top: 0;
+      background-color: #fffbe7;
+      padding: 0.75rem 1rem;
+      font-size: 0.95rem;
+      border-bottom: 1px solid #ccc;
+      z-index: 100;
+      text-align: center;
+    }
+    .featured-product {
+      background-color: #fff4d1;
+      padding: 2rem 1rem;
+      margin-top: 2rem;
+      border-radius: 8px;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+    .product-card {
+      background-color: #f4f4f4;
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .product-card img {
+      max-width: 100%;
+      border-radius: 6px;
+    }
+    .scroll-prompt {
+      text-align: center;
+      font-size: 1.1rem;
       margin-top: 1rem;
-      text-decoration: underline;
-      color: var(--accent-color, #007f7f);
-      font-weight: bold;
-      text-align: center;
-    }
-
-    /* Mobile fallback: stack columns */
-    @media (max-width: 768px) {
-      .layout {
-        display: block;
-        padding: 0 1rem;
-      }
-      .thoughts-sidebar {
-        position: static;
-        width: auto;
-        margin-bottom: 2rem;
-      }
-    }
-
-    footer {
-      text-align: center;
-      font-size: 0.9rem;
-      color: #777;
-      margin: 3rem 1rem 1rem;
     }
   </style>
+<style>
+  .daily-saying-bar {
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    padding: 0.75rem 1rem;
+    background: #f7f7f7;
+    border-top: 1px solid #ddd;
+    margin-top: 3rem;
+  }
+
+.hero-section {
+  text-align: center;
+  padding: 2rem 1rem; /* was 3rem */
+  background-color: #f9f9f9;
+}
+</style>
+
 </head>
 <body>
 
-  <header>
-    <!-- Navigation & Logo -->
-    <img src="/images/anchorstack_logo.png" alt="AnchorStack Logo">
-    <!-- …your nav links here… -->
-  </header>
-
- 
-
-     </header>
-
-  <!-- Sidebar (A/B variant) temporarily disabled
-  <aside id="variant-sidebar" class="thoughts-sidebar">
-    <span class="quote-text"></span>
-    <a href="#" class="show-thought">Learn More →</a>
-  </aside>
-  -->
-
-  <!-- Main Vault Content (full-width) -->
-  <main>
-    <!-- …your vault content here… -->
-  </main>
-
-
-    <!-- Main Vault Content -->
-    <main>
-      <h1>Welcome to the AnchorStack Vault</h1>
-
-      <!-- Substack Embed -->
-      <div class="highlight">
-        <h3>🎯 Join the 30-Day Focus Challenge</h3>
-        <p>Get 30 days of clarity tools delivered by email — free. Start building lasting focus with tiny, daily wins.</p>
-        <iframe src="https://rickyjarnagin.substack.com/embed"
-                width="100%" height="180"
-                style="border:1px solid #ccc; border-radius:8px;"
-                frameborder="0" scrolling="no">
-        </iframe>
-      </div>
-
-      <!-- Product of the Week -->
-      <div class="highlight">
-        <h3>🌟 Product of the Week: Focus Vault – White Label Productivity Kit</h3>
-        <p>Launch your own productivity brand instantly. The Focus Vault delivers a ready-made system packed with tools, visuals, and editable content.</p>
-        <p>✔ Editable ZIP<br>✔ Canva slides<br>✔ License to rebrand or sell</p>
-        <a href="https://grafixartistry6.gumroad.com/l/xlbheu?utm_source=vault&utm_medium=highlight&utm_campaign=focus_vault">
-          Grab it Now for $49
-        </a>
-      </div>
-
-      <!-- Vault Tiles -->
-      <section class="container">
-        <div class="tile">
-          <h3>📦 Free Vault Access</h3>
-          <p>Start your journey with access to starter packs and clarity tools — 100% free.</p>
-          <a href="https://grafixartistry6.gumroad.com/l/mbxcud?utm_source=vault&utm_medium=button&utm_campaign=free">
-            Get Started
-          </a>
-        </div>
-        <div class="tile">
-          <h3>📈 Mid Tier Vault – $29/mo</h3>
-          <p>Includes exclusive tools like the 30-Day Product Sprint, habit systems, and creator workflows.</p>
-          <a href="https://grafixartistry6.gumroad.com/l/xalvnc?utm_source=vault&utm_medium=button&utm_campaign=mid">
-            Upgrade Now
-          </a>
-        </div>
-        <div class="tile">
-          <h3>🚀 Top Tier Vault – $129/yr</h3>
-          <p>Unlock all premium bundles plus future drops. No monthly fees. One upgrade = full access.</p>
-          <a href="https://grafixartistry6.gumroad.com/l/uebseh?utm_source=vault&utm_medium=button&utm_campaign=top">
-            Unlock Everything
-          </a>
-        </div>
-        <div class="tile">
-          <h3>📬 Substack Newsletter</h3>
-          <p>Get notified when new tools drop. No noise. Just clarity.</p>
-          <a href="https://rickyjarnagin.substack.com/?utm_source=vault&utm_medium=button&utm_campaign=newsletter">
-            Subscribe Free
-          </a>
-        </div>
-        <div class="tile">
-          <h3>🤝 Affiliate Program</h3>
-          <p>Earn up to 20% recurring commissions by sharing AnchorStack with your network.</p>
-          <a href="https://grafixartistry6.gumroad.com/affiliates?utm_source=vault&utm_medium=button&utm_campaign=affiliate">
-            Join the Program
-          </a>
-        </div>
-        <div class="tile">
-          <h3>🧠 Collaborate With Us</h3>
-          <p>Got an idea, toolkit, or template you want to launch with us? Let’s build it together.</p>
-          <a href="mailto:support@anchorstack.pro">
-            Pitch Your Idea
-          </a>
-        </div>
-      </section>
-
-    </main>
+  <!-- Sticky Substack Join Bar -->
+  <div class="sticky-banner">
+    💌 <strong>Join the 30-Day Focus Challenge:</strong>
+    <a href="#newsletter-signup" style="color: #d35400; font-weight: bold;">Sign up for free daily clarity tools</a>
   </div>
 
-  <script>
-    // ---- Quote Pools ----
-    const bannerQuotes = [
-      "Clarity isn’t a destination; it’s a daily practice.",
-      "Your attention is your most precious resource.",
-      "Every pause is a reset for your purpose.",
-      "Focus grows in the space you create.",
-      "A calm mind uncovers your greatest ideas.",
-      "Stillness is the canvas for your next move."
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <img src="/images/logo.png" alt="AnchorStack Logo" style="height: 100px;" />
+    <h1 style="font-size: 2rem; margin-top: 1rem;">Unlock Your AnchorStack Vault</h1>
+    <p style="font-size: 1.2rem; color: #555;">
+      Tools, templates, and clarity kits designed to help creators thrive — no fluff.
+    </p>
+    <div style="margin-top: 1.5rem;">
+            <a href="#newsletter-signup" class="cta-button" style="background-color: #ff6600;">💌 Join the 30-Day Focus Challenge</a>
+      <a href="#product-of-the-week" class="cta-button" style="background-color: #444;">🎯 This Week’s Deal – $49</a>
+    </div>
+    <p style="font-size: 0.9rem; color: #999; margin-top: 1rem;">Trusted by 100+ creators · New tools added monthly</p>
+  </section>
+  <!-- Product of the Week -->
+  <section id="product-of-the-week" class="featured-product">
+    <h2 style="text-align: center;">🌟 Product of the Month: <em>Focus Vault – White Label Productivity Kit</em></h2>
+    <p style="max-width: 700px; margin: 0 auto; font-size: 1.1rem;">
+      Launch your own productivity brand instantly. The Focus Vault delivers a ready-made system packed with tools, visuals, and editable content.
+    </p>
+    <ul style="list-style: none; text-align: center; margin-top: 1rem; padding: 0;">
+      <li>✔️ Editable ZIP</li>
+      <li>✔️ Canva slides</li>
+      <li>✔️ License to rebrand or sell</li>
+    </ul>
+    <div style="text-align: center; margin-top: 1rem;">
+      <a href="https://grafixartistry6.gumroad.com/l/npruu" class="cta-button" style="background-color: #e67e22;">🚀 Grab It Now for $49</a>
+    </div>
+  </section>
+<!-- Trending This Week Section -->
+<section id="trending-week" class="trending-box">
+  <h2 class="trending-title">📈 Trending This Week: <em id="trending-name">Launch & Earn Combo Pack</em> 🔁 <span style="font-style: italic;">Updated Weekly</span></h2>
+  <p style="max-width: 700px; margin: 0 auto; font-size: 1.1rem;" id="trending-desc">
+    This powerful dual-kit bundle is turning heads for a reason. Grab everything you need to go from idea to income — faster than ever.
+  </p>
+  <ul class="trending-list" id="trending-bullets">
+    <li>🔥 Top Seller</li>
+    <li>📦 Two full products bundled</li>
+    <li>🧩 Editable, launch-ready, no fluff</li>
+  </ul>
+  <div style="text-align: center; margin-top: 1rem;">
+    <a id="trending-link" href="https://grafixartistry6.gumroad.com/l/jqzdtq" class="cta-button" style="background-color: #3498db;">
+      🚀 Get the Combo Pack
+    </a>
+  </div>
+</section>
+
+
+
+<div class="product-grid">
+  <div class="product-card">
+    <div style="text-align: left; font-weight: bold; color: #e74c3c;">🔥 Top Seller</div>
+    <img src="/images/focus-vault-thumb.jpg" alt="Focus Vault" />
+    <h3>Focus Vault</h3>
+    <p>Editable kit to launch your own productivity system. Canva slides + resale license included.</p>
+    <a href="https://grafixartistry6.gumroad.com/l/npruu?utm_source=substack&utm_medium=email&utm_campaign=vault_welcome" class="cta-button">Get it for $49</a>
+  </div>
+
+  <div class="product-card">
+    <div style="text-align: left; font-weight: bold; color: #8e44ad;">🧰 Bundle</div>
+    <img src="/images/clarity-core-thumb.jpg" alt="Clarity Core Bundle" />
+    <h3>Clarity Core Bundle</h3>
+    <p>Your foundation for focused living. Includes 3 core tools and a bonus 7-day roadmap.</p>
+    <a href="https://grafixartistry6.gumroad.com/l/msenf?utm_source=substack&utm_medium=email&utm_campaign=vault_welcome" class="cta-button">Only $39</a>
+  </div>
+
+  <div class="product-card">
+    <div style="text-align: left; font-weight: bold; color: #27ae60;">🎯 Creator Favorite</div>
+    <img src="/images/calm-clarity-thumb.jpg" alt="Calm Clarity Kit" />
+    <h3>Calm Clarity Kit – 7-Day Edition</h3>
+    <p>Mini-reset kit to realign your day. Includes printable planner, audio prompts, and toolkit.</p>
+    <a href="https://grafixartistry6.gumroad.com/l/nupwf?utm_source=substack&utm_medium=email&utm_campaign=vault_welcome" class="cta-button">Get it for $15</a>
+  </div>
+
+  <div class="product-card">
+    <div style="text-align: left; font-weight: bold; color: #f39c12;">🚀 Launch Special</div>
+    <img src="/images/work-life-thumb.jpg" alt="Work-Life Integration Mastery" />
+    <h3>Work-Life Integration Mastery</h3>
+    <p>End burnout before it begins. Strategic guide to align your work with your life — sustainably.</p>
+    <a href="https://grafixartistry6.gumroad.com/l/lapqw?utm_source=substack&utm_medium=email&utm_campaign=vault_welcome" class="cta-button">Now $9</a>
+  </div>
+
+  <div class="product-card">
+    <div style="text-align: left; font-weight: bold; color: #16a085;">🧰 Bundle</div>
+    <img src="/images/hustlemode-command-thumb.jpg" alt="HustleMode Notion Command Center" />
+    <h3>HustleMode Command Center</h3>
+    <p>All-in-one Notion dashboard to launch, track, and grow your side hustle or digital product empire.</p>
+    <a href="https://grafixartistry6.gumroad.com/l/jfkdn?utm_source=substack&utm_medium=email&utm_campaign=vault_welcome
+" class="cta-button">Just $29</a>
+  </div>
+
+  <div class="product-card">
+    <div style="text-align: left; font-weight: bold; color: #c0392b;">🔥 Top Seller</div>
+    <img src="/images/launch-combo-thumb.jpg" alt="Launch & Earn Combo Pack" />
+    <h3>Launch & Earn Combo Pack</h3>
+    <p>Everything you need to go from idea to income — two full products bundled into one power pack.</p>
+    <a href="https://grafixartistry6.gumroad.com/l/jqzdtq?utm_source=substack&utm_medium=email&utm_campaign=vault_welcome" class="cta-button">Combo Deal – $49</a>
+  </div>
+<div class="product-card">
+  <div style="text-align: left; font-weight: bold; color: #16a085;">🧰 Bundle</div>
+  <img src="/images/momentum-mapping-thumb.jpg" alt="Momentum Mapping Toolkit" />
+  <h3>Momentum Mapping Toolkit</h3>
+  <p>Visual goal-tracking system to help creators build rhythm and finish what matters.</p>
+  <a href="https://grafixartistry6.gumroad.com/l/npruu" class="cta-button">Only $19</a>
+</div>
+
+<div class="product-card">
+  <div style="text-align: left; font-weight: bold; color: #3498db;">🆓 Freebie</div>
+  <img src="/images/7day-focus-thumb.jpg" alt="7-Day Focus Reset Kit" />
+  <h3>7-Day Focus Reset Kit</h3>
+  <p>A free digital reset designed to help you reclaim attention, energy, and clarity in one week.</p>
+  <a href="https://grafixartistry6.gumroad.com/l/mbxcud" class="cta-button">Download Free</a>
+</div>
+
+<div class="product-card">
+  <div style="text-align: left; font-weight: bold; color: #8e44ad;">🚀 Launch Special</div>
+  <img src="/images/decision-detox-thumb.jpg" alt="The Decision Detox" />
+  <h3>The Decision Detox</h3>
+  <p>Clear the clutter of too many options and rebuild a calm, confident decision-making rhythm.</p>
+  <a href="https://grafixartistry6.gumroad.com/l/lapqw" class="cta-button">Launch Price – $9</a>
+</div>
+
+</div>
+
+
+
+  <!-- Substack Newsletter -->
+  <section id="newsletter-signup" style="padding: 3rem 1rem; background-color: #f9f9f9; text-align: center;">
+  <h2>📬 Subscribe for Tools & Updates</h2>
+  <p style="max-width: 600px; margin: 0 auto;">Get notified when new tools drop. No noise. Just clarity.</p>
+  <iframe src="https://rickyjarnagin.substack.com/embed" width="100%" height="180" style="border:1px solid #ddd; background:#fff;" frameborder="0" scrolling="no"></iframe>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("trending-week").classList.add("visible");
+
+    // Swap logic placeholder
+    const products = [
+      {
+        name: "Launch & Earn Combo Pack",
+        desc: "This powerful dual-kit bundle is turning heads for a reason. Grab everything you need to go from idea to income — faster than ever.",
+        bullets: ["🔥 Top Seller", "📦 Two full products bundled", "🧩 Editable, launch-ready, no fluff"],
+        link: "https://grafixartistry6.gumroad.com/l/jqzdtq"
+      },
+      {
+        name: "HustleMode Command Center",
+        desc: "All-in-one Notion dashboard to help you plan, launch, and grow your digital products.",
+        bullets: ["📊 Built in Notion", "🧠 Side hustle command hub", "🧰 Bonus explainer guide included"],
+        link: "https://grafixartistry6.gumroad.com/l/jfkdn"
+      }
     ];
-    const sidebarQuotes = [
-      "Distraction is opportunity disguised as chaos.",
-      "Create space, and creativity will fill it.",
-      "Momentum begins with one small step.",
-      "Simplicity amplifies impact.",
-      "Build habits that serve your highest priorities.",
-      "Every thought is a seed for action."
-    ];
 
-    // ---- A/B Assignment ----
-   const variant = 'banner';
+    // Rotate product weekly or randomly
+    const pick = products[Math.floor(Math.random() * products.length)];
+    document.getElementById("trending-name").textContent = pick.name;
+    document.getElementById("trending-desc").textContent = pick.desc;
+    document.getElementById("trending-bullets").innerHTML = pick.bullets.map(b => `<li>${b}</li>`).join('');
+    document.getElementById("trending-link").href = pick.link;
+  });
+</script>
+<div class="daily-saying-bar" id="daily-saying">
+  📖 Daily Saying: “Loading wisdom…”
+</div>
 
-    const pool    = variant === 'banner' ? bannerQuotes : sidebarQuotes;
-    const quote   = pool[Math.floor(Math.random() * pool.length)];
+<script>
+  const sayings = [
+    "Clarity comes when you stop forcing the answer and start listening for it.",
+    "Your attention is your most valuable asset — spend it wisely.",
+    "Build slow. Build well. Build true.",
+    "Stillness isn’t the absence of movement — it’s the presence of focus.",
+    "What you edit out defines what you stand for.",
+    "Small quiet steps still lead to great work.",
+    "You don’t need more tools. You need fewer distractions.",
+    "Your path doesn’t need permission — only presence.",
+    "Create from calm, not chaos.",
+    "Discipline creates freedom, not pressure.",
+    "You are not behind. You are building.",
+    "Repetition builds rhythm. Rhythm creates momentum.",
+  "Progress isn’t noisy. It’s usually quiet, focused, and a little boring.",
+  "Keep your goals in your hands, not in your head.",
+  "Success is not scale — it’s sustainability.",
+  "Clarity means knowing what to ignore.",
+  "Burnout is what happens when your soul gets silenced by your schedule.",
+  "Distraction steals more dreams than failure ever did.",
+  "Rest isn’t quitting — it’s trusting the work to grow in silence.",
+  "The simplest system is the one you’ll actually use.",
+  "Every 'yes' must be protected by a dozen quiet 'no's.",
+  "Done is better than drowning in ideas.",
+  "Not everything deserves your attention. Most things don’t.",
+  "Your creative rhythm starts with your personal peace.",
+  "You’re not stuck — you’re just overstimulated.",
+  "Focus is a decision. Discipline is the habit that supports it.",
+  "You don’t have to finish everything today. Just don’t abandon it.",
+  "Pause isn’t failure. It’s design.",
+  "Your clarity is more valuable than your cleverness.",
+  "Don’t build to impress. Build to endure.",
+  "Simplicity is brave. Most people hide behind clutter.",
+  "You are allowed to ignore trends and make tools that actually help.",
+  "When you feel overwhelmed, subtract before you add.",
+  "The most powerful product you’ll ever ship is peace of mind.",
+  "Time is a multiplier — protect it like equity.",
+  "You’re not slow. You’re strategic.",
+  "People don’t need more noise. They need your grounded vision.",
+  "Start with less. Ship with intention. Scale when it’s sustainable.",
+  "When it gets loud, get still.",
+  "Creativity thrives in boundaries, not in burnout.",
+  "This is not about hustling harder. It’s about focusing smarter.",
+  "Anchor your work. Let the storm pass." 
+];
 
-    // ---- Inject & Display ----
-    if (variant === 'banner') {
-      const el = document.getElementById('variant-banner');
-      el.querySelector('.quote-text').textContent = `“${quote}” — AnchorStack`;
-      el.style.display = 'flex';
-    } else {
-      const el = document.getElementById('variant-sidebar');
-      el.querySelector('.quote-text').textContent = `“${quote}” — AnchorStack`;
-      el.style.display = 'block';
-    }
+  const today = new Date();
+  const index = today.getDate() % sayings.length;
 
-       // ---- Click Handler (alert) ----
-    document.querySelectorAll('.show-thought').forEach(el =>
-      el.addEventListener('click', e => {
-        e.preventDefault();
-        alert(`${quote}\n— AnchorStack`);
-      })
-    );
-  </script>
+  document.getElementById("daily-saying").innerHTML =
+    "📖 Daily Saying: “" + sayings[index] + "”";
+</script>
 
-  <footer>
-    © 2025 AnchorStack • Curated clarity for creators
-  </footer>
 </body>
 </html>
-
 
