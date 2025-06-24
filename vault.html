@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AnchorStack Vault</title>
   <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="styles.css">
   <style>
+    /* ---------- Body & Layout ---------- */
     body {
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
@@ -20,53 +22,41 @@
     header img {
       height: 100px;
     }
-    h2.section-header {
-      text-align: center;
-      margin: 2rem 0 1rem;
-      color: #004f4f;
-      font-size: 1.5rem;
+    main {
+      max-width: 600px;
+      margin: auto;
+      padding: 0 1.5rem 2rem;
     }
     .container {
       display: grid;
-      grid-template-columns: 1fr;
       gap: 1rem;
-      padding: 0 1.5rem 2rem;
-      max-width: 600px;
-      margin: auto;
     }
     .tile {
       background: white;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      overflow: hidden;
-      text-align: center;
       padding: 1.5rem;
+      text-align: center;
     }
-    .tile h3 {
-      margin: 0.5rem 0;
-      font-size: 1.2rem;
-      color: #004f4f;
-    }
-    .tile p {
-      font-size: 0.95rem;
-      margin: 0.5rem 0 1rem;
-    }
+    .tile h3 { margin: 0.5rem 0; color: #004f4f; }
+    .tile p { margin: 0.5rem 0 1rem; font-size: 0.95rem; }
     .tile a {
       display: inline-block;
       margin-top: 0.5rem;
-      color: white;
       background: #007f7f;
+      color: white;
       padding: 0.6rem 1.25rem;
       border-radius: 6px;
       text-decoration: none;
       font-weight: bold;
     }
+
+    /* ---------- Highlight Boxes ---------- */
     .highlight {
       background: #fff9db;
       border-left: 4px solid #ffc107;
       padding: 1rem;
-      margin: 2rem auto 1rem;
-      max-width: 600px;
+      margin: 2rem auto;
       border-radius: 8px;
     }
     .highlight h3 {
@@ -74,70 +64,96 @@
       font-size: 1.1rem;
       color: #b36b00;
     }
-    footer {
+
+    /* ---------- Thoughts A/B Test Styles ---------- */
+    .thoughts-banner {
+      display: none;               /* shown via JS */
+      width: 100%;
+      height: 60px;
+      background: var(--accent-color, #007f7f);
+      color: #fff;
+      font-weight: bold;
+      font-size: 1rem;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+    }
+    .thoughts-banner a {
+      margin-left: 0.5rem;
+      text-decoration: underline;
+      color: #fff;
+    }
+    .thoughts-sidebar {
+      display: none;               /* shown via JS */
+      width: 280px;
+      padding: 1rem;
+      border: 2px solid var(--accent-color, #007f7f);
+      background: var(--accent-light, #e0f7f7);
+      font-style: italic;
+      position: sticky;
+      top: 100px;
+      margin-bottom: 2rem;
+    }
+    .thoughts-sidebar a {
+      display: block;
+      margin-top: 1rem;
+      text-decoration: underline;
+      color: var(--accent-color, #007f7f);
+      font-weight: bold;
       text-align: center;
-      font-size: 0.9rem;
-      color: #777;
-      margin: 3rem 1rem 1rem;
     }
   </style>
 </head>
 <body>
+
   <header>
-    <img src="/images/anchorstack_logo.png" alt="AnchorStack Logo" />
-    <h1>Welcome to the AnchorStack Vault</h1>
+    <!-- Navigation & Logo -->
+    <img src="/images/anchorstack_logo.png" alt="AnchorStack Logo">
+    <!-- …your nav links here… -->
   </header>
 
-  <!-- Substack Embed -->
-  <div class="highlight">
-    <h3>🎯 Join the 30-Day Focus Challenge</h3>
-    <p>Get 30 days of clarity tools delivered by email — free. Start building lasting focus with tiny, daily wins.</p>
-    <iframe src="https://rickyjarnagin.substack.com/embed" width="100%" height="180" style="border:1px solid #ccc; border-radius:8px;" frameborder="0" scrolling="no"></iframe>
+  <!-- A/B Test Placeholders (one set only) -->
+  <div id="variant-banner" class="thoughts-banner">
+    <span class="quote-text"></span>
+    <a href="/thoughts?utm_source=site&utm_medium=banner_abtest&utm_campaign=thoughts_promo">
+      👉 View Today’s Thought
+    </a>
   </div>
+  <aside id="variant-sidebar" class="thoughts-sidebar">
+    <span class="quote-text"></span>
+    <a href="/thoughts?utm_source=site&utm_medium=sidebar_abtest&utm_campaign=thoughts_promo">
+      Learn More →
+    </a>
+  </aside>
 
-  <!-- Product of the Week -->
-  <div class="highlight">
-    <h3>🌟 Product of the Week: Focus Vault – White Label Productivity Kit</h3>
-    <p>Launch your own productivity brand instantly. The Focus Vault delivers a ready-made system packed with tools, visuals, and editable content.</p>
-    <p>✔ Editable ZIP<br>✔ Canva slides<br>✔ License to rebrand or sell</p>
-    <a href="https://grafixartistry6.gumroad.com/l/xlbheu?utm_source=vault&utm_medium=highlight&utm_campaign=focus_vault">Grab it Now for $49</a>
-  </div>
+  <main>
+    <h1>Welcome to the AnchorStack Vault</h1>
 
-  <section class="container">
-    <div class="tile">
-      <h3>📦 Free Vault Access</h3>
-      <p>Start your journey with access to starter packs and clarity tools — 100% free.</p>
-      <a href="https://grafixartistry6.gumroad.com/l/mbxcud?utm_source=vault&utm_medium=button&utm_campaign=free">Get Started</a>
+    <!-- Substack Embed -->
+    <div class="highlight">
+      <h3>🎯 Join the 30-Day Focus Challenge</h3>
+      <p>Get 30 days of clarity tools delivered by email — free. Start building lasting focus with tiny, daily wins.</p>
+      <iframe src="https://rickyjarnagin.substack.com/embed"
+              width="100%" height="180"
+              style="border:1px solid #ccc; border-radius:8px;"
+              frameborder="0" scrolling="no">
+      </iframe>
     </div>
-    <div class="tile">
-      <h3>📈 Mid Tier Vault – $29/mo</h3>
-      <p>Includes exclusive tools like the 30-Day Product Sprint, habit systems, and creator workflows.</p>
-      <a href="https://grafixartistry6.gumroad.com/l/xalvnc?utm_source=vault&utm_medium=button&utm_campaign=mid">Upgrade Now</a>
-    </div>
-    <div class="tile">
-      <h3>🚀 Top Tier Vault – $129/yr</h3>
-      <p>Unlock all premium bundles plus future drops. No monthly fees. One upgrade = full access.</p>
-      <a href="https://grafixartistry6.gumroad.com/l/uebseh?utm_source=vault&utm_medium=button&utm_campaign=top">Unlock Everything</a>
-    </div>
-    <div class="tile">
-      <h3>📬 Substack Newsletter</h3>
-      <p>Get notified when new tools drop. No noise. Just clarity.</p>
-      <a href="https://rickyjarnagin.substack.com/?utm_source=vault&utm_medium=button&utm_campaign=newsletter">Subscribe Free</a>
-    </div>
-    <div class="tile">
-      <h3>🤝 Affiliate Program</h3>
-      <p>Earn up to 20% recurring commissions by sharing AnchorStack with your network.</p>
-      <a href="https://grafixartistry6.gumroad.com/affiliates?utm_source=vault&utm_medium=button&utm_campaign=affiliate">Join the Program</a>
-    </div>
-    <div class="tile">
-      <h3>🧠 Collaborate With Us</h3>
-      <p>Got an idea, toolkit, or template you want to launch with us? Let’s build it together.</p>
-      <a href="mailto:support@anchorstack.pro">Pitch Your Idea</a>
-    </div>
-  </section>
 
-  <footer>
-    © 2025 AnchorStack • Curated clarity for creators
-  </footer>
-</body>
-</html>
+    <!-- Product of the Week -->
+    <div class="highlight">
+      <h3>🌟 Product of the Week: Focus Vault – White Label Productivity Kit</h3>
+      <p>Launch your own productivity brand instantly. The Focus Vault delivers a ready-made system packed with tools, visuals, and editable content.</p>
+      <p>✔ Editable ZIP<br>✔ Canva slides<br>✔ License to rebrand or sell</p>
+      <a href="https://grafixartistry6.gumroad.com/l/xlbheu?utm_source=vault&utm_medium=highlight&utm_campaign=focus_vault">
+        Grab it Now for $49
+      </a>
+    </div>
+
+    <!-- Vault Tiles -->
+    <section class="container">
+      <div class="tile">
+        <h3>📦 Free Vault Access</h3>
+        <p>Start your journey with access to starter packs and clarity tools — 100% free.</p>
+        <a h
+
