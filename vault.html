@@ -115,11 +115,15 @@
   <!-- A/B Test Placeholders (one set only) -->
   <div id="variant-banner" class="thoughts-banner">
     <span class="quote-text"></span>
-    <a href="#" class="show-thought">👉 View Today’s Thought</a>
+    <a href="/thoughts?utm_source=site&utm_medium=banner_abtest&utm_campaign=thoughts_promo">
+      👉 View Today’s Thought
+    </a>
   </div>
   <aside id="variant-sidebar" class="thoughts-sidebar">
     <span class="quote-text"></span>
-    <a href="#" class="show-thought">Learn More →</a>
+    <a href="/thoughts?utm_source=site&utm_medium=sidebar_abtest&utm_campaign=thoughts_promo">
+      Learn More →
+    </a>
   </aside>
 
   <main>
@@ -151,113 +155,5 @@
       <div class="tile">
         <h3>📦 Free Vault Access</h3>
         <p>Start your journey with access to starter packs and clarity tools — 100% free.</p>
-        <a href="https://grafixartistry6.gumroad.com/l/mbxcud?utm_source=vault&utm_medium=button&utm_campaign=free">
-          Get Started
-        </a>
-      </div>
-      <div class="tile">
-        <h3>📈 Mid Tier Vault – $29/mo</h3>
-        <p>Includes exclusive tools like the 30-Day Product Sprint, habit systems, and creator workflows.</p>
-        <a href="https://grafixartistry6.gumroad.com/l/xalvnc?utm_source=vault&utm_medium=button&utm_campaign=mid">
-          Upgrade Now
-        </a>
-      </div>
-      <div class="tile">
-        <h3>🚀 Top Tier Vault – $129/yr</h3>
-        <p>Unlock all premium bundles plus future drops. No monthly fees. One upgrade = full access.</p>
-        <a href="https://grafixartistry6.gumroad.com/l/uebseh?utm_source=vault&utm_medium=button&utm_campaign=top">
-          Unlock Everything
-        </a>
-      </div>
-      <div class="tile">
-        <h3>📬 Substack Newsletter</h3>
-        <p>Get notified when new tools drop. No noise. Just clarity.</p>
-        <a href="https://rickyjarnagin.substack.com/?utm_source=vault&utm_medium=button&utm_campaign=newsletter">
-          Subscribe Free
-        </a>
-      </div>
-      <div class="tile">
-        <h3>🤝 Affiliate Program</h3>
-        <p>Earn up to 20% recurring commissions by sharing AnchorStack with your network.</p>
-        <a href="https://grafixartistry6.gumroad.com/affiliates?utm_source=vault&utm_medium=button&utm_campaign=affiliate">
-          Join the Program
-        </a>
-      </div>
-      <div class="tile">
-        <h3>🧠 Collaborate With Us</h3>
-        <p>Got an idea, toolkit, or template you want to launch with us? Let’s build it together.</p>
-        <a href="mailto:support@anchorstack.pro">
-          Pitch Your Idea
-        </a>
-      </div>
-    </section>
-  </main>
-
-  <script>
-    // ---- Quote Pools ----
-    const bannerQuotes = [
-      "Clarity isn’t a destination; it’s a daily practice.",
-      "Your attention is your most precious resource.",
-      "Every pause is a reset for your purpose.",
-      "Focus grows in the space you create.",
-      "A calm mind uncovers your greatest ideas.",
-      "Stillness is the canvas for your next move."
-    ];
-    const sidebarQuotes = [
-      "Distraction is opportunity disguised as chaos.",
-      "Create space, and creativity will fill it.",
-      "Momentum begins with one small step.",
-      "Simplicity amplifies impact.",
-      "Build habits that serve your highest priorities.",
-      "Every thought is a seed for action."
-    ];
-
-    // ---- A/B Assignment ----
-    const variant = Math.random() < 0.5 ? 'banner' : 'sidebar';
-    const pool    = variant === 'banner' ? bannerQuotes : sidebarQuotes;
-    const quote   = pool[Math.floor(Math.random() * pool.length)];
-
-    // ---- Inject & Display ----
-    if (variant === 'banner') {
-      const el = document.getElementById('variant-banner');
-      el.querySelector('.quote-text').textContent = `“${quote}” — AnchorStack`;
-      el.style.display = 'flex';
-    } else {
-      const el = document.getElementById('variant-sidebar');
-      el.querySelector('.quote-text').textContent = `“${quote}” — AnchorStack`;
-      el.style.display = 'block';
-    }
-
-    // ---- Click Handler (in-page alert) ----
-    document.querySelectorAll('.show-thought').forEach(el =>
-      el.addEventListener('click', e => {
-        e.preventDefault();
-        alert(`${quote}\n— AnchorStack`);
-      })
-    );
-
-    // ---- Google Analytics Tracking ----
-    if (window.gtag) {
-      gtag('event', 'impression', {
-        event_category: 'Thoughts AB Test',
-        event_label: variant
-      });
-    }
-    document.querySelectorAll('#variant-banner a, #variant-sidebar a')
-      .forEach(el => el.addEventListener('click', () => {
-        const label = variant === 'banner' ? 'Banner Click' : 'Sidebar Click';
-        if (window.gtag) {
-          gtag('event', 'click', {
-            event_category: 'Thoughts AB Test',
-            event_label: label
-          });
-        }
-      }));
-  </script>
-
-  <footer>
-    © 2025 AnchorStack • Curated clarity for creators
-  </footer>
-</body>
-</html>
+        <a h
 
