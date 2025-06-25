@@ -337,9 +337,10 @@
       <img src="/images/resized_image_2.png" alt="Founding Affiliate Invite" style="width: 100%; border-radius: 6px;">
       <h3>Founding Affiliate Invite</h3>
       <p>Join the Stack. Earn with every share.</p>
-      <button class="cta-button" style="margin-top: 0.75rem; background-color: #3498db;" onclick="SubstackWidget.openPopup('rickyjarnagin.substack.com')">
-        🔔 Notify Me
-      </button>
+     <button class="cta-button" style="margin-top: 0.75rem; background-color: #3498db;" onclick="SubstackWidget.openPopup('rickyjarnagin.substack.com')">
+  🔔 Notify Me
+</button>
+
       <noscript>
         <a href="#newsletter-signup" class="cta-button" style="background-color: #3498db;">🔔 Notify Me</a>
       </noscript>
@@ -457,6 +458,22 @@
 
   document.getElementById("daily-saying").innerHTML =
     "📖 Daily Saying: “" + sayings[index] + "”";
+</script>
+<script>
+  window.addEventListener('load', () => {
+    if (typeof SubstackWidget === 'undefined') {
+      console.warn("SubstackWidget not loaded — injecting manually.");
+      const script = document.createElement('script');
+      script.src = 'https://substackapi.com/widget.js';
+      script.async = true;
+      script.onload = () => {
+        console.log("✅ Substack widget loaded manually.");
+      };
+      document.head.appendChild(script);
+    } else {
+      console.log("✅ Substack widget already loaded.");
+    }
+  });
 </script>
 
 </body>
