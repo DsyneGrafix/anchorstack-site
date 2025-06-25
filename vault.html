@@ -263,7 +263,7 @@
 
   <div class="product-card">
     <div style="text-align: left; font-weight: bold; color: #c0392b;">🔥 Top Seller</div>
-    <img src="images/launch_n_earn.png" alt="Launch & Earn Combo Pack" />
+    <img src="images/launch_n_earn_600x400.png" alt="Launch & Earn Combo Pack" />
     <h3>Launch & Earn Combo Pack</h3>
     <p>Everything you need to go from idea to income — two full products bundled into one power pack.</p>
     <a href="https://grafixartistry6.gumroad.com/l/jqzdtq?utm_source=substack&utm_medium=email&utm_campaign=vault_welcome" class="cta-button">Combo Deal – $43</a>
@@ -305,9 +305,10 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("trending-week").classList.add("visible");
+    const trending = document.getElementById("trending-week");
+    if (trending) trending.classList.add("visible");
 
-    // Swap logic placeholder
+    // Swap logic for trending products
     const products = [
       {
         name: "Launch & Earn Combo Pack",
@@ -323,14 +324,15 @@
       }
     ];
 
-    // Rotate product weekly or randomly
+    // Rotate product randomly
     const pick = products[Math.floor(Math.random() * products.length)];
     document.getElementById("trending-name").textContent = pick.name;
     document.getElementById("trending-desc").textContent = pick.desc;
-    document.getElementById("trending-bullets").innerHTML = pick.bullets.map(b => <li>${b}</li>).join('');
+    document.getElementById("trending-bullets").innerHTML = pick.bullets.map(b => `<li>${b}</li>`).join('');
     document.getElementById("trending-link").href = pick.link;
   });
 </script>
+
 <div class="daily-saying-bar" id="daily-saying">
   📖 Daily Saying: “Loading wisdom…”
 </div>
