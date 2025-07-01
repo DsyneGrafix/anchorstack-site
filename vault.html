@@ -190,14 +190,28 @@
   background-color: #f9f9f9;
 }
 </style>
-<style>
-.product-card img {
-  object-fit: cover;
-  width: 100%;
-  height: 240px;
-  border-radius: 6px;
-}
-</style>
+<script>
+  // ⏳ Countdown Timer to July 5 at 11:59PM
+  const countdownEl = document.getElementById('countdown');
+  const targetDate = new Date('2025-07-05T23:59:59');
+
+  function updateCountdown() {
+    const now = new Date();
+    const diff = targetDate - now;
+    if (diff <= 0) {
+      countdownEl.textContent = "🎉 Sale has ended!";
+      return;
+    }
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / 1000 / 60) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+    countdownEl.textContent = `⏳ Ends in ${days}d ${hours}h ${minutes}m ${seconds}s`;
+  }
+
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+</script>
 <script src="https://gumroad.com/js/gumroad.js"></script>
 
 <script async src="https://substackapi.com/widget.js" defer></script>
@@ -340,29 +354,19 @@
 <!-- VAULT INSERT CARDS with SEO -->
 <div class="vault-insert-row" style="display:flex; flex-direction:column; gap:30px; align-items:center; margin: 40px 0;">
 
-  <!-- Flash Sale Banner -->
-  <div class="vault-card flash-sale fade-in" style="text-align:center;">
-    <img src="images/10_percent_off.png" 
-         alt="10% OFF Flash Sale - Use Code Xana10 for $25+ Orders" 
-         title="Flash Sale - 10% OFF with Code Xana10" 
+<!-- 🎆 July 4th Sale Banner with Countdown + Fireworks -->
+<div class="vault-card flash-sale fade-in" style="text-align:center; position:relative; padding-bottom: 1rem;">
+  <a href="https://grafixartistry6.gumroad.com/l/gxpksf?utm_source=anchorstack&utm_medium=promo&utm_campaign=july4" target="_blank">
+    <img src="images/25percentoff.png"
+         alt="25% OFF July 4th Sale – Use Code FIREWORKS25"
+         title="July 4th Flash Sale – 25% Off All Vault Kits!"
          style="max-width:400px; width:100%; border-radius:10px;">
-  </div>
-<!-- Force Load -->
-  <!-- Insight Tweet Card -->
-  <div class="vault-card insight-tweet fade-in" style="text-align:center;">
-    <img src="images/tweet.png" 
-         alt="I thought I needed followers, but I needed better products." 
-         title="Tweet: Better Products Drive Sales – Not Just Followers" 
-         style="max-width:400px; width:100%; border-radius:10px;">
-  </div>
+  </a>
+  <div id="countdown" style="font-weight:bold; font-size:1rem; color:#d35400; margin-top:0.5rem;"></div>
+  <div id="fireworks" style="font-size: 1.2rem; margin-top: 0.25rem;">🎇 🎆 ✨ 🎆 🎇</div>
+</div>
 
-  <!-- Creator Contrast Card -->
-  <div class="vault-card contrast-choice fade-in" style="text-align:center;">
-    <img src="images/2types.png" 
-         alt="Two types of creators: one downloads, one builds." 
-         title="Creator Types: Template Collector vs Builder-Doer" 
-         style="max-width:400px; width:100%; border-radius:10px;">
-  </div>
+
 
 </div>
 
