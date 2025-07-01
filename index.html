@@ -47,13 +47,34 @@
       background-color: #005f56;
     }
   </style>
+<style>
+  .mom-banner {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    margin: 1.5rem auto 2rem;
+    animation: fadeIn 3s ease-in-out;
+    display: block;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: scale(0.96); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+</style>
 </head>
 <body>
   <header>
 
     <img src="/images/logo.png" alt="AnchorStack Logo" />
   </header>
+
+<!-- Replace this line:
 <p><img src="/images/Mom.jpg" alt="I LOVE YOU MOM!"/></p>
+With this: -->
+<img src="/images/Mom.jpg" alt="I LOVE YOU MOM!" class="mom-banner" />
   <h1>AnchorStack</h1>
   <p class="subtitle">Clarity Kits & Momentum Tools for Creators</p>
   <p class="body-text">
