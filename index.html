@@ -1,44 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Favicon (Optional) -->
-<link rel="icon" href="images/favicon.ico" type="image/png" />
- 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AnchorStack</title>
-  <link rel="stylesheet" href="style.css">
-<!-- Hotjar Tracking Code for https://anchorstack.pro -->
-<script>
-    (function(h,o,t,j,a,r){
-        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-        h._hjSettings={hjid:6445047,hjsv:6};
-        a=o.getElementsByTagName('head')[0];
-        r=o.createElement('script');r.async=1;
-        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-        a.appendChild(r);
-    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-</script>
-<!-- Install this snippet AFTER the Tracking code. -->
-<script>
-  var userId = "Ricky Jarnagin";
-  window.hj('identify', userId, {
-    'User Name': 'Ricky Jarnagin',
-    'Role': 'Site Owner',
-    'Plan': 'All Access',
-    'Identified': true
-  });
-</script>
+  <link rel="stylesheet" href="style.css" />
   <style>
     body {
       font-family: system-ui, sans-serif;
-      text-align: center;
       background: #fff;
+      color: #333;
+      text-align: center;
       margin: 0;
       padding: 2rem;
     }
     header img {
-      height: 100px;
+      height: 80px;
       margin-bottom: 1rem;
     }
     h1 {
@@ -50,14 +27,9 @@
       color: #444;
       margin-bottom: 1.2rem;
     }
-    .lead {
-      font-weight: bold;
-      margin-bottom: 1rem;
-    }
     .body-text {
       max-width: 600px;
       margin: 0 auto 2rem;
-      color: #333;
       font-size: 1.1rem;
     }
     .cta-button {
@@ -74,103 +46,21 @@
     .cta-button:hover {
       background-color: #005f56;
     }
-    .divider {
-      border: none;
-      height: 1px;
-      background: #ddd;
-      margin: 2rem auto;
-      width: 80%;
-    }
-    .teaser {
-      max-width: 700px;
-      margin: 0 auto;
-      font-size: 1.1rem;
-      color: #333;
-    }
-    .modal-backdrop {
-      background-color: rgba(0, 0, 0, 0.4);
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-    }
-    .modal {
-      background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
-      max-width: 480px;
-      animation: fadeIn 0.4s ease-out forwards;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.98); }
-      to { opacity: 1; transform: scale(1); }
-    }
-    .modal button {
-      background-color: #00796b;
-      color: #fff;
-      border: none;
-      border-radius: 12px;
-      padding: 0.75rem 1.5rem;
-      font-size: 1rem;
-      font-weight: bold;
-      cursor: pointer;
-      margin: 1rem 0;
-    }
-    .modal button:hover {
-      background-color: #005f56;
-    }
-    .modal a {
-      display: block;
-      color: #00796b;
-      font-size: 0.9rem;
-      text-decoration: underline;
-      margin-top: 0.5rem;
-    }
   </style>
 </head>
 <body>
   <header>
-    <img src="/images/logo.png" alt="AnchorStack Logo">
+    <img src="/images/logo.png" alt="AnchorStack Logo" />
   </header>
-
+<p><img src="images/Mom.jpg alt="I LOVE YOU MOM!">>
   <h1>AnchorStack</h1>
   <p class="subtitle">Clarity Kits & Momentum Tools for Creators</p>
-  <p class="lead">Most creators aren’t short on ideas. They’re short on systems.</p>
   <p class="body-text">
-    The Focus Vault isn’t just another collection of templates — it’s a launch-ready toolkit built for clarity, consistency, and real momentum. Inside, you’ll find editable planners, workflow accelerators, promo visuals, and white-label bundles that help you build fast and sell with integrity.
+    The Focus Vault isn’t just another collection of templates — it’s a launch-ready toolkit built for clarity, consistency, and real momentum.
   </p>
   <p class="body-text">
-    This is your unfair advantage — packaged, polished, and ready to deploy.
+    From productivity templates to promo visuals, each kit is polished and packed for momentum. No fluff. Just systems that sell.
   </p>
-
-  <button class="cta-button" onclick="openModal()">→ Enter the Vault</button>
-
-  <hr class="divider">
-
-  <div class="teaser">
-    <p>You’ll get ready-to-use tools built to help you plan faster, design smarter, and launch with clarity.</p>
-    <p>From productivity templates to promo visuals, each kit is polished and packed for momentum.</p>
-    <p><strong>No fluff. Just systems that sell.</strong></p>
-  </div>
-
-  <!-- Modal -->
-  <div class="modal-backdrop" id="challengeModal">
-    <div class="modal">
-      <p><strong>🧠 Ready to Focus?</strong></p>
-      <p>Join the free <strong>30-Day Focus Challenge</strong> — daily prompts, bite-sized tools, and no distractions.</p>
-      <button onclick="window.location.href='challenge.html'">✅ Join the Challenge</button>
-      <a href="vault.html">No thanks, just show me the Vault</a>
-    </div>
-  </div>
-
-  <script>
-    function openModal() {
-      document.getElementById('challengeModal').style.display = 'flex';
-    }
-  </script>
+  <button class="cta-button" onclick="window.location.href='vault.html'">→ Enter the Vault</button>
 </body>
 </html>
