@@ -1,0 +1,33 @@
+{
+  "narrator": {
+    "name": "Island Spirit",
+    "description": "The mysterious voice that guides treasure hunters on their quest",
+    "personality": "Wise, mysterious, encouraging but warns of danger",
+    "catchphrases": [
+      "The island remembers all who seek its treasures...",
+      "Time flows like the tide - swift and unforgiving...",
+      "Choose wisely, for the pirates draw near...",
+      "The spirits of old pirates whisper their secrets..."
+    ]
+  },
+  "pirate_captain": {
+    "name": "Captain Redbeard",
+    "description": "The ruthless pirate captain hunting for the same treasure",
+    "personality": "Menacing, cunning, relentless",
+    "dialogue": [
+      "Ye can't hide from me forever, treasure hunter!",
+      "That gold belongs to the brotherhood of the sea!",
+      "I'll find ye and that treasure, mark me words!"
+    ]
+  },
+  "ghost_pirate": {
+    "name": "Captain Blackbeard's Ghost",
+    "description": "The spirit of the legendary pirate who hid the treasure",
+    "personality": "Protective of treasure, tests worthiness of seekers",
+    "dialogue": [
+      "Only the worthy may claim me treasure...",
+      "Prove yerself brave and clever, or face the curse!",
+      "The treasure chooses its keeper..."
+    ]
+  }
+}

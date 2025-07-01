@@ -1,0 +1,76 @@
+{
+  "treasures": {
+    "blackbeard_chest": {
+      "name": "Blackbeard's Legendary Chest",
+      "description": "An enormous chest overflowing with gold coins, precious gems, and priceless artifacts",
+      "value": 1000,
+      "rarity": "legendary",
+      "location": "ancient_chamber"
+    },
+    "pirate_maps": {
+      "name": "Ancient Pirate Maps",
+      "description": "Hand-drawn maps showing secret treasure locations across the Caribbean",
+      "value": 300,
+      "rarity": "rare",
+      "location": "hidden_passage"
+    },
+    "golden_compass": {
+      "name": "Golden Compass",
+      "description": "A beautifully crafted compass that always points to treasure",
+      "value": 200,
+      "rarity": "rare",
+      "location": "lighthouse"
+    },
+    "ruby_necklace": {
+      "name": "Ruby Necklace of the Sea",
+      "description": "A stunning necklace with rubies as red as blood, once worn by a pirate queen",
+      "value": 400,
+      "rarity": "epic",
+      "location": "temple_treasure"
+    },
+    "silver_coins": {
+      "name": "Spanish Silver Coins",
+      "description": "A pouch of authentic Spanish silver coins from the golden age of piracy",
+      "value": 150,
+      "rarity": "common",
+      "location": "village_ruins"
+    }
+  },
+  "tools": {
+    "torch": {
+      "name": "Ancient Torch",
+      "description": "An old torch that still burns bright, essential for cave exploration",
+      "durability": 100,
+      "location": "cave_entrance"
+    },
+    "rope": {
+      "name": "Sturdy Rope",
+      "description": "Strong rope perfect for climbing or escaping dangerous situations",
+      "durability": 100,
+      "location": "cliff_path"
+    },
+    "machete": {
+      "name": "Rusty Machete",
+      "description": "A weathered but functional machete for cutting through jungle vegetation",
+      "durability": 80,
+      "location": "jungle_entrance"
+    }
+  },
+  "clues": {
+    "cave_markings": {
+      "name": "Ancient Cave Markings",
+      "description": "Mysterious symbols carved into cave walls, possibly indicating treasure locations",
+      "hint": "The symbols point deeper into the cave system"
+    },
+    "lighthouse_charts": {
+      "name": "Nautical Charts",
+      "description": "Old sea charts showing hidden coves and secret anchorages around the island",
+      "hint": "X marks the spot on the eastern shore"
+    },
+    "temple_inscriptions": {
+      "name": "Temple Inscriptions",
+      "description": "Ancient text describing the trials needed to claim the temple's treasure",
+      "hint": "Only the brave and clever may pass"
+    }
+  }
+}

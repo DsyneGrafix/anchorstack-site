@@ -1,0 +1,202 @@
+{
+  "start": {
+    "title": "Mysterious Island Beach",
+    "description": "You've washed ashore on a mysterious island. The sand is warm beneath your feet, and you can hear the distant sound of waves. In the distance, you spot three possible paths: a dark cave entrance, a steep cliff leading to what looks like an old lighthouse, and a dense jungle path. You have 10 minutes before the pirate ship arrives - you saw it on the horizon as you swam to shore.",
+    "choices": [
+      {
+        "text": "🕳️ Explore the mysterious cave",
+        "action": "cave",
+        "scoreChange": 0,
+        "timeChange": -1,
+        "description": "The cave looks dark but promising"
+      },
+      {
+        "text": "🏔️ Climb the steep cliff to the lighthouse",
+        "action": "cliff",
+        "scoreChange": 0,
+        "timeChange": -2,
+        "description": "A challenging climb but good vantage point"
+      },
+      {
+        "text": "🌿 Head into the dense jungle",
+        "action": "jungle",
+        "scoreChange": 0,
+        "timeChange": -1,
+        "description": "The jungle might hide ancient secrets"
+      }
+    ]
+  },
+  "cave": {
+    "title": "Dark Cave Entrance",
+    "description": "The cave is darker than you expected. You can hear water dripping somewhere deep inside, and there's a musty smell of age and mystery. Your eyes are starting to adjust, and you can make out two passages ahead. You notice some old torches mounted on the walls - they look like they haven't been lit in decades.",
+    "choices": [
+      {
+        "text": "🔥 Light a torch and explore deeper",
+        "action": "deepCave",
+        "scoreChange": 5,
+        "timeChange": -2,
+        "description": "Light will help but takes time"
+      },
+      {
+        "text": "👋 Feel along the walls carefully",
+        "action": "hiddenPassage",
+        "scoreChange": 3,
+        "timeChange": -1,
+        "description": "Slower but might find hidden secrets"
+      }
+    ]
+  },
+  "deepCave": {
+    "title": "Torch-lit Cave Depths",
+    "description": "With the torch crackling and casting dancing shadows on the cave walls, you can see ancient markings carved into the stone. The passage splits into two directions: one leads to what sounds like a large chamber with echoing drips, the other slopes downward toward the sound of running water.",
+    "choices": [
+      {
+        "text": "🏛️ Enter the large chamber",
+        "action": "ancientChamber",
+        "scoreChange": 10,
+        "timeChange": -2,
+        "description": "Echoes suggest a significant space"
+      },
+      {
+        "text": "🌊 Follow the sound of water",
+        "action": "undergroundRiver",
+        "scoreChange": 5,
+        "timeChange": -1,
+        "description": "Water might lead to an exit"
+      }
+    ]
+  },
+  "ancientChamber": {
+    "title": "Ancient Treasure Chamber",
+    "description": "Your torch illuminates an incredible sight - you've discovered an ancient treasure chamber! Gold coins, precious gems, and ornate artifacts are scattered across stone pedestals. In the center sits an enormous chest overflowing with pirate treasure. You've found the legendary treasure of Captain Blackbeard himself!",
+    "choices": [
+      {
+        "text": "💰 Gather as much treasure as possible",
+        "action": "treasureWin",
+        "scoreChange": 50,
+        "timeChange": -3,
+        "description": "Victory! But pirates are coming..."
+      }
+    ]
+  },
+  "hiddenPassage": {
+    "title": "Secret Passage",
+    "description": "Your careful exploration pays off! Your fingers find a hidden lever in the wall, and a secret passage opens with a grinding sound. Inside, you discover a small chamber filled with ancient pirate maps and a moderate stash of gold coins hidden in the walls.",
+    "choices": [
+      {
+        "text": "📜 Study the maps for more treasure",
+        "action": "mapDiscovery",
+        "scoreChange": 20,
+        "timeChange": -2,
+        "description": "Maps might reveal greater treasures"
+      },
+      {
+        "text": "💰 Take the gold and escape",
+        "action": "quickEscape",
+        "scoreChange": 15,
+        "timeChange": -1,
+        "description": "Secure some treasure and get out"
+      }
+    ]
+  },
+  "cliff": {
+    "title": "Steep Cliff Path",
+    "description": "The climb is treacherous, but you're making progress. Halfway up, you can see the old lighthouse more clearly - it looks abandoned but sturdy. You also notice a rocky outcrop to your left that might offer a different vantage point of the surrounding area.",
+    "choices": [
+      {
+        "text": "🗼 Continue to the lighthouse",
+        "action": "lighthouse",
+        "scoreChange": 5,
+        "timeChange": -2,
+        "description": "High vantage point, might spot treasure"
+      },
+      {
+        "text": "🪨 Investigate the rocky outcrop",
+        "action": "rockyOutcrop",
+        "scoreChange": 3,
+        "timeChange": -1,
+        "description": "Might find something hidden"
+      }
+    ]
+  },
+  "lighthouse": {
+    "title": "Abandoned Lighthouse",
+    "description": "Inside the lighthouse, you find old nautical equipment and charts. From the top window, you can see the pirate ship getting closer - but you also spot what looks like a hidden cove on the other side of the island with something glinting in the sunlight!",
+    "choices": [
+      {
+        "text": "🔦 Signal for help with the lighthouse",
+        "action": "signalHelp",
+        "scoreChange": 10,
+        "timeChange": -2,
+        "description": "Might attract rescue... or pirates"
+      },
+      {
+        "text": "🏃‍♂️ Rush to the hidden cove",
+        "action": "hiddenCove",
+        "scoreChange": 15,
+        "timeChange": -3,
+        "description": "Risky but potentially rewarding"
+      }
+    ]
+  },
+  "jungle": {
+    "title": "Dense Jungle Path",
+    "description": "The jungle is thick and humid. Vines hang down like curtains, and you can hear exotic birds calling in the distance. The path forks ahead - one route looks well-worn and easier to follow, while the other is overgrown but you can see what might be stone structures through the foliage.",
+    "choices": [
+      {
+        "text": "🛤️ Follow the well-worn path",
+        "action": "villageRuins",
+        "scoreChange": 5,
+        "timeChange": -1,
+        "description": "Easier travel, might lead to civilization"
+      },
+      {
+        "text": "🗡️ Cut through to the stone structures",
+        "action": "ancientRuins",
+        "scoreChange": 10,
+        "timeChange": -3,
+        "description": "Harder path but ancient ruins are promising"
+      }
+    ]
+  },
+  "villageRuins": {
+    "title": "Abandoned Village Ruins",
+    "description": "You've discovered the ruins of an old village. Most buildings are crumbling, but you notice one structure that looks more intact - it appears to be some kind of storehouse or vault. There are also old wells that might hide something.",
+    "choices": [
+      {
+        "text": "🏛️ Explore the intact building",
+        "action": "treasureVault",
+        "scoreChange": 25,
+        "timeChange": -2,
+        "description": "Most promising structure"
+      },
+      {
+        "text": "🕳️ Check the old wells",
+        "action": "hiddenWells",
+        "scoreChange": 10,
+        "timeChange": -1,
+        "description": "Quick search of multiple spots"
+      }
+    ]
+  },
+  "ancientRuins": {
+    "title": "Ancient Stone Temple",
+    "description": "You've found an incredible ancient temple! The stone work is masterful, with intricate carvings depicting pirates and treasure. There's a large sealed door with puzzle mechanisms, and you can see golden light seeping through the cracks.",
+    "choices": [
+      {
+        "text": "🧩 Solve the door puzzle",
+        "action": "templeTreasure",
+        "scoreChange": 40,
+        "timeChange": -4,
+        "description": "High risk, high reward"
+      },
+      {
+        "text": "🔍 Search around the temple exterior",
+        "action": "templeExterior",
+        "scoreChange": 15,
+        "timeChange": -2,
+        "description": "Safer option, might find alternative entrance"
+      }
+    ]
+  }
+}
