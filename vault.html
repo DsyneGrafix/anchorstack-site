@@ -13,6 +13,31 @@
 <meta property="og:image" content="https://anchorstack.pro/images/anchorstack-og-image.jpg" />
 <meta property="og:url" content="https://anchorstack.pro/vault" />
 <meta property="og:type" content="website" />
+<!-- FADE-IN SCROLL EFFECTS -->
+<style>
+  .fade-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  const cards = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  });
+  cards.forEach(card => observer.observe(card));
+</script>
 
 <!-- Hotjar Tracking Code for https://anchorstack.pro -->
 <script>
@@ -311,6 +336,40 @@
 </p>
   <a href="https://grafixartistry6.gumroad.com/l/xtitiw" class="cta-button">Launch Price – $9</a>
 </div></div> <!-- End of product-grid -->
+
+<!-- VAULT INSERT CARDS with SEO -->
+<div class="vault-insert-row" style="display:flex; flex-direction:column; gap:30px; align-items:center; margin: 40px 0;">
+
+  <!-- Flash Sale Banner -->
+  <div class="vault-card flash-sale fade-in" style="text-align:center;">
+    <img src="assets/ChatGPT_Image_Jul_1_2025_08_59_50_AM.png" 
+         alt="10% OFF Flash Sale - Use Code Xana10 for $25+ Orders" 
+         title="Flash Sale - 10% OFF with Code Xana10" 
+         style="max-width:400px; width:100%; border-radius:10px;">
+  </div>
+
+  <!-- Insight Tweet Card -->
+  <div class="vault-card insight-tweet fade-in" style="text-align:center;">
+    <img src="assets/ChatGPT_Image_Jul_1_2025_02_23_04_PM.png" 
+         alt="I thought I needed followers, but I needed better products." 
+         title="Tweet: Better Products Drive Sales – Not Just Followers" 
+         style="max-width:400px; width:100%; border-radius:10px;">
+  </div>
+
+  <!-- Creator Contrast Card -->
+  <div class="vault-card contrast-choice fade-in" style="text-align:center;">
+    <img src="assets/ChatGPT_Image_Jul_1_2025_02_30_21_PM.png" 
+         alt="Two types of creators: one downloads, one builds." 
+         title="Creator Types: Template Collector vs Builder-Doer" 
+         style="max-width:400px; width:100%; border-radius:10px;">
+  </div>
+
+</div>
+
+
+  <!-- END OF PRODUCTS -->
+  </main>
+
 
  <!-- AnchorStack Vault Promo Panel -->
   <section style="text-align: center; margin: 2rem 0;">
