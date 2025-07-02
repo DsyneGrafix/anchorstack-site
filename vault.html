@@ -233,6 +233,29 @@
     100% { opacity: 0; transform: translateY(5px); }
   }
 </style>
+<script>
+  const countdown = () => {
+    const now = new Date().getTime();
+    const end = new Date("July 6, 2025 00:00:00").getTime();
+    const distance = end - now;
+
+    if (distance <= 0) {
+      document.getElementById("countdown").innerHTML = "🎉 Sale ended!";
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("countdown").innerHTML =
+      `⏰ ${days}d ${hours}h ${minutes}m ${seconds}s`;
+  };
+
+  countdown(); // initial call
+  setInterval(countdown, 1000); // update every second
+</script>
 
 
 <script src="https://gumroad.com/js/gumroad.js"></script>
@@ -242,6 +265,7 @@
 
 </head>
 <body>
+<span id="countdown">⏳ Loading...</span>
 
 <!-- 🎇 4th of July Sale Banner -->
 <div class="sticky-banner fireworks-banner"
