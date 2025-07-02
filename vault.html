@@ -199,28 +199,42 @@
   </style>
   
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const countdownTarget = new Date("Jul 5, 2025 00:00:00").getTime();
-    const countdownEl = document.getElementById("countdown");
+  // Countdown Timer Logic
+  const countdownElement = document.getElementById("countdown");
+  const saleEnd = new Date("July 5, 2025 23:59:59").getTime();
 
-    const timer = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = countdownTarget - now;
+  const countdownInterval = setInterval(() => {
+    const now = new Date().getTime();
+    const diff = saleEnd - now;
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      countdownEl.innerHTML = `⏳ ${days}d ${hours}h ${minutes}m ${seconds}s left`;
-
-      if (distance < 0) {
-        clearInterval(timer);
-        countdownEl.innerHTML = "🎆 Sale Ended!";
-      }
-    }, 1000);
-  });
+    if (diff <= 0) {
+      countdownElement.textContent = "🎉 Sale has ended!";
+      clearInterval(countdownInterval);
+    } else {
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      countdownElement.textContent = `⏳ Ends in ${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+  }, 1000);
 </script>
+<style>
+  .fireworks-banner a:hover::after {
+    content: " 🎆🎇✨";
+    animation: sparkle 1.5s infinite;
+    margin-left: 0.5rem;
+    font-size: 1rem;
+  }
+
+  @keyframes sparkle {
+    0% { opacity: 0; transform: translateY(-5px); }
+    50% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(5px); }
+  }
+</style>
+
+
 <script src="https://gumroad.com/js/gumroad.js"></script>
 
 <script async src="https://substackapi.com/widget.js" defer></script>
@@ -229,12 +243,17 @@
 </head>
 <body>
 
-  <!-- 4th of July Sale Banner -->
-<div class="sticky-banner" style="background-color: #fff4e6; color: #d35400; font-weight: bold; text-align: center; padding: 1rem; border-bottom: 2px solid #ffa500;">
-  <a href="https://grafixartistry6.gumroad.com" style="color: #d35400; text-decoration: none;">
-    🎇 4th of July Sale: Get 25% OFF all products until midnight July 5! <span id="countdown">⏳ Loading...</span>
+<!-- 🎇 4th of July Sale Banner -->
+<div class="sticky-banner fireworks-banner"
+     style="background-color: #fff4e6; color: #d35400; font-weight: bold; text-align: center; padding: 1rem; border-bottom: 2px solid #ffa500;">
+  <a href="https://grafixartistry6.gumroad.com"
+     style="color: #d35400; text-decoration: none; position: relative; display: inline-block;">
+    🎇 4th of July Sale: Get 25% OFF all products until midnight July 5!
+    <span id="countdown" style="margin-left: 10px;">⏳ Loading...</span>
   </a>
 </div>
+
+
   <!-- Hero Section -->
   <section class="hero-section">
     <!-- swapped logo -->
