@@ -1,0 +1,28 @@
+[
+  {
+    "category": "Books",
+    "label": "The Self-Care Revolution",
+    "base_url": "https://grafixartistry6.gumroad.com/l/nupwf",
+    "utm_source": "menu",
+    "utm_medium": "web",
+    "utm_campaign": "anchorstack",
+    "notes": "Main book link with menu UTM tracking"
+  },
+  {
+    "category": "Bundles",
+    "label": "Clarity Core Bundle",
+    "base_url": "https://grafixartistry6.gumroad.com/l/msenf",
+    "utm_source": "menu",
+    "utm_medium": "web",
+    "utm_campaign": "anchorstack",
+    "notes": "Includes Calm Clarity Kit and Work-Life tools"
+  },
+  {
+    "category": "Freebies",
+    "label": "7-Day Reset Kit",
+    "base_url": "https://grafixartistry6.gumroad.com/l/mbxcud",
+    "utm_source": "menu",
+    "utm_medium": "web",
+    "utm_campaign": "vault"
+  }
+]
