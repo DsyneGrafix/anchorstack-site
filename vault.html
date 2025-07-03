@@ -14,189 +14,10 @@
 <meta property="og:url" content="https://anchorstack.pro/vault" />
 <meta property="og:type" content="website" />
 <!-- FADE-IN SCROLL EFFECTS -->
-<style>
-  .fade-in {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-  }
-  .fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-</style>
 
-<script>
-  const cards = document.querySelectorAll('.fade-in');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  });
-  cards.forEach(card => observer.observe(card));
-</script>
 
-<!-- Hotjar Tracking Code for https://anchorstack.pro -->
-<script>
-    (function(h,o,t,j,a,r){
-        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-        h._hjSettings={hjid:6445047,hjsv:6};
-        a=o.getElementsByTagName('head')[0];
-        r=o.createElement('script');r.async=1;
-        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-        a.appendChild(r);
-    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
 
-    var userId = "Ricky Jarnagin";
-    window.hj('identify', userId, {
-      'User Name': 'Ricky Jarnagin',
-      'Role': 'Site Owner',
-      'Plan': 'All Access',
-      'Identified': true
-    });
-</script>
-
-<script>
-  var userId = "Ricky Jarnagin";
-  window.hj('identify', userId, {
-    'User Name': 'Ricky Jarnagin',
-    'Role': 'Site Owner',
-    'Plan': 'All Access',
-    'Identified': true
-  });
-</script>
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="AnchorStack Vault – Creator Tools Without the Noise" />
-<meta name="twitter:description" content="Explore clarity kits, Notion dashboards, productivity systems, and white-label bundles — all built for creative independence." />
-<meta property="og:image" content="https://anchorstack.pro/images/anchorstack-og-preview.jpg" />
-
-<style>
-  .trending-box {
-    background: linear-gradient(to bottom, #e8faff, #f7fcff);
-    padding: 2rem 1rem;
-    margin-top: 2rem;
-    border-radius: 8px;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-  }
-
-  .trending-box.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .trending-title {
-    text-align: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-
-  .trending-list {
-    list-style: none;
-    text-align: center;
-    margin-top: 1rem;
-    padding: 0;
-  }
-</style>
-
-<!-- Favicon (Optional) -->
-<link rel="icon" href="/images/favicon.ico" type="image/png" />
-
-<meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AnchorStack Vault</title>
-  <style>
-  body {
-    font-family: system-ui, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #fff;
-  }
-  a {
-    text-decoration: none;
-  }
-  .cta-button {
-    display: inline-block;
-    margin: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    background-color: #008080;
-    color: #fff;
-    border-radius: 8px;
-  }
-</style>
-<style>
-    .hero-section {
-      text-align: center;
-      padding: 3rem 1rem;
-      background-color: #f9f9f9;
-    }
-    .sticky-banner {
-      position: sticky;
-      top: 0;
-      background-color: #fffbe7;
-      padding: 0.75rem 1rem;
-      font-size: 0.95rem;
-      border-bottom: 1px solid #ccc;
-      z-index: 100;
-      text-align: center;
-    }
-    .featured-product {
-      background-color: #fff4d1;
-      padding: 2rem 1rem;
-      margin-top: 2rem;
-      border-radius: 8px;
-    }
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      padding: 2rem;
-    }
-    .product-card {
-      background-color: #f4f4f4;
-      padding: 1rem;
-      border-radius: 8px;
-      text-align: center;
-    }
-    .product-card img {
-      max-width: 100%;
-      border-radius: 6px;
-    }
-    .scroll-prompt {
-      text-align: center;
-      font-size: 1.1rem;
-      margin-top: 1rem;
-    }
-  </style>
-<style>
-  .daily-saying-bar {
-    font-size: 14px;
-    color: #666;
-    text-align: center;
-    padding: 0.75rem 1rem;
-    background: #f7f7f7;
-    border-top: 1px solid #ddd;
-    margin-top: 3rem;
-  }
-
-.hero-section {
-  text-align: center;
-  padding: 2rem 1rem; /* was 3rem */
-  background-color: #f9f9f9;
-}
-</style>
- <style>
-    body {
-      font-family: system-ui, sans-serif;
-      margin: 0;
-      padding-top: 0px;
-    }
-  </style>
+ 
   
 <script>
   // Countdown Timer Logic
@@ -266,13 +87,11 @@
 </head>
 <body>
 
-<!-- 🎇 4th of July Sale Banner -->
-<div class="sticky-banner fireworks-banner"
-     style="background-color: #fff4e6; color: #d35400; font-weight: bold; text-align: center; padding: 1rem; border-bottom: 2px solid #ffa500;">
-  <a href="https://grafixartistry6.gumroad.com/l/xalvnc"
-     style="color: #d35400; text-decoration: none; position: relative; display: inline-block;">
-    🎇 4th of July Sale: Get 25% OFF all products until midnight July 5! Code USA25
-    <span id="countdown" style="margin-left: 10px;">⏳ Loading...</span>
+
+<!-- 📣 Image-Based Sticky Banner -->
+<div class="sticky-banner" style="top: 0; background: #fff; padding: 0; text-align: center; z-index: 999; border-bottom: 1px solid #ccc;">
+  <a href="https://grafixartistry6.gumroad.com/l/xalvnc" target="_blank" rel="noopener">
+    <img src="images/25percentoff.png" alt="4th of July Sale - 25% OFF CODE USA25" style="width: 100%; max-width: 1000px; display: block; margin: 0 auto;" />
   </a>
 </div>
 
