@@ -4,10 +4,54 @@
   <meta charset="UTF-8">
   <title>AnchorStack Admin Dashboard</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 2rem;
+      background: #f9f9f9;
+    }
+
+    h1 {
+      font-size: 1.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    #link-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .tool-link {
+      display: block;
+      padding: 1rem;
+      background: white;
+      border-left: 5px solid #007BFF;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      transition: all 0.2s ease;
+    }
+
+    .tool-link:hover {
+      background: #e9f1ff;
+      transform: translateY(-2px);
+    }
+  </style>
 </head>
 <body>
   <h1>📋 AnchorStack Private Menu v2</h1>
-  <div id="link-container">Loading links...</div>
+
+  <div id="link-container">
+    <a href="/creator-tools-hub/nugget_generator_downloadable.html" class="tool-link">
+      🧠 Generate Daily Nugget
+    </a>
+    <!-- You can add more tool links below as needed -->
+  </div>
+<li><a href="/creator-tools-hub/ava_panel.html">🧠 Ava’s AI Toolkit</a></li>
+
   <script src="admin.js"></script>
 </body>
 </html>

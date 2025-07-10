@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>📝 Tagline Formatter | AnchorStack Tools</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 1rem; line-height: 1.6; background: #fdfdfd; color: #222; }
+    h1 { font-size: 1.8rem; margin-bottom: 1rem; }
+    textarea, input, button { width: 100%; font-size: 1rem; margin: 0.5rem 0; padding: 0.5rem; }
+    .output { background: #f0f0f0; padding: 1rem; border-radius: 8px; white-space: pre-wrap; }
+    label { font-weight: 600; display: block; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <h1>🎯 Tagline Formatter</h1>
+  <p>Transform a rough tagline idea into a polished, catchy version.</p>
+
+  <label for="input">Your Raw Tagline Idea:</label>
+  <textarea id="input" rows="3" placeholder="e.g. Tools that help you work smarter, not harder."></textarea>
+
+  <button onclick="generate()">✨ Format Tagline</button>
+
+  <div class="output" id="result">Your formatted tagline will appear here.</div>
+
+  <script>
+    function generate() {
+      const raw = document.getElementById("input").value.trim();
+      let formatted = raw;
+
+      if (raw.length < 4) {
+        formatted = "Please enter a longer tagline idea.";
+      } else {
+        // Basic formatting rules
+        formatted = raw.replace(/tools/i, "🛠️ Tools")
+                       .replace(/clarity/i, "🔍 Clarity")
+                       .replace(/productivity/i, "⚡ Productivity")
+                       .replace(/focus/i, "🎯 Focus");
+
+        // Capitalize first letter
+        formatted = formatted.charAt(0).toUpperCase() + formatted.slice(1);
+
+        // Add optional punctuation
+        if (!/[.!?]$/.test(formatted)) formatted += ".";
+      }
+
+      document.getElementById("result").textContent = formatted;
+    }
+  </script>
+</body>
+</html>

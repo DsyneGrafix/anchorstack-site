@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "https://clarityvault.anchorstack.pro/*"
+  to = "/clarityvault/:splat"
+  status = 200
+

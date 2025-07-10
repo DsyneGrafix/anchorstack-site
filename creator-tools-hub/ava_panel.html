@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ava's AI Toolkit</title>
+  <link rel="stylesheet" href="ava_styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🧠 Ava's AI Toolkit</h1>
+    <div class="tool">
+      <label for="formula">📌 Choose a Title Formula:</label>
+      <select id="formula">
+        <option value="The [Noun] Blueprint">The [Noun] Blueprint</option>
+        <option value="Unlock Your [Noun] Power">Unlock Your [Noun] Power</option>
+        <option value="Master the Art of [Verb + Noun]">Master the Art of [Verb + Noun]</option>
+        <option value="From [Pain] to [Success]">From [Pain] to [Success]</option>
+      </select>
+      <input id="insert" placeholder="Insert keyword..." />
+      <button onclick="generateTitle()">✨ Generate</button>
+      <p id="title-output"></p>
+    </div>
+
+    <div class="tool">
+      <label for="bundle">🎁 Suggest a Bundle Name:</label>
+      <input id="bundle" placeholder="Main theme or product..." />
+      <button onclick="generateBundle()">🧩 Suggest</button>
+      <p id="bundle-output"></p>
+    </div>
+  </div>
+  <script src="ava_tools.js"></script>
+</body>
+</html>

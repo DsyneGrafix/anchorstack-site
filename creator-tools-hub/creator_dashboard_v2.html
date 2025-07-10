@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Creator Dashboard v2 – AnchorStack</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 2rem;
+      background: #f5f7fa;
+      color: #333;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 1.25rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    }
+    .card h2 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    .card p {
+      font-size: 0.95rem;
+      line-height: 1.4;
+      flex-grow: 1;
+    }
+    .card a {
+      margin-top: 1rem;
+      display: inline-block;
+      color: white;
+      background: #007BFF;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      text-align: center;
+    }
+    .card a:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>🛠 Creator Dashboard v2</h1>
+  <div class="dashboard-grid">
+    <div class="card">
+      <h2>🧠 Generate Daily Nugget</h2>
+      <p>Create a formatted HTML article in seconds. Just enter your prompt and download it as a ready-to-post file.</p>
+      <a href="/tools/nugget_generator_downloadable.html">Open Tool</a>
+    </div>
+    <div class="card">
+      <h2>📚 View All Nuggets</h2>
+      <p>See your full archive of daily nuggets, sorted by date. Great for linking or repackaging into a bundle.</p>
+      <a href="/tools/nugget_archive.html">Browse Archive</a>
+    </div>
+    <div class="card">
+      <h2>📦 Build Product Bundle</h2>
+      <p>Select multiple tools or guides and generate a downloadable ZIP with cover, metadata, and promo text.</p>
+      <a href="#">Coming Soon</a>
+    </div>
+    <div class="card">
+      <h2>📅 Drops Calendar</h2>
+      <p>Visualize upcoming Vault releases. Great for scheduling freebies, teasers, and new product launches.</p>
+      <a href="#">Coming Soon</a>
+    </div>
+    <div class="card">
+      <h2>🌈 Fractal Image Manager</h2>
+      <p>Organize your fractal art inserts, cover graphics, and visual content across AnchorStack books.</p>
+      <a href="/tools/fractal_manager.html">Manage Images</a>
+    </div>
+  </div>
+</body>
+</html>

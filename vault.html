@@ -13,72 +13,166 @@
 <meta property="og:image" content="https://anchorstack.pro/images/anchorstack-og-image.jpg" />
 <meta property="og:url" content="https://anchorstack.pro/vault" />
 <meta property="og:type" content="website" />
-<!-- FADE-IN SCROLL EFFECTS -->
 
-
-
- 
-  
+<!-- Hotjar Tracking Code for https://anchorstack.pro -->
 <script>
-  // Countdown Timer Logic
-  const countdownElement = document.getElementById("countdown");
-  const saleEnd = new Date("July 5, 2025 23:59:59").getTime();
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:6445047,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
 
-  const countdownInterval = setInterval(() => {
-    const now = new Date().getTime();
-    const diff = saleEnd - now;
-
-    if (diff <= 0) {
-      countdownElement.textContent = "🎉 Sale has ended!";
-      clearInterval(countdownInterval);
-    } else {
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-      countdownElement.textContent = `⏳ Ends in ${days}d ${hours}h ${minutes}m ${seconds}s`;
-    }
-  }, 1000);
+    var userId = "Ricky Jarnagin";
+    window.hj('identify', userId, {
+      'User Name': 'Ricky Jarnagin',
+      'Role': 'Site Owner',
+      'Plan': 'All Access',
+      'Identified': true
+    });
 </script>
+
+<script>
+  var userId = "Ricky Jarnagin";
+  window.hj('identify', userId, {
+    'User Name': 'Ricky Jarnagin',
+    'Role': 'Site Owner',
+    'Plan': 'All Access',
+    'Identified': true
+  });
+</script>
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="AnchorStack Vault – Creator Tools Without the Noise" />
+<meta name="twitter:description" content="Explore clarity kits, Notion dashboards, productivity systems, and white-label bundles — all built for creative independence." />
+<meta property="og:image" content="https://anchorstack.pro/images/anchorstack-og-preview.jpg" />
+
 <style>
-  .fireworks-banner a:hover::after {
-    content: " 🎆🎇✨";
-    animation: sparkle 1.5s infinite;
-    margin-left: 0.5rem;
-    font-size: 1rem;
+  .trending-box {
+    background: linear-gradient(to bottom, #e8faff, #f7fcff);
+    padding: 2rem 1rem;
+    margin-top: 2rem;
+    border-radius: 8px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
   }
 
-  @keyframes sparkle {
-    0% { opacity: 0; transform: translateY(-5px); }
-    50% { opacity: 1; transform: translateY(0); }
-    100% { opacity: 0; transform: translateY(5px); }
+  .trending-box.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .trending-title {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .trending-list {
+    list-style: none;
+    text-align: center;
+    margin-top: 1rem;
+    padding: 0;
   }
 </style>
-<script>
-  const countdown = () => {
-    const now = new Date().getTime();
-    const end = new Date("July 6, 2025 00:00:00").getTime();
-    const distance = end - now;
 
-    if (distance <= 0) {
-      document.getElementById("countdown").innerHTML = "🎉 Sale ended!";
-      return;
+<!-- Favicon (Optional) -->
+<link rel="icon" href="/images/favicon.ico" type="image/png" />
+
+<meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AnchorStack Vault</title>
+  <style>
+  body {
+    font-family: system-ui, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+  }
+  a {
+    text-decoration: none;
+  }
+  .cta-button {
+    display: inline-block;
+    margin: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #008080;
+    color: #fff;
+    border-radius: 8px;
+  }
+</style>
+<style>
+    .hero-section {
+      text-align: center;
+      padding: 3rem 1rem;
+      background-color: #f9f9f9;
     }
+    .sticky-banner {
+      position: sticky;
+      top: 0;
+      background-color: #fffbe7;
+      padding: 0.75rem 1rem;
+      font-size: 0.95rem;
+      border-bottom: 1px solid #ccc;
+      z-index: 100;
+      text-align: center;
+    }
+    .featured-product {
+      background-color: #fff4d1;
+      padding: 2rem 1rem;
+      margin-top: 2rem;
+      border-radius: 8px;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+    .product-card {
+      background-color: #f4f4f4;
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .product-card img {
+      max-width: 100%;
+      border-radius: 6px;
+    }
+    .scroll-prompt {
+      text-align: center;
+      font-size: 1.1rem;
+      margin-top: 1rem;
+    }
+  </style>
+<style>
+  .daily-saying-bar {
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    padding: 0.75rem 1rem;
+    background: #f7f7f7;
+    border-top: 1px solid #ddd;
+    margin-top: 3rem;
+  }
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    document.getElementById("countdown").innerHTML =
-      `⏰ ${days}d ${hours}h ${minutes}m ${seconds}s`;
-  };
-
-  countdown(); // initial call
-  setInterval(countdown, 1000); // update every second
-</script>
-
-
+.hero-section {
+  text-align: center;
+  padding: 2rem 1rem; /* was 3rem */
+  background-color: #f9f9f9;
+}
+</style>
+<style>
+.product-card img {
+  object-fit: cover;
+  width: 100%;
+  height: 240px;
+  border-radius: 6px;
+}
+</style>
 <script src="https://gumroad.com/js/gumroad.js"></script>
 
 <script async src="https://substackapi.com/widget.js" defer></script>
@@ -86,15 +180,12 @@
 
 </head>
 <body>
-<!-- Trigger: July 3 rebuild -->
 
-<!-- 📣 Image-Based Sticky Banner -->
-<div class="sticky-banner" style="top: 0; background: #fff; padding: 0; text-align: center; z-index: 999; border-bottom: 1px solid #ccc;">
-  <a href="https://grafixartistry6.gumroad.com/l/xalvnc" target="_blank" rel="noopener">
-    <img src="images/25percentoff.png" alt="4th of July Sale - 25% OFF CODE USA25" style="width: 100%; max-width: 1000px; display: block; margin: 0 auto;" />
-  </a>
-</div>
-
+  <!-- Sticky Substack Join Bar -->
+  <div class="sticky-banner">
+    💌 <strong>Join the 30-Day Focus Challenge:</strong>
+    <a href="#newsletter-signup" style="color: #d35400; font-weight: bold;">Sign up for free daily clarity tools</a>
+  </div>
 
   <!-- Hero Section -->
   <section class="hero-section">
@@ -112,7 +203,14 @@
       <a href="#product-of-the-week" class="cta-button" style="background-color: #444;">🎯 This Week’s Deal – $49</a>
     </div>
     <p style="font-size: 0.9rem; color: #999; margin-top: 1rem;">Trusted by 100+ creators · New tools added monthly</p>
-  </section>
+  
+<!-- Freebie -->
+<div>
+<p style="font-size: 0.9rem; color: #999; margin-top: 1rem;">🎁 Want the full Clarity Series bundle?
+Get instant access when you join our list. It’s free.</p>
+<a href="#" onclick="ml('show', 'popup_id_here'); return false;">Get the Free Bundle</a></div>
+<!-- End of Freebie Promo -->
+</section>
   <!-- Product of the Week -->
   <section id="product-of-the-week" class="featured-product">
     <h2 style="text-align: center;">🌟 Product of the Month: <em>Focus Vault – White Label Productivity Kit</em></h2>
@@ -221,17 +319,100 @@
   <a href="https://grafixartistry6.gumroad.com/l/xtitiw" class="cta-button">Launch Price – $9</a>
 </div></div> <!-- End of product-grid -->
 
-<!-- VAULT INSERT CARDS with SEO -->
-<div class="vault-insert-row" style="display:flex; flex-direction:column; gap:30px; align-items:center; margin: 40px 0;">
+<!-- 📅 AnchorStack Vault Drop Calendar -->
+<section style="text-align: center; margin: 2rem 0;">
+  <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">📆 Upcoming Vault Drops</h2>
+  <div id="drop-calendar" class="grid grid-cols-1 gap-4">
+    <!-- Dynamic items will load here -->
+  </div>
+</section>
 
-</div>
+<script>
+const data = {
+  items: [
+    {
+      day: 1,
+      date: "Today",
+      product: "<a href='https://grafixartistry6.gumroad.com/l/olrcel' class='text-blue-500 underline'>Clarity Essentials Bundle</a>",
+      tier: "$99",
+      action: "LIVE LAUNCH",
+      notes: "Focused, value-rich, best first product"
+    },
+    {
+      day: 2,
+      date: "Day 2",
+      product: "Instagram / Pinterest Promo",
+      tier: "Free",
+      action: "Social Push",
+      notes: "Use new covers + add urgency ('just launched!')"
+    },
+    {
+      day: 3,
+      date: "Day 3",
+      product: "<a href='https://grafixartistry6.gumroad.com/l/xykymr' class='text-blue-500 underline'>Inner Mastery Toolkit</a>",
+      tier: "$199",
+      action: "Prelaunch Email",
+      notes: "Teaser: 'Reset from the inside out'"
+    },
+    {
+      day: 4,
+      date: "Day 4",
+      product: "Clarity Vault Pro Collection",
+      tier: "$299",
+      action: "Scheduled Page",
+      notes: "Set up but don’t post — teaser only"
+    },
+    {
+      day: 5,
+      date: "Day 5",
+      product: "<a href='https://grafixartistry6.gumroad.com/l/focuskit3day' class='text-blue-500 underline'>3-Day Focus Fast Track</a>",
+      tier: "Free",
+      action: "Free Opt-In Drop",
+      notes: "Use to grow email list + upsell Essentials"
+    },
+    {
+      day: 7,
+      date: "Day 7",
+      product: "<a href='https://grafixartistry6.gumroad.com/l/momentumkit' class='text-blue-500 underline'>Momentum Builder Blueprint</a>",
+      tier: "$149",
+      action: "Soft Launch",
+      notes: "Announce to list w/ side-hustle focus"
+    },
+    {
+      day: 14,
+      date: "Day 14",
+      product: "<a href='https://grafixartistry6.gumroad.com/l/clarityvaultpro' class='text-blue-500 underline'>Clarity Vault Pro Collection</a>",
+      tier: "$299",
+      action: "Official Launch",
+      notes: "Drop with high urgency + premium cover"
+    },
+   {
+  day: 30,
+  date: "Day 30",
+  product: "📦 Bonus Drop: Creator’s Clarity Stack",
+  tier: "$199",
+  action: "Sneak Preview",
+  notes: "Bundle tease with early bird email capture link"
+}
 
- <!-- AnchorStack Vault Promo Panel -->
-  <section style="text-align: center; margin: 2rem 0;">
-    <img src="images/promo.jpg"
-         alt="AnchorStack Vault — Creator Tools Without the Noise"
-         style="width: 100%; max-width: 800px; border-radius: 8px;" />
-  </section>
+  ]
+};
+
+const container = document.getElementById('drop-calendar');
+data.items.forEach((item, index) => {
+  const card = document.createElement('div');
+  card.className = 'rounded-2xl shadow p-4 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700';
+  card.innerHTML = `
+    <h2 class="text-xl font-bold text-gray-800 dark:text-white">Day ${item.day}: ${item.product}</h2>
+    <p class="text-sm text-gray-500 mb-1">📅 ${item.date} | 💵 ${item.tier}</p>
+    <p class="text-sm text-blue-600 font-medium mb-2">Action: ${item.action}</p>
+    <p class="text-sm text-gray-700 dark:text-gray-300">${item.notes}</p>
+  `;
+  container.appendChild(card);
+});
+</script>
+
+
 
 
 <!-- Coming Soon Section -->
@@ -244,7 +425,7 @@
       <div style="position: absolute; top: 0.5rem; left: 0.5rem; background-color: #3498db; color: white; font-size: 0.8rem; font-weight: bold; padding: 0.25rem 0.5rem; border-radius: 4px;">
         🚧 Coming Soon
       </div>
-      <img src="images/resized_image_1.jpg" alt="The 30-Day Product Sprint" style="width: 100%; border-radius: 6px;">
+      <img src="/images/resized_image_1.jpg" alt="The 30-Day Product Sprint" style="width: 100%; border-radius: 6px;">
       <h3>The 30-Day Product Sprint</h3>
       <p>Build a digital product in one month.</p>
       <a href="https://rickyjarnagin.substack.com/subscribe" 
@@ -263,7 +444,7 @@
       <div style="position: absolute; top: 0.5rem; left: 0.5rem; background-color: #3498db; color: white; font-size: 0.8rem; font-weight: bold; padding: 0.25rem 0.5rem; border-radius: 4px;">
         🚧 Coming Soon
       </div>
-      <img src="images/resized_image_2.jpg" alt="Founding Affiliate Invite" style="width: 100%; border-radius: 6px;">
+      <img src="/images/resized_image_2.jpg" alt="Founding Affiliate Invite" style="width: 100%; border-radius: 6px;">
       <h3>Founding Affiliate Invite</h3>
       <p>✨ Founding Affiliate Program </p> 
 <p>Become an AnchorStack Insider </p> 
@@ -296,7 +477,7 @@
       <div style="position: absolute; top: 0.5rem; left: 0.5rem; background-color: #3498db; color: white; font-size: 0.8rem; font-weight: bold; padding: 0.25rem 0.5rem; border-radius: 4px;">
         🚧 Coming Soon
       </div>
-      <img src="images/resized_image_3.jpg" alt="The Calm Clarity Blueprint" style="width: 100%; border-radius: 6px;">
+      <img src="/images/resized_image_3.jpg" alt="The Calm Clarity Blueprint" style="width: 100%; border-radius: 6px;">
       <h3>The Calm Clarity Blueprint</h3>
       <p>Digital Clarity Kit by Clarity Press.</p>
       <a href="https://rickyjarnagin.substack.com/subscribe" 
@@ -426,6 +607,14 @@
     }
   });
 </script>
-
+<!-- MailerLite Universal -->
+<script>
+    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+    ml('account', '1652274');
+</script>
+<!-- End MailerLite Universal -->
 </body>
 </html>
