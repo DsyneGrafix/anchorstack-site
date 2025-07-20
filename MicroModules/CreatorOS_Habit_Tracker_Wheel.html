@@ -1,0 +1,636 @@
+<!-- Habit Tracker HTML placeholder -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreatorOS Habit Tracker Wheel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #e0e7ff 0%, #dbeafe 50%, #e0e7ff 100%);
+            min-height: 100vh;
+            padding: 1.5rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .header p {
+            color: #6b7280;
+            font-size: 1.1rem;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+
+        .wheel-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .wheel-svg {
+            transform: rotate(-90deg);
+            margin-bottom: 1.5rem;
+        }
+
+        .wheel-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .wheel-center-day {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .wheel-center-count {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .day-selector {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .day-btn {
+            padding: 0.5rem 0.75rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .day-btn.active {
+            background: #4f46e5;
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .day-btn:not(.active) {
+            background: #f3f4f6;
+            color: #374151;
+        }
+
+        .day-btn:not(.active):hover {
+            background: #e5e7eb;
+        }
+
+        .habits-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .habits-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .add-btn {
+            background: #4f46e5;
+            color: white;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .add-btn:hover {
+            background: #4338ca;
+        }
+
+        .add-form {
+            background: #f9fafb;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .add-form-row {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .add-form input {
+            flex: 1;
+            padding: 0.5rem 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .add-form input:focus {
+            outline: none;
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        .form-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .form-btn.primary {
+            background: #10b981;
+            color: white;
+        }
+
+        .form-btn.primary:hover {
+            background: #059669;
+        }
+
+        .form-btn.secondary {
+            background: #6b7280;
+            color: white;
+        }
+
+        .form-btn.secondary:hover {
+            background: #4b5563;
+        }
+
+        .habit-item {
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            transition: box-shadow 0.2s;
+        }
+
+        .habit-item:hover {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .habit-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .habit-name {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .habit-color {
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+        }
+
+        .habit-title {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .streak {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            color: #ea580c;
+        }
+
+        .habit-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .action-btn {
+            background: none;
+            border: none;
+            padding: 0.25rem;
+            cursor: pointer;
+            color: #6b7280;
+            transition: color 0.2s;
+        }
+
+        .action-btn:hover {
+            color: #374151;
+        }
+
+        .action-btn.delete:hover {
+            color: #dc2626;
+        }
+
+        .action-btn.reset:hover {
+            color: #ea580c;
+        }
+
+        .habit-days {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .day-checkbox {
+            width: 2rem;
+            height: 2rem;
+            border: 2px solid #d1d5db;
+            border-radius: 0.5rem;
+            background: #f3f4f6;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .day-checkbox.completed {
+            background: #10b981;
+            border-color: #10b981;
+            color: white;
+        }
+
+        .day-checkbox.selected {
+            box-shadow: 0 0 0 2px #a5b4fc;
+        }
+
+        .day-checkbox:hover {
+            border-color: #9ca3af;
+        }
+
+        .completion-rate {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem 0;
+            color: #6b7280;
+        }
+
+        .empty-state svg {
+            width: 3rem;
+            height: 3rem;
+            margin: 0 auto 1rem;
+            opacity: 0.5;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .relative {
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>CreatorOS Habit Tracker Wheel</h1>
+            <p>Visual Habit Streaks • 7-Day Tracker • Modular UI</p>
+        </div>
+
+        <div class="main-grid">
+            <!-- Wheel Visualization -->
+            <div class="card">
+                <div class="wheel-container">
+                    <div class="relative">
+                        <svg id="wheel" width="300" height="300" class="wheel-svg"></svg>
+                        <div class="wheel-center">
+                            <div class="wheel-center-day" id="centerDay">Sun</div>
+                            <div class="wheel-center-count" id="centerCount">0/0</div>
+                        </div>
+                    </div>
+                    
+                    <div class="day-selector" id="daySelector">
+                        <button class="day-btn" data-day="0">Mon</button>
+                        <button class="day-btn" data-day="1">Tue</button>
+                        <button class="day-btn" data-day="2">Wed</button>
+                        <button class="day-btn" data-day="3">Thu</button>
+                        <button class="day-btn" data-day="4">Fri</button>
+                        <button class="day-btn" data-day="5">Sat</button>
+                        <button class="day-btn active" data-day="6">Sun</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Habit List -->
+            <div class="card">
+                <div class="habits-header">
+                    <h2>Your Habits</h2>
+<p><center><h6><span style="display: inline-block; font-size: 12px; color: #000000; background: #cccccc; border-radius: 3px; padding: 2px 8px;">©</span>   Copyright AnchorStack.pro 2025</h6></center></p>
+
+                    <button class="add-btn" onclick="showAddForm()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                    </button>
+                </div>
+
+                <div id="addForm" class="add-form hidden">
+                    <div class="add-form-row">
+                        <input type="text" id="newHabitInput" placeholder="Enter new habit..." onkeypress="handleKeyPress(event)">
+                        <button class="form-btn primary" onclick="addHabit()">Add</button>
+                        <button class="form-btn secondary" onclick="hideAddForm()">Cancel</button>
+                    </div>
+                </div>
+
+                <div id="habitsList"></div>
+
+                <div id="emptyState" class="empty-state hidden">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 9l6 6 6-6"/>
+                    </svg>
+                    <p>No habits yet. Add your first habit to get started!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let habits = [
+            { id: 1, name: 'Drink Water', color: '#3B82F6', completed: [true, false, true, true, false, true, false], streak: 3 },
+            { id: 2, name: 'Exercise', color: '#EF4444', completed: [false, true, false, true, true, false, true], streak: 1 },
+            { id: 3, name: 'Read', color: '#10B981', completed: [true, true, true, false, true, true, true], streak: 3 },
+            { id: 4, name: 'Meditate', color: '#8B5CF6', completed: [true, false, true, true, true, false, true], streak: 1 }
+        ];
+
+        let selectedDay = 6;
+        const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+        const colors = ['#3B82F6', '#EF4444', '#10B981', '#8B5CF6', '#F59E0B', '#EC4899', '#06B6D4'];
+
+        function calculateStreak(completed) {
+            let streak = 0;
+            for (let i = completed.length - 1; i >= 0; i--) {
+                if (completed[i]) streak++;
+                else break;
+            }
+            return streak;
+        }
+
+        function getCompletionRate(habit) {
+            const completed = habit.completed.filter(Boolean).length;
+            return Math.round((completed / 7) * 100);
+        }
+
+        function toggleHabit(habitId, dayIndex) {
+            const habit = habits.find(h => h.id === habitId);
+            if (habit) {
+                habit.completed[dayIndex] = !habit.completed[dayIndex];
+                habit.streak = calculateStreak(habit.completed);
+                render();
+            }
+        }
+
+        function addHabit() {
+            const input = document.getElementById('newHabitInput');
+            const name = input.value.trim();
+            if (name) {
+                const newId = Math.max(...habits.map(h => h.id), 0) + 1;
+                habits.push({
+                    id: newId,
+                    name: name,
+                    color: colors[habits.length % colors.length],
+                    completed: [false, false, false, false, false, false, false],
+                    streak: 0
+                });
+                input.value = '';
+                hideAddForm();
+                render();
+            }
+        }
+
+        function deleteHabit(habitId) {
+            habits = habits.filter(h => h.id !== habitId);
+            render();
+        }
+
+        function resetHabit(habitId) {
+            const habit = habits.find(h => h.id === habitId);
+            if (habit) {
+                habit.completed = [false, false, false, false, false, false, false];
+                habit.streak = 0;
+                render();
+            }
+        }
+
+        function showAddForm() {
+            document.getElementById('addForm').classList.remove('hidden');
+            document.getElementById('newHabitInput').focus();
+        }
+
+        function hideAddForm() {
+            document.getElementById('addForm').classList.add('hidden');
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                addHabit();
+            }
+        }
+
+        function setSelectedDay(dayIndex) {
+            selectedDay = dayIndex;
+            document.querySelectorAll('.day-btn').forEach((btn, index) => {
+                btn.classList.toggle('active', index === dayIndex);
+            });
+            render();
+        }
+
+        function renderWheel() {
+            const wheel = document.getElementById('wheel');
+            wheel.innerHTML = '';
+            
+            if (habits.length === 0) return;
+
+            habits.forEach((habit, index) => {
+                const angle = (360 / habits.length) * index;
+                const segmentAngle = 360 / habits.length;
+                const radius = 120;
+                const innerRadius = 60;
+                const completionRate = getCompletionRate(habit);
+                
+                const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+                group.setAttribute('transform', `rotate(${angle} 150 150)`);
+                
+                // Background segment
+                const bgPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                const x1 = 150 + innerRadius * Math.sin(segmentAngle * Math.PI / 180);
+                const y1 = 150 - innerRadius * Math.cos(segmentAngle * Math.PI / 180);
+                const x2 = 150 + radius * Math.sin(segmentAngle * Math.PI / 180);
+                const y2 = 150 - radius * Math.cos(segmentAngle * Math.PI / 180);
+                
+                bgPath.setAttribute('d', `M 150 ${150 - innerRadius} A ${innerRadius} ${innerRadius} 0 0 1 ${x1} ${y1} L ${x2} ${y2} A ${radius} ${radius} 0 0 0 150 ${150 - radius} Z`);
+                bgPath.setAttribute('fill', habit.color);
+                bgPath.setAttribute('opacity', '0.1');
+                
+                // Progress arc
+                const progressPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                progressPath.setAttribute('d', `M 150 ${150 - innerRadius} A ${innerRadius} ${innerRadius} 0 0 1 ${x1} ${y1} L ${x2} ${y2} A ${radius} ${radius} 0 0 0 150 ${150 - radius} Z`);
+                progressPath.setAttribute('fill', 'none');
+                progressPath.setAttribute('stroke', habit.color);
+                progressPath.setAttribute('stroke-width', '4');
+                
+                const circumference = 2 * Math.PI * ((radius + innerRadius) / 2);
+                const dashArray = `${(completionRate / 100) * circumference} ${circumference}`;
+                progressPath.setAttribute('stroke-dasharray', dashArray);
+                
+                // Text
+                const nameText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                nameText.setAttribute('x', '150');
+                nameText.setAttribute('y', 150 - (radius + innerRadius) / 2 - 5);
+                nameText.setAttribute('text-anchor', 'middle');
+                nameText.setAttribute('fill', habit.color);
+                nameText.setAttribute('font-size', '12');
+                nameText.setAttribute('font-weight', '600');
+                nameText.textContent = habit.name;
+                
+                const percentText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                percentText.setAttribute('x', '150');
+                percentText.setAttribute('y', 150 - (radius + innerRadius) / 2 + 10);
+                percentText.setAttribute('text-anchor', 'middle');
+                percentText.setAttribute('fill', habit.color);
+                percentText.setAttribute('font-size', '10');
+                percentText.setAttribute('opacity', '0.8');
+                percentText.textContent = `${completionRate}%`;
+                
+                group.appendChild(bgPath);
+                group.appendChild(progressPath);
+                group.appendChild(nameText);
+                group.appendChild(percentText);
+                wheel.appendChild(group);
+            });
+        }
+
+        function renderHabitsList() {
+            const habitsList = document.getElementById('habitsList');
+            const emptyState = document.getElementById('emptyState');
+            
+            if (habits.length === 0) {
+                habitsList.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+            
+            emptyState.classList.add('hidden');
+            
+            habitsList.innerHTML = habits.map(habit => `
+                <div class="habit-item">
+                    <div class="habit-header">
+                        <div class="habit-name">
+                            <div class="habit-color" style="background-color: ${habit.color}"></div>
+                            <span class="habit-title">${habit.name}</span>
+                            ${habit.streak > 0 ? `
+                                <div class="streak">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                    </svg>
+                                    <span>${habit.streak}</span>
+                                </div>
+                            ` : ''}
+                        </div>
+                        <div class="habit-actions">
+                            <button class="action-btn reset" onclick="resetHabit(${habit.id})">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="1 4 1 10 7 10"></polyline>
+                                    <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                                </svg>
+                            </button>
+                            <button class="action-btn delete" onclick="deleteHabit(${habit.id})">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3,6 5,6 21,6"></polyline>
+                                    <path d="M19,6V20A2,2 0 0,1 17,20H7A2,2 0 0,1 5,20V6M8,6V4A2,2 0 0,1 10,4H14A2,2 0 0,1 16,4V6"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="habit-days">
+                        ${habit.completed.map((completed, dayIndex) => `
+                            <div class="day-checkbox ${completed ? 'completed' : ''} ${dayIndex === selectedDay ? 'selected' : ''}" 
+                                 onclick="toggleHabit(${habit.id}, ${dayIndex})">
+                                ${completed ? '✓' : ''}
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="completion-rate">
+                        Completion: ${getCompletionRate(habit)}% this week
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateCenter() {
+            document.getElementById('centerDay').textContent = days[selectedDay];
+            const completedToday = habits.filter(h => h.completed[selectedDay]).length;
+            document.getElementById('centerCount').textContent = `${completedToday}/${habits.length}`;
+        }
+
+        function render() {
+            renderWheel();
+            renderHabitsList();
+            updateCenter();
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.day-btn').forEach((btn, index) => {
+                btn.addEventListener('click', () => setSelectedDay(index));
+            });
+            render();
+        });
+    </script>
+<p><center>Another AnchorStack.pro Micro Module</center></p>
+</body>
+</html>

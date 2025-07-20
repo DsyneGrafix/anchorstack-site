@@ -1,0 +1,208 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreatorOS Faith Q&A Chatbot</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5; /* Light background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 600px;
+            height: 80vh; /* Adjust height for better mobile viewing */
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .chat-header {
+            background-color: #4a90e2; /* Blue header */
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+        }
+        .chat-messages {
+            flex-grow: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            background-color: #e9ecef; /* Light gray chat background */
+            scroll-behavior: smooth;
+        }
+        .message {
+            margin-bottom: 0.75rem;
+            padding: 0.75rem 1rem;
+            border-radius: 15px;
+            max-width: 80%;
+            word-wrap: break-word;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .message.user {
+            background-color: #d1e7fd; /* Light blue for user */
+            align-self: flex-end;
+            margin-left: auto;
+            color: #333;
+        }
+        .message.bot {
+            background-color: #ffffff; /* White for bot */
+            align-self: flex-start;
+            margin-right: auto;
+            color: #333;
+        }
+        .chat-input-area {
+            display: flex;
+            padding: 1rem;
+            border-top: 1px solid #dee2e6;
+            background-color: #f8f9fa;
+        }
+        .chat-input {
+            flex-grow: 1;
+            padding: 0.75rem 1rem;
+            border: 1px solid #ced4da;
+            border-radius: 25px;
+            margin-right: 0.75rem;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .chat-input:focus {
+            border-color: #4a90e2;
+        }
+        .send-button {
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 0.75rem 1.25rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .send-button:hover {
+            background-color: #357ABD;
+        }
+        .loading-indicator {
+            text-align: center;
+            padding: 0.5rem;
+            font-size: 0.9rem;
+            color: #6c757d;
+            display: none; /* Hidden by default */
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="chat-container">
+        <div class="chat-header">
+            CreatorOS Faith Q&A Chatbot
+        </div>
+<center><p style="font-weight: 300; color: #000000;">© Copyright AnchorStack.pro 2025</p></center>
+        <div class="chat-messages" id="chat-messages">
+            <!-- Messages will be appended here -->
+            <div class="message bot">Hello! I'm here to help answer your questions about faith. What's on your mind?</div>
+        </div>
+        <div class="loading-indicator" id="loading-indicator">Thinking...</div>
+        <div class="chat-input-area">
+            <input type="text" id="user-input" class="chat-input" placeholder="Ask a question...">
+            <button id="send-button" class="send-button">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const chatMessages = document.getElementById('chat-messages');
+        const userInput = document.getElementById('user-input');
+        const sendButton = document.getElementById('send-button');
+        const loadingIndicator = document.getElementById('loading-indicator');
+
+        // Function to append messages to the chat interface
+        function appendMessage(sender, text) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', sender);
+            messageElement.textContent = text;
+            chatMessages.appendChild(messageElement);
+            // Scroll to the bottom of the chat
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Function to send message to the AI
+        async function sendMessage() {
+            const question = userInput.value.trim();
+            if (question === '') return; // Don't send empty messages
+
+            appendMessage('user', question); // Display user's message
+            userInput.value = ''; // Clear input field
+            loadingIndicator.style.display = 'block'; // Show loading indicator
+            sendButton.disabled = true; // Disable send button
+
+            try {
+                // Construct the prompt for the LLM
+                // Instruct the LLM to provide answers rooted in biblical knowledge
+                const prompt = `As a faith-based Q&A assistant, please provide an answer to the following question, drawing from biblical principles and a Christian perspective. Keep the answer concise and encouraging: "${question}"`;
+
+                let chatHistory = [];
+                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+
+                const payload = { contents: chatHistory };
+                const apiKey = ""; // Canvas will automatically provide the API key at runtime
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const botResponse = result.candidates[0].content.parts[0].text;
+                    appendMessage('bot', botResponse);
+                } else {
+                    appendMessage('bot', "I'm sorry, I couldn't generate a response at this moment. Please try again.");
+                    console.error("Unexpected API response structure:", result);
+                }
+            } catch (error) {
+                console.error("Error fetching AI response:", error);
+                appendMessage('bot', "An error occurred while connecting to the AI. Please try again later.");
+            } finally {
+                loadingIndicator.style.display = 'none'; // Hide loading indicator
+                sendButton.disabled = false; // Re-enable send button
+                userInput.focus(); // Focus input for next question
+            }
+        }
+
+        // Event Listeners
+        sendButton.addEventListener('click', sendMessage);
+        userInput.addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Focus on input when page loads
+        window.onload = () => {
+            userInput.focus();
+        };
+    </script>
+<footer style="text-align:center; font-size: 0.85rem; color: #3333; margin-top: 2rem;">Another AnchorStack Micro Module<br/>
+  © Copyright AnchorStack.pro 2025 - All Rights Reserved
+</footer>
+</body>
+</html>
+

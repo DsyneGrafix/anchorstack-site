@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreatorOS Vintage Film Vision</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nosifer&family=Creepster&family=Eater&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #1a1a1a;
+            overflow-x: hidden;
+            font-family: 'Courier New', monospace;
+            position: relative;
+        }
+        
+        /* Film grain overlay */
+        .film-grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="0.5" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="0.3" fill="rgba(255,255,255,0.05)"/><circle cx="50" cy="10" r="0.4" fill="rgba(255,255,255,0.08)"/><circle cx="10" cy="60" r="0.2" fill="rgba(255,255,255,0.06)"/><circle cx="90" cy="30" r="0.6" fill="rgba(255,255,255,0.04)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            pointer-events: none;
+            z-index: 1000;
+            animation: grain 0.1s infinite alternate;
+        }
+        
+        @keyframes grain {
+            0% { opacity: 0.6; }
+            100% { opacity: 0.8; }
+        }
+        
+        /* Film strip borders */
+        .film-strip-left, .film-strip-right {
+            position: fixed;
+            top: 0;
+            width: 60px;
+            height: 100vh;
+            background: linear-gradient(to right, #2a2a2a, #1a1a1a);
+            z-index: 999;
+        }
+        
+        .film-strip-left {
+            left: 0;
+            border-right: 2px solid #333;
+        }
+        
+        .film-strip-right {
+            right: 0;
+            border-left: 2px solid #333;
+        }
+        
+        /* Film holes */
+        .film-strip-left::before, .film-strip-right::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 100%;
+            background: repeating-linear-gradient(
+                to bottom,
+                #000 0px,
+                #000 8px,
+                transparent 8px,
+                transparent 16px
+            );
+        }
+        
+        /* Vintage vignette effect */
+        .vignette {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.8) 100%);
+            pointer-events: none;
+            z-index: 998;
+        }
+        
+        /* Main content area */
+        .main-content {
+            margin: 0 80px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Flickering effect */
+        .flicker {
+            animation: flicker 0.3s infinite alternate;
+        }
+        
+        @keyframes flicker {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.95; }
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(45deg, #3a3a3a, #2a2a2a);
+            border-bottom: 3px solid #444;
+            position: relative;
+        }
+        
+        .title {
+            font-family: 'Nosifer', cursive;
+            font-size: 3.5em;
+            color: #f0f0f0;
+            text-shadow: 
+                0 0 10px rgba(255, 255, 255, 0.3),
+                0 0 20px rgba(255, 255, 255, 0.2),
+                0 0 30px rgba(255, 255, 255, 0.1);
+            margin-bottom: 10px;
+            animation: titleGlow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes titleGlow {
+            0% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); }
+            100% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            color: #ccc;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        
+        /* Film frames */
+        .film-frames {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 40px 20px;
+        }
+        
+        .film-frame {
+            background: #2a2a2a;
+            border: 8px solid #444;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        .film-frame:hover {
+            transform: scale(1.02) rotate(0.5deg);
+        }
+        
+        .frame-content {
+            padding: 20px;
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle, #3a3a3a, #2a2a2a);
+            position: relative;
+        }
+        
+        .frame-title {
+            font-family: 'Creepster', cursive;
+            font-size: 1.8em;
+            color: #f0f0f0;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .frame-text {
+            color: #ccc;
+            text-align: center;
+            line-height: 1.6;
+            font-size: 1.1em;
+        }
+        
+        /* Vintage effects */
+        .scratches {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.03) 2%, transparent 4%),
+                linear-gradient(45deg, transparent 0%, rgba(255,255,255,0.02) 1%, transparent 2%),
+                linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.01) 3%, transparent 6%);
+            pointer-events: none;
+        }
+        
+        /* Projector beam effect */
+        .projector-beam {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                45deg,
+                transparent 0%,
+                rgba(255,255,255,0.02) 25%,
+                transparent 50%,
+                rgba(255,255,255,0.01) 75%,
+                transparent 100%
+            );
+            animation: beam 3s linear infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes beam {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        
+        /* Old movie countdown */
+        .countdown {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Eater', cursive;
+            font-size: 8em;
+            color: #f0f0f0;
+            text-shadow: 0 0 20px rgba(255,255,255,0.5);
+            z-index: 1001;
+            animation: countdown 5s linear infinite;
+        }
+        
+        @keyframes countdown {
+            0%, 20% { opacity: 0; }
+            21%, 40% { opacity: 1; content: '3'; }
+            41%, 60% { opacity: 1; content: '2'; }
+            61%, 80% { opacity: 1; content: '1'; }
+            81%, 100% { opacity: 0; }
+        }
+        
+        /* Sepia tone overlay */
+        .sepia-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(194, 154, 108, 0.1);
+            mix-blend-mode: multiply;
+            pointer-events: none;
+            z-index: 997;
+        }
+        
+        /* Vintage buttons */
+        .vintage-btn {
+            background: linear-gradient(45deg, #4a4a4a, #3a3a3a);
+            border: 2px solid #666;
+            color: #f0f0f0;
+            padding: 12px 24px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 10px;
+            border-radius: 5px;
+        }
+        
+        .vintage-btn:hover {
+            background: linear-gradient(45deg, #5a5a5a, #4a4a4a);
+            box-shadow: 0 5px 15px rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            background: #1a1a1a;
+            border-top: 3px solid #333;
+            color: #888;
+            font-size: 0.9em;
+            letter-spacing: 2px;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .main-content {
+                margin: 0 40px;
+            }
+            
+            .film-strip-left, .film-strip-right {
+                width: 30px;
+            }
+            
+            .title {
+                font-size: 2.5em;
+            }
+            
+            .film-frames {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 20px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Film grain overlay -->
+    <div class="film-grain"></div>
+    
+    <!-- Film strips -->
+    <div class="film-strip-left"></div>
+    <div class="film-strip-right"></div>
+    
+    <!-- Vintage effects -->
+    <div class="vignette"></div>
+    <div class="sepia-overlay"></div>
+    <div class="projector-beam"></div>
+    
+    <!-- Main content -->
+    <div class="main-content flicker">
+        <div class="header">
+            <h1 class="title">CreatorOS VINTAGE FILM VISION</h1>
+            <p class="subtitle">A Journey Through Cinema's Golden Age</p>
+            <div class="scratches"></div>
+        </div>
+        <center><p style="font-weight: 600; color: #fffafa;">Another AnchorStack Micro Module</p></center>
+        <div class="film-frames">
+            <div class="film-frame">
+                <div class="frame-content">
+                    <h3 class="frame-title">Silent Era</h3>
+                    <p class="frame-text">Experience the magic of silent films with dramatic expressions and live piano accompaniment. The art of storytelling without words.</p>
+                </div>
+                <div class="scratches"></div>
+            </div>
+            
+            <div class="film-frame">
+                <div class="frame-content">
+                    <h3 class="frame-title">Film Noir</h3>
+                    <p class="frame-text">Step into the shadows of classic noir with dramatic lighting, mysterious characters, and urban landscapes shrouded in mystery.</p>
+                </div>
+                <div class="scratches"></div>
+            </div>
+            
+            <div class="film-frame">
+                <div class="frame-content">
+                    <h3 class="frame-title">Golden Hollywood</h3>
+                    <p class="frame-text">Relive the glamour of Hollywood's golden age with legendary stars, epic productions, and timeless storytelling.</p>
+                </div>
+                <div class="scratches"></div>
+            </div>
+            
+            <div class="film-frame">
+                <div class="frame-content">
+                    <h3 class="frame-title">Vintage Horror</h3>
+                    <p class="frame-text">Classic monsters, gothic atmosphere, and spine-tingling suspense from cinema's most frightening era.</p>
+                </div>
+                <div class="scratches"></div>
+            </div>
+            
+            <div class="film-frame">
+                <div class="frame-content">
+                    <h3 class="frame-title">Westerns</h3>
+                    <p class="frame-text">Ride into the sunset with classic westerns, featuring cowboys, outlaws, and the untamed American frontier.</p>
+                </div>
+                <div class="scratches"></div>
+            </div>
+            
+            <div class="film-frame">
+                <div class="frame-content">
+                    <h3 class="frame-title">Musicals</h3>
+                    <p class="frame-text">Tap your feet to the rhythm of vintage musicals with elaborate dance numbers and unforgettable melodies.</p>
+                </div>
+                <div class="scratches"></div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; padding: 40px;">
+            <button class="vintage-btn" onclick="toggleEffects()">Toggle Film Effects</button>
+            <button class="vintage-btn" onclick="playCountdown()">Start Countdown</button>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 Vintage Film Vision | Preserving Cinema's Golden Heritage</p>
+        </div>
+    </div>
+    
+    <script>
+        // Film grain animation
+        setInterval(() => {
+            const grain = document.querySelector('.film-grain');
+            grain.style.backgroundPosition = `${Math.random() * 100}px ${Math.random() * 100}px`;
+        }, 100);
+        
+        // Random flicker effect
+        setInterval(() => {
+            const flicker = document.querySelector('.flicker');
+            if (Math.random() < 0.1) {
+                flicker.style.opacity = '0.9';
+                setTimeout(() => {
+                    flicker.style.opacity = '1';
+                }, 50);
+            }
+        }, 1000);
+        
+        // Toggle effects function
+        function toggleEffects() {
+            const grain = document.querySelector('.film-grain');
+            const vignette = document.querySelector('.vignette');
+            const sepia = document.querySelector('.sepia-overlay');
+            
+            if (grain.style.display === 'none') {
+                grain.style.display = 'block';
+                vignette.style.display = 'block';
+                sepia.style.display = 'block';
+            } else {
+                grain.style.display = 'none';
+                vignette.style.display = 'none';
+                sepia.style.display = 'none';
+            }
+        }
+        
+        // Countdown animation
+        function playCountdown() {
+            const countdown = document.createElement('div');
+            countdown.className = 'countdown';
+            document.body.appendChild(countdown);
+            
+            let count = 3;
+            const interval = setInterval(() => {
+                if (count > 0) {
+                    countdown.textContent = count;
+                    count--;
+                } else {
+                    countdown.textContent = 'ACTION!';
+                    setTimeout(() => {
+                        document.body.removeChild(countdown);
+                    }, 1000);
+                    clearInterval(interval);
+                }
+            }, 1000);
+        }
+        
+        // Add vintage scratch lines randomly
+        setInterval(() => {
+            const frames = document.querySelectorAll('.film-frame');
+            frames.forEach(frame => {
+                if (Math.random() < 0.05) {
+                    frame.style.filter = 'brightness(1.1) contrast(1.1)';
+                    setTimeout(() => {
+                        frame.style.filter = 'none';
+                    }, 100);
+                }
+            });
+        }, 2000);
+        
+        // Vintage sound simulation (visual feedback)
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('vintage-btn')) {
+                const ripple = document.createElement('div');
+                ripple.style.position = 'absolute';
+                ripple.style.left = e.clientX + 'px';
+                ripple.style.top = e.clientY + 'px';
+                ripple.style.width = '20px';
+                ripple.style.height = '20px';
+                ripple.style.background = 'rgba(255,255,255,0.3)';
+                ripple.style.borderRadius = '50%';
+                ripple.style.transform = 'translate(-50%, -50%)';
+                ripple.style.animation = 'ripple 0.6s ease-out';
+                ripple.style.pointerEvents = 'none';
+                document.body.appendChild(ripple);
+                
+                setTimeout(() => {
+                    document.body.removeChild(ripple);
+                }, 600);
+            }
+        });
+        
+        // Add ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+                100% { transform: translate(-50%, -50%) scale(20); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+<footer style="text-align:center; font-size: 0.85rem; color: #fffafa; margin-top: 2rem;">
+  © Copyright AnchorStack.pro 2025
+</footer>
+</body>
+</html>

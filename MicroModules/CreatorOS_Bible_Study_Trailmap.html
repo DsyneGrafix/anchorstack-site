@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreatorOS Bible Study Trailmap – Chapter-by-Chapter Progress with Devotions</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for the Inter font and general aesthetics */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        /* Ensure the main container takes full height on small screens */
+        .min-h-screen {
+            min-height: 100vh;
+        }
+        /* Visual feedback for completed chapters */
+        .chapter-completed {
+            opacity: 0.7; /* Slightly dim the card */
+            border-style: dashed; /* Change border style */
+        }
+        /* Change chapter title text to subtle grey when completed */
+        .chapter-completed .chapter-title { /* Added .chapter-title class to h2 for specific targeting */
+            color: #6b7280; /* text-gray-500 */
+        }
+        /* Style for textareas to make them look like content blocks */
+        textarea {
+            resize: vertical; /* Allow vertical resizing */
+            min-height: 60px; /* Minimum height for notes */
+            width: 100%;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            border: 1px solid #d1d5db; /* Light gray border */
+            background-color: #f9fafb; /* Slightly darker background for input */
+            font-size: 0.875rem; /* text-sm */
+            line-height: 1.25rem; /* leading-5 */
+            color: #1f2937; /* text-gray-900 */
+        }
+        textarea:focus {
+            outline: none;
+            border-color: #3b82f6; /* blue-500 */
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25); /* focus-ring-blue-500 */
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-100 to-purple-100 min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl w-full bg-white rounded-3xl shadow-xl p-8 md:p-12 lg:p-16">
+        <!-- Page Title -->
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-center text-gray-900 mb-10 leading-tight">
+            CreatorOS Bible Study Trailmap
+            <span class="block text-2xl sm:text-3xl lg:text-4xl font-semibold text-purple-600 mt-2">
+                Chapter-by-Chapter Progress with Devotions
+            </span>
+        </h1>
+<center><p style="font-weight: 400; color: #9f4576;">Another AnchorStack Micro Module</p></center>
+        <!-- Book Selection Dropdown -->
+        <div class="mb-8 flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+            <label for="bibleBook" class="text-lg font-semibold text-gray-700">Select a Book:</label>
+            <select id="bibleBook" class="p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-800 text-base sm:w-auto w-full max-w-xs">
+                <!-- Options will be populated by JavaScript -->
+            </select>
+        </div>
+<footer style="text-align:center; font-size: 0.85rem; color: #c71585; margin-top: 2rem;">
+  © Copyright AnchorStack.pro 2025
+</footer>
+        <!-- Mood Board Grid for Chapters -->
+        <div id="chapterGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Chapter cards will be dynamically loaded here by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        // Data structure for Bible books and their chapter counts
+        const bibleBooks = [
+            { name: "Genesis", chapters: 50, color: "blue" },
+            { name: "Exodus", chapters: 40, color: "purple" },
+            { name: "Leviticus", chapters: 27, color: "green" },
+            { name: "Numbers", chapters: 36, color: "red" },
+            { name: "Deuteronomy", chapters: 34, color: "yellow" },
+            { name: "Joshua", chapters: 24, color: "indigo" },
+            { name: "Judges", chapters: 21, color: "pink" },
+            { name: "Ruth", chapters: 4, color: "teal" },
+            { name: "1 Samuel", chapters: 31, color: "orange" },
+            { name: "2 Samuel", chapters: 24, color: "cyan" },
+            { name: "1 Kings", chapters: 22, color: "lime" },
+            { name: "2 Kings", chapters: 25, color: "fuchsia" },
+            { name: "1 Chronicles", chapters: 29, color: "rose" },
+            { name: "2 Chronicles", chapters: 36, color: "sky" },
+            { name: "Ezra", chapters: 10, color: "emerald" },
+            { name: "Nehemiah", chapters: 13, color: "violet" },
+            { name: "Esther", chapters: 10, color: "amber" },
+            { name: "Job", chapters: 42, color: "blueGray" },
+            { name: "Psalms", chapters: 150, color: "warmGray" },
+            { name: "Proverbs", chapters: 31, color: "trueGray" },
+            { name: "Ecclesiastes", chapters: 12, color: "coolGray" },
+            { name: "Song of Solomon", chapters: 8, color: "lightBlue" },
+            { name: "Isaiah", chapters: 66, color: "darkBlue" },
+            { name: "Jeremiah", chapters: 52, color: "darkPurple" },
+            { name: "Lamentations", chapters: 5, color: "darkGreen" },
+            { name: "Ezekiel", chapters: 48, color: "darkRed" },
+            { name: "Daniel", chapters: 12, color: "darkYellow" },
+            { name: "Hosea", chapters: 14, color: "darkIndigo" },
+            { name: "Joel", chapters: 3, color: "darkPink" },
+            { name: "Amos", chapters: 9, color: "darkTeal" },
+            { name: "Obadiah", chapters: 1, color: "darkOrange" },
+            { name: "Jonah", chapters: 4, color: "darkCyan" },
+            { name: "Micah", chapters: 7, color: "darkLime" },
+            { name: "Nahum", chapters: 3, color: "darkFuchsia" },
+            { name: "Habakkuk", chapters: 3, color: "darkRose" },
+            { name: "Zephaniah", chapters: 3, color: "darkSky" },
+            { name: "Haggai", chapters: 2, color: "darkEmerald" },
+            { name: "Zechariah", chapters: 14, color: "darkViolet" },
+            { name: "Malachi", chapters: 4, color: "darkAmber" },
+            { name: "Matthew", chapters: 28, color: "blue" },
+            { name: "Mark", chapters: 16, color: "purple" },
+            { name: "Luke", chapters: 24, color: "green" },
+            { name: "John", chapters: 21, color: "red" },
+            { name: "Acts", chapters: 28, color: "yellow" },
+            { name: "Romans", chapters: 16, color: "indigo" },
+            { name: "1 Corinthians", chapters: 16, color: "pink" },
+            { name: "2 Corinthians", chapters: 13, color: "teal" },
+            { name: "Galatians", chapters: 6, color: "orange" },
+            { name: "Ephesians", chapters: 6, color: "cyan" },
+            { name: "Philippians", chapters: 4, color: "lime" },
+            { name: "Colossians", chapters: 4, color: "fuchsia" },
+            { name: "1 Thessalonians", chapters: 5, color: "rose" },
+            { name: "2 Thessalonians", chapters: 3, color: "sky" },
+            { name: "1 Timothy", chapters: 6, color: "emerald" },
+            { name: "2 Timothy", chapters: 4, color: "violet" },
+            { name: "Titus", chapters: 3, color: "amber" },
+            { name: "Philemon", chapters: 1, color: "blueGray" },
+            { name: "Hebrews", chapters: 13, color: "warmGray" },
+            { name: "James", chapters: 5, color: "trueGray" },
+            { name: "1 Peter", chapters: 5, color: "coolGray" },
+            { name: "2 Peter", chapters: 3, color: "lightBlue" },
+            { name: "1 John", chapters: 5, color: "darkBlue" },
+            { name: "2 John", chapters: 1, color: "darkPurple" },
+            { name: "3 John", chapters: 1, color: "darkGreen" },
+            { name: "Jude", chapters: 1, color: "darkRed" },
+            { name: "Revelation", chapters: 22, color: "darkYellow" }
+        ];
+
+        const bibleBookSelect = document.getElementById('bibleBook');
+        const chapterGrid = document.getElementById('chapterGrid');
+
+        /**
+         * Generates a unique key for local storage based on book and chapter.
+         * @param {string} bookName - The name of the Bible book.
+         * @param {number} chapterNumber - The chapter number.
+         * @returns {string} - The unique storage key.
+         */
+        function getStorageKey(bookName, chapterNumber) {
+            return `bibleStudyChapterData_${bookName.replace(/\s/g, '-')}_${chapterNumber}`;
+        }
+
+        /**
+         * Saves the data for a specific chapter to local storage.
+         * @param {string} bookName - The name of the Bible book.
+         * @param {number} chapterNumber - The chapter number.
+         * @param {object} data - An object containing { completed: boolean, keyTheme: string, devotionNotes: string }.
+         */
+        function saveChapterData(bookName, chapterNumber, data) {
+            const key = getStorageKey(bookName, chapterNumber);
+            localStorage.setItem(key, JSON.stringify(data));
+            console.log(`Data saved for ${bookName} Chapter ${chapterNumber}:`, data);
+        }
+
+        /**
+         * Loads the data for a specific chapter from local storage.
+         * @param {string} bookName - The name of the Bible book.
+         * @param {number} chapterNumber - The chapter number.
+         * @returns {object} - An object containing { completed: boolean, keyTheme: string, devotionNotes: string }.
+         */
+        function loadChapterData(bookName, chapterNumber) {
+            const key = getStorageKey(bookName, chapterNumber);
+            const storedData = localStorage.getItem(key);
+            if (storedData) {
+                return JSON.parse(storedData);
+            }
+            // Return default structure if no data found
+            return { completed: false, keyTheme: '', devotionNotes: '' };
+        }
+
+        // Function to populate the book dropdown
+        function populateBookDropdown() {
+            bibleBooks.forEach(book => {
+                const option = document.createElement('option');
+                option.value = book.name;
+                option.textContent = book.name;
+                bibleBookSelect.appendChild(option);
+            });
+        }
+
+        // Function to generate and display chapter cards for a selected book
+        function displayChapters(bookName) {
+            chapterGrid.innerHTML = ''; // Clear existing cards
+
+            const selectedBook = bibleBooks.find(book => book.name === bookName);
+
+            if (selectedBook) {
+                for (let i = 1; i <= selectedBook.chapters; i++) {
+                    const chapterData = loadChapterData(bookName, i); // Load saved state and notes
+
+                    const chapterCard = document.createElement('div');
+                    // Assign a color based on the book's defined color
+                    const borderColorClass = `border-${selectedBook.color}-200`;
+                    const textColorClass = `text-${selectedBook.color}-800`;
+                    const bgColorClass = `bg-${selectedBook.color}-50`;
+                    const devotionTextColorClass = `text-${selectedBook.color}-700`;
+                    const checkboxColorClass = `text-${selectedBook.color}-600 focus:ring-${selectedBook.color}-500`;
+
+                    // Add 'chapter-completed' class if the chapter is marked as complete
+                    chapterCard.className = `bg-white rounded-2xl shadow-md p-6 border ${borderColorClass} hover:shadow-lg transition-all duration-300 ${chapterData.completed ? 'chapter-completed' : ''}`;
+
+                    chapterCard.innerHTML = `
+                        <div class="flex items-center justify-between mb-4">
+                            <h2 class="text-xl font-bold ${textColorClass} chapter-title">${selectedBook.name} - Chapter ${i}</h2>
+                            <input type="checkbox" id="checkbox-${bookName.replace(/\s/g, '-')}-${i}"
+                                data-book="${bookName}" data-chapter="${i}"
+                                class="form-checkbox h-6 w-6 ${checkboxColorClass} rounded-md border-gray-300 cursor-pointer"
+                                ${chapterData.completed ? 'checked' : ''}>
+                        </div>
+                        <div class="mb-4">
+                            <label for="keyTheme-${bookName.replace(/\s/g, '-')}-${i}" class="font-semibold text-gray-700 block mb-1">Key Theme:</label>
+                            <textarea id="keyTheme-${bookName.replace(/\s/g, '-')}-${i}"
+                                data-book="${bookName}" data-chapter="${i}" data-field="keyTheme"
+                                class="text-gray-800 text-sm"
+                                placeholder="Add key theme for ${selectedBook.name} Chapter ${i}...">${chapterData.keyTheme}</textarea>
+                        </div>
+                        <div class="${bgColorClass} p-4 rounded-xl border ${borderColorClass}">
+                            <label for="devotionNotes-${bookName.replace(/\s/g, '-')}-${i}" class="font-semibold ${devotionTextColorClass} mb-2 block">My Devotion/Notes:</label>
+                            <textarea id="devotionNotes-${bookName.replace(/\s/g, '-')}-${i}"
+                                data-book="${bookName}" data-chapter="${i}" data-field="devotionNotes"
+                                class="text-gray-800 text-sm italic"
+                                placeholder="Your devotion or notes for ${selectedBook.name} Chapter ${i} go here.">${chapterData.devotionNotes}</textarea>
+                        </div>
+                    `;
+                    chapterGrid.appendChild(chapterCard);
+
+                    // Add event listeners to the newly created elements
+                    const checkbox = document.getElementById(`checkbox-${bookName.replace(/\s/g, '-')}-${i}`);
+                    if (checkbox) {
+                        checkbox.addEventListener('change', (event) => {
+                            const book = event.target.dataset.book;
+                            const chapter = parseInt(event.target.dataset.chapter);
+                            const isChecked = event.target.checked;
+
+                            const currentData = loadChapterData(book, chapter);
+                            currentData.completed = isChecked;
+                            saveChapterData(book, chapter, currentData);
+
+                            // Toggle visual class on the parent card
+                            if (isChecked) {
+                                chapterCard.classList.add('chapter-completed');
+                            } else {
+                                chapterCard.classList.remove('chapter-completed');
+                            }
+                        });
+                    }
+
+                    const keyThemeTextarea = document.getElementById(`keyTheme-${bookName.replace(/\s/g, '-')}-${i}`);
+                    if (keyThemeTextarea) {
+                        keyThemeTextarea.addEventListener('input', (event) => {
+                            const book = event.target.dataset.book;
+                            const chapter = parseInt(event.target.dataset.chapter);
+                            const currentData = loadChapterData(book, chapter);
+                            currentData.keyTheme = event.target.value;
+                            saveChapterData(book, chapter, currentData);
+                        });
+                    }
+
+                    const devotionNotesTextarea = document.getElementById(`devotionNotes-${bookName.replace(/\s/g, '-')}-${i}`);
+                    if (devotionNotesTextarea) {
+                        devotionNotesTextarea.addEventListener('input', (event) => {
+                            const book = event.target.dataset.book;
+                            const chapter = parseInt(event.target.dataset.chapter);
+                            const currentData = loadChapterData(book, chapter);
+                            currentData.devotionNotes = event.target.value;
+                            saveChapterData(book, chapter, currentData);
+                        });
+                    }
+                }
+            }
+        }
+
+        // Event listener for book selection change
+        bibleBookSelect.addEventListener('change', (event) => {
+            displayChapters(event.target.value);
+        });
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            populateBookDropdown();
+            // Display chapters for the first book (Genesis) by default
+            displayChapters(bibleBooks[0].name);
+        });
+    </script>
+
+</body>
+</html>
+

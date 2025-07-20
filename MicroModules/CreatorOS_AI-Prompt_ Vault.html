@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreatorOS AI Prompt Vault – Categorized Prompt Cards for Notion, GPT, Claude</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for the Inter font and general aesthetics */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        /* Ensure the main container takes full height on small screens */
+        .min-h-screen {
+            min-height: 100vh;
+        }
+        /* Visual feedback for used prompts */
+        .prompt-used {
+            opacity: 0.7; /* Slightly dim the card */
+            border-style: dashed; /* Change border style */
+        }
+        /* Change title text to subtle grey when used */
+        .prompt-used .prompt-title {
+            color: #6b7280; /* text-gray-500 */
+        }
+        /* Style for textareas to make them look like content blocks */
+        textarea {
+            resize: vertical; /* Allow vertical resizing */
+            min-height: 80px; /* Minimum height for prompt text */
+            width: 100%;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            border: 1px solid #d1d5db; /* Light gray border */
+            background-color: #f9fafb; /* Slightly darker background for input */
+            font-size: 0.875rem; /* text-sm */
+            line-height: 1.25rem; /* leading-5 */
+            color: #1f2937; /* text-gray-900 */
+        }
+        textarea:focus {
+            outline: none;
+            border-color: #3b82f6; /* blue-500 */
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25); /* focus-ring-blue-500 */
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-indigo-100 to-pink-100 min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl w-full bg-white rounded-3xl shadow-xl p-8 md:p-12 lg:p-16">
+        <!-- Page Title -->
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-center text-gray-900 mb-10 leading-tight">
+            CreatorOS AI Prompt Vault
+            <span class="block text-2xl sm:text-3xl lg:text-4xl font-semibold text-pink-600 mt-2">
+                Categorized Prompt Cards for Notion, GPT, Claude
+            </span>
+        </h1>
+
+<center><p style="font-weight: 600; color: #800000;">Another AnchorStack Micro Module</p></center>
+        <!-- Category Selection Dropdown -->
+        <div class="mb-8 flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+
+            <label for="promptCategory" class="text-lg font-semibold text-gray-700">Filter by Category:</label>
+            <select id="promptCategory" class="p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-gray-800 text-base sm:w-auto w-full max-w-xs">
+                <option value="all">All Categories</option>
+                <option value="GPT">GPT Prompts</option>
+                <option value="Claude">Claude Prompts</option>
+                <option value="Notion">Notion Prompts</option>
+            </select>
+        </div>
+<footer style="text-align:center; font-size: 0.85rem; color: #800000; margin-top: 2rem;">
+  © Copyright AnchorStack.pro 2025
+</footer>
+        <!-- Mood Board Grid for Prompt Cards -->
+        <div id="promptGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Prompt cards will be dynamically loaded here by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        // Initial data structure for prompts
+        // In a real application, this would likely come from a database or API
+        // For demonstration, we'll store default prompts and manage user edits in localStorage
+        const defaultPrompts = [
+            { id: 'gpt-1', category: 'GPT', title: 'Creative Writing Assistant', prompt: 'Write a short story about a lone astronaut discovering a sentient nebula. Focus on themes of isolation and wonder.' },
+            { id: 'gpt-2', category: 'GPT', title: 'Code Explainer', prompt: 'Explain the following Python code snippet step-by-step, including its purpose, logic, and potential improvements:\n\n```python\ndef factorial(n):\n    if n == 0:\n        return 1\n    else:\n        return n * factorial(n-1)\n```' },
+            { id: 'gpt-3', category: 'GPT', title: 'Brainstorming Ideas', prompt: 'Brainstorm 10 unique marketing campaign ideas for a new eco-friendly reusable coffee cup brand. Consider different target audiences.' },
+            { id: 'claude-1', category: 'Claude', title: 'Summarize Article', prompt: 'Summarize the key arguments and conclusions of the following research paper in 200 words or less, highlighting any limitations mentioned:\n\n[Paste Article Text Here]' },
+            { id: 'claude-2', category: 'Claude', title: 'Debate Point Generator', prompt: 'Generate arguments for and against the implementation of a universal basic income, focusing on economic and social impacts.' },
+            { id: 'claude-3', category: 'Claude', title: 'Ethical Dilemma Analysis', prompt: 'Analyze the ethical implications of using AI in judicial decision-making. Discuss potential biases and benefits.' },
+            { id: 'notion-1', category: 'Notion', title: 'Meeting Notes Template', prompt: 'Create a Notion template for meeting notes that includes sections for attendees, agenda, discussion points, action items (with assignee and due date), and decisions made.' },
+            { id: 'notion-2', category: 'Notion', title: 'Project Tracker Database', prompt: 'Design a Notion database structure for tracking projects. Include properties for project name, status (Not Started, In Progress, Completed), priority (High, Medium, Low), due date, assigned to, and related tasks.' },
+            { id: 'notion-3', category: 'Notion', title: 'Weekly Review Checklist', prompt: 'Generate a comprehensive checklist for a weekly review in Notion, covering tasks like reviewing goals, clearing inbox, planning next week, and reflecting on achievements.' },
+            { id: 'gpt-4', category: 'GPT', title: 'Email Draft Assistant', prompt: 'Draft a polite but firm email to a client requesting overdue payment for services rendered. Include details about the invoice number and original due date.' },
+            { id: 'claude-4', category: 'Claude', title: 'Historical Event Explanation', prompt: 'Explain the causes and consequences of the French Revolution in a concise manner suitable for a high school history class.' },
+            { id: 'notion-4', category: 'Notion', title: 'Content Calendar Table', prompt: 'Create a Notion table structure for a content calendar. Include columns for content type, topic, target audience, publication date, status, and links to drafts.' },
+        ];
+
+        const promptCategorySelect = document.getElementById('promptCategory');
+        const promptGrid = document.getElementById('promptGrid');
+
+        /**
+         * Generates a unique key for local storage based on prompt ID.
+         * @param {string} promptId - The unique ID of the prompt.
+         * @returns {string} - The unique storage key.
+         */
+        function getStorageKey(promptId) {
+            return `aiPromptVaultData_${promptId}`;
+        }
+
+        /**
+         * Saves the data for a specific prompt to local storage.
+         * @param {string} promptId - The unique ID of the prompt.
+         * @param {object} data - An object containing { used: boolean, promptContent: string }.
+         */
+        function savePromptData(promptId, data) {
+            const key = getStorageKey(promptId);
+            localStorage.setItem(key, JSON.stringify(data));
+            console.log(`Data saved for prompt ${promptId}:`, data);
+        }
+
+        /**
+         * Loads the data for a specific prompt from local storage.
+         * @param {string} promptId - The unique ID of the prompt.
+         * @param {string} defaultContent - The default prompt content if not found in storage.
+         * @returns {object} - An object containing { used: boolean, promptContent: string }.
+         */
+        function loadPromptData(promptId, defaultContent) {
+            const key = getStorageKey(promptId);
+            const storedData = localStorage.getItem(key);
+            if (storedData) {
+                return JSON.parse(storedData);
+            }
+            // Return default structure if no data found
+            return { used: false, promptContent: defaultContent };
+        }
+
+        // Function to generate and display prompt cards based on selected category
+        function displayPromptCards(category) {
+            promptGrid.innerHTML = ''; // Clear existing cards
+
+            const filteredPrompts = category === 'all'
+                ? defaultPrompts
+                : defaultPrompts.filter(p => p.category === category);
+
+            filteredPrompts.forEach(promptItem => {
+                const promptData = loadPromptData(promptItem.id, promptItem.prompt); // Load saved state and content
+
+                const promptCard = document.createElement('div');
+                let borderColorClass, textColorClass, bgColorClass, checkboxColorClass;
+
+                // Assign colors based on category
+                switch (promptItem.category) {
+                    case 'GPT':
+                        borderColorClass = `border-blue-200`;
+                        textColorClass = `text-blue-800`;
+                        bgColorClass = `bg-blue-50`;
+                        checkboxColorClass = `text-blue-600 focus:ring-blue-500`;
+                        break;
+                    case 'Claude':
+                        borderColorClass = `border-purple-200`;
+                        textColorClass = `text-purple-800`;
+                        bgColorClass = `bg-purple-50`;
+                        checkboxColorClass = `text-purple-600 focus:ring-purple-500`;
+                        break;
+                    case 'Notion':
+                        borderColorClass = `border-green-200`;
+                        textColorClass = `text-green-800`;
+                        bgColorClass = `bg-green-50`;
+                        checkboxColorClass = `text-green-600 focus:ring-green-500`;
+                        break;
+                    default: // Fallback for 'All' or new categories
+                        borderColorClass = `border-gray-200`;
+                        textColorClass = `text-gray-800`;
+                        bgColorClass = `bg-gray-50`;
+                        checkboxColorClass = `text-gray-600 focus:ring-gray-500`;
+                        break;
+                }
+
+                // Add 'prompt-used' class if the prompt is marked as used
+                promptCard.className = `bg-white rounded-2xl shadow-md p-6 border ${borderColorClass} hover:shadow-lg transition-all duration-300 ${promptData.used ? 'prompt-used' : ''}`;
+
+                promptCard.innerHTML = `
+                    <div class="flex items-center justify-between mb-2">
+                        <h2 class="text-xl font-bold ${textColorClass} prompt-title">${promptItem.title}</h2>
+                        <input type="checkbox" id="checkbox-${promptItem.id}"
+                            data-prompt-id="${promptItem.id}"
+                            class="form-checkbox h-6 w-6 ${checkboxColorClass} rounded-md border-gray-300 cursor-pointer"
+                            ${promptData.used ? 'checked' : ''}>
+                    </div>
+                    <p class="text-sm font-semibold text-gray-600 mb-3">Category: <span class="font-normal text-${promptItem.category === 'GPT' ? 'blue' : promptItem.category === 'Claude' ? 'purple' : 'green'}-700">${promptItem.category}</span></p>
+                    <div class="mb-4">
+                        <label for="promptContent-${promptItem.id}" class="font-semibold text-gray-700 block mb-1">Prompt:</label>
+                        <textarea id="promptContent-${promptItem.id}"
+                            data-prompt-id="${promptItem.id}"
+                            class="text-gray-800 text-sm"
+                            placeholder="Enter your prompt here...">${promptData.promptContent}</textarea>
+                    </div>
+                `;
+                promptGrid.appendChild(promptCard);
+
+                // Add event listeners to the newly created elements
+                const checkbox = document.getElementById(`checkbox-${promptItem.id}`);
+                if (checkbox) {
+                    checkbox.addEventListener('change', (event) => {
+                        const pId = event.target.dataset.promptId;
+                        const isChecked = event.target.checked;
+
+                        const currentData = loadPromptData(pId, ''); // Pass empty string as default content, as we only care about state here
+                        currentData.used = isChecked;
+                        savePromptData(pId, currentData);
+
+                        // Toggle visual class on the parent card
+                        if (isChecked) {
+                            promptCard.classList.add('prompt-used');
+                        } else {
+                            promptCard.classList.remove('prompt-used');
+                        }
+                    });
+                }
+
+                const promptContentTextarea = document.getElementById(`promptContent-${promptItem.id}`);
+                if (promptContentTextarea) {
+                    promptContentTextarea.addEventListener('input', (event) => {
+                        const pId = event.target.dataset.promptId;
+                        const currentData = loadPromptData(pId, ''); // Pass empty string as default content
+                        currentData.promptContent = event.target.value;
+                        savePromptData(pId, currentData);
+                    });
+                }
+            });
+        }
+
+        // Event listener for category selection change
+        promptCategorySelect.addEventListener('change', (event) => {
+            displayPromptCards(event.target.value);
+        });
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            // Display all prompts by default
+            promptCategorySelect.value = 'all'; // Set default selection
+            displayPromptCards('all');
+        });
+    </script>
+
+</body>
+</html>
+

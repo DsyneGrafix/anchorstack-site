@@ -68,12 +68,102 @@
 <body data-gr-ext-installed="" data-new-gr-c-s-check-loaded="14.1242.0" data-new-gr-c-s-loaded="14.1242.0">
 <header>
 
-<img src="images/logo.png" />
+<center><img src="images/logo.png" />
 <h1>AnchorStack</h1>
 <p class="subtitle">Clarity Kits &amp; Momentum Tools for Creators</p>
 <p class="body-text">
     The Focus Vault isn’t just another collection of templates — it’s a launch-ready toolkit built for clarity, consistency, and real momentum.
   </p>
+
+    <title>Affiliate Signup</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+    </style>
+
+<body class="antialiased">
+    <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Become an Affiliate</h2>
+        <p class="text-gray-600 mb-8 text-center">
+            Join our team, earn 15%, and help us spread the word! Please fill out the form below.
+        </p>
+
+        <!--
+            The form uses 'mailto:' as the action.
+            When submitted, it will open the user's default email client
+            with the form data pre-filled in the email body.
+            The 'subject' parameter is added to provide a clear email subject.
+            Note: This method is best for simple forms as it relies on the user's email client.
+            For more robust data collection, a server-side solution would be needed.
+        -->
+       <form action="mailto:ricky@anchorstack.com?subject=Affiliate%20Application%20from%20Website" method="post" enctype="text/plain">
+            <div class="mb-5">
+                <label for="full_name" class="block text-gray-700 text-sm font-medium mb-2">Full Name:</label>
+                <input
+                    type="text"
+                    id="full_name"
+                    name="Full Name"
+                    placeholder="John Doe"
+                    required
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+                >
+            </div>
+
+            <div class="mb-5">
+                <label for="email_address" class="block text-gray-700 text-sm font-medium mb-2">Email Address:</label>
+                <input
+                    type="email"
+                    id="email_address"
+                    name="Email Address"
+                    placeholder="john.doe@example.com"
+                    required
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+                >
+            </div>
+
+            <div class="mb-6">
+                <label for="reason" class="block text-gray-700 text-sm font-medium mb-2">Why do you want to sell our products?</label>
+                <textarea
+                    id="reason"
+                    name="Reason for selling products"
+                    rows="5"
+                    placeholder="Tell us about your interest, experience, and how you plan to promote our products..."
+                    required
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 resize-y"
+                ></textarea></center>
+            </div>
+
+            <button
+                type="submit"
+                class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-300 shadow-md hover:shadow-lg"
+            >
+                Submit Application
+            </button>
+        </form>
+    </div>
+</body>
+</html>
+
+<section class="bg-white py-12 px-6 text-center border-t border-gray-300">
+  <h2 class="text-2xl font-bold text-gray-800 mb-4">🧠 Help Shape the Vault</h2>
+  <p class="text-gray-600 max-w-xl mx-auto mb-6">
+    We're building tools, templates, and clarity systems based on what creators really need.</p><p> <!--Take our 3‑minute survey to tell us what's holding you back—and get a free “Focus Finder” bonus toolkit!</p> 
+  </p>
+
+  <p class="text-sm text-gray-500 mt-3">Early access & bonus included</p>-->
+</section>
+
+
+
 <p class="body-text">
     From productivity templates to promo visuals, each kit is polished and packed for momentum. No fluff. Just systems that sell.
   </p>

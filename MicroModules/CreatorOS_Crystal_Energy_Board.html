@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crystal Energy Board</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Orbitron:wght@400;500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: radial-gradient(circle at center, #0a0a1a 0%, #000 100%);
+            color: #e0e0ff;
+            font-family: 'Cinzel', serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        /* Starfield background */
+        .starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background: 
+                radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.8), transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.6), transparent),
+                radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.4), transparent),
+                radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.7), transparent),
+                radial-gradient(2px 2px at 160px 30px, rgba(255,255,255,0.5), transparent);
+            animation: twinkle 3s infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+        
+        /* Energy flow particles */
+        .energy-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, #00ffff, transparent);
+            border-radius: 50%;
+            animation: float 8s infinite linear;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) scale(1); opacity: 0; }
+        }
+        
+        /* Main container */
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .title {
+            font-family: 'Orbitron', monospace;
+            font-size: 3.5em;
+            font-weight: 700;
+            background: linear-gradient(45deg, #00ffff, #ff00ff, #ffff00, #00ffff);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: rainbow 3s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(0,255,255,0.5);
+            margin-bottom: 20px;
+        }
+        
+        @keyframes rainbow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .subtitle {
+            font-size: 1.3em;
+            color: #b0b0ff;
+            letter-spacing: 3px;
+            opacity: 0.9;
+        }
+        
+        /* Crystal grid */
+        .crystal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .crystal-card {
+            background: linear-gradient(135deg, 
+                rgba(255,255,255,0.1) 0%, 
+                rgba(255,255,255,0.05) 50%, 
+                rgba(255,255,255,0.1) 100%);
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .crystal-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,255,255,0.3);
+            border-color: rgba(0,255,255,0.6);
+        }
+        
+        .crystal-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+        
+        .crystal-card:hover::before {
+            transform: translateX(100%);
+        }
+        
+        .crystal-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .crystal {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            animation: crystalPulse 2s infinite;
+            position: relative;
+        }
+        
+        @keyframes crystalPulse {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(45deg); }
+        }
+        
+        .crystal.amethyst {
+            background: linear-gradient(45deg, #9966cc, #cc99ff);
+        }
+        
+        .crystal.emerald {
+            background: linear-gradient(45deg, #00cc66, #66ff99);
+        }
+        
+        .crystal.ruby {
+            background: linear-gradient(45deg, #cc0066, #ff6699);
+        }
+        
+        .crystal.sapphire {
+            background: linear-gradient(45deg, #0066cc, #6699ff);
+        }
+        
+        .crystal.topaz {
+            background: linear-gradient(45deg, #ffcc00, #ffff66);
+        }
+        
+        .crystal.quartz {
+            background: linear-gradient(45deg, #ffffff, #ccccff);
+        }
+        
+        .crystal-name {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.8em;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 15px;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+        
+        .crystal-properties {
+            text-align: center;
+            line-height: 1.6;
+            color: #d0d0ff;
+            margin-bottom: 20px;
+        }
+        
+        .energy-level {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 10px;
+            margin: 15px 0;
+        }
+        
+        .energy-bar {
+            background: linear-gradient(90deg, #333 0%, #666 100%);
+            border-radius: 10px;
+            height: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .energy-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00ffff, #ff00ff);
+            border-radius: 10px;
+            transition: width 2s ease;
+            position: relative;
+        }
+        
+        .energy-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: energyFlow 1.5s infinite;
+        }
+        
+        @keyframes energyFlow {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .energy-label {
+            font-size: 0.9em;
+            margin-bottom: 5px;
+            color: #b0b0ff;
+        }
+        
+        /* Central energy nexus */
+        .energy-nexus {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 50px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .nexus-core {
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, #00ffff, #ff00ff);
+            border-radius: 50%;
+            position: relative;
+            animation: coreRotate 10s infinite linear;
+        }
+        
+        @keyframes coreRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .nexus-ring {
+            position: absolute;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            animation: ringRotate 8s infinite linear reverse;
+        }
+        
+        .nexus-ring:nth-child(1) { width: 200px; height: 200px; }
+        .nexus-ring:nth-child(2) { width: 250px; height: 250px; animation-duration: 12s; }
+        .nexus-ring:nth-child(3) { width: 300px; height: 300px; animation-duration: 15s; }
+        
+        @keyframes ringRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Energy connections */
+        .energy-connections {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .connection-line {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ffff, transparent);
+            animation: connectionPulse 3s infinite;
+        }
+        
+        @keyframes connectionPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
+        /* Control panel */
+        .control-panel {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 50px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .control-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.5em;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+        
+        .control-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .energy-button {
+            background: linear-gradient(45deg, rgba(0,255,255,0.2), rgba(255,0,255,0.2));
+            border: 2px solid rgba(255,255,255,0.3);
+            color: #ffffff;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-family: 'Orbitron', monospace;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .energy-button:hover {
+            background: linear-gradient(45deg, rgba(0,255,255,0.4), rgba(255,0,255,0.4));
+            box-shadow: 0 10px 30px rgba(0,255,255,0.3);
+            transform: translateY(-5px);
+        }
+        
+        .energy-button:active {
+            transform: translateY(0);
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5em;
+            }
+            
+            .crystal-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .energy-nexus {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .nexus-core {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .control-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        /* Mystical glow effect */
+        .mystical-glow {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 800px;
+            height: 800px;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(0,255,255,0.1) 0%, transparent 70%);
+            z-index: 1;
+            animation: glowPulse 4s infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.6; transform: translate(-50%, -50%) scale(1.1); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background effects -->
+    <div class="starfield"></div>
+    <div class="mystical-glow"></div>
+    <div class="energy-particles"></div>
+    
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1 class="title">CreatorOS CRYSTAL ENERGY BOARD</h1>
+            <p class="subtitle">Harness the Power of Mystical Crystals</p>
+        </div>
+        <center><p style="font-weight: 600; color: #fffafa;">Another AnchorStack Micro Module</p></center>
+        <!-- Crystal Grid -->
+        <div class="crystal-grid">
+            <div class="crystal-card" data-crystal="amethyst">
+                <div class="crystal-icon">
+                    <div class="crystal amethyst"></div>
+                </div>
+                <h3 class="crystal-name">Amethyst</h3>
+                <p class="crystal-properties">Enhances spiritual awareness and provides protection from negative energies.</p>
+                <div class="energy-level">
+                    <div class="energy-label">Spiritual Power</div>
+                    <div class="energy-bar">
+                        <div class="energy-fill" style="width: 85%"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="crystal-card" data-crystal="emerald">
+                <div class="crystal-icon">
+                    <div class="crystal emerald"></div>
+                </div>
+                <h3 class="crystal-name">Emerald</h3>
+                <p class="crystal-properties">Promotes healing, growth, and harmonious relationships.</p>
+                <div class="energy-level">
+                    <div class="energy-label">Healing Energy</div>
+                    <div class="energy-bar">
+                        <div class="energy-fill" style="width: 92%"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="crystal-card" data-crystal="ruby">
+                <div class="crystal-icon">
+                    <div class="crystal ruby"></div>
+                </div>
+                <h3 class="crystal-name">Ruby</h3>
+                <p class="crystal-properties">Ignites passion, courage, and vitality in all endeavors.</p>
+                <div class="energy-level">
+                    <div class="energy-label">Life Force</div>
+                    <div class="energy-bar">
+                        <div class="energy-fill" style="width: 78%"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="crystal-card" data-crystal="sapphire">
+                <div class="crystal-icon">
+                    <div class="crystal sapphire"></div>
+                </div>
+                <h3 class="crystal-name">Sapphire</h3>
+                <p class="crystal-properties">Enhances wisdom, mental clarity, and divine connection.</p>
+                <div class="energy-level">
+                    <div class="energy-label">Mental Power</div>
+                    <div class="energy-bar">
+                        <div class="energy-fill" style="width: 88%"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="crystal-card" data-crystal="topaz">
+                <div class="crystal-icon">
+                    <div class="crystal topaz"></div>
+                </div>
+                <h3 class="crystal-name">Topaz</h3>
+                <p class="crystal-properties">Amplifies manifestation abilities and personal power.</p>
+                <div class="energy-level">
+                    <div class="energy-label">Manifestation</div>
+                    <div class="energy-bar">
+                        <div class="energy-fill" style="width: 75%"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="crystal-card" data-crystal="quartz">
+                <div class="crystal-icon">
+                    <div class="crystal quartz"></div>
+                </div>
+                <h3 class="crystal-name">Clear Quartz</h3>
+                <p class="crystal-properties">Master healer that amplifies all other crystal energies.</p>
+                <div class="energy-level">
+                    <div class="energy-label">Amplification</div>
+                    <div class="energy-bar">
+                        <div class="energy-fill" style="width: 95%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Energy Nexus -->
+        <div class="energy-nexus">
+            <div class="nexus-ring"></div>
+            <div class="nexus-ring"></div>
+            <div class="nexus-ring"></div>
+            <div class="nexus-core"></div>
+            <div class="energy-connections"></div>
+        </div>
+        
+        <!-- Control Panel -->
+        <div class="control-panel">
+            <h2 class="control-title">Energy Control Matrix</h2>
+            <div class="control-buttons">
+                <button class="energy-button" onclick="activateEnergy()">Activate Energy</button>
+                <button class="energy-button" onclick="harmonizeCrystals()">Harmonize</button>
+                <button class="energy-button" onclick="chargeField()">Charge Field</button>
+                <button class="energy-button" onclick="resetEnergy()">Reset Energy</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Create floating energy particles
+        function createParticles() {
+            const particleContainer = document.querySelector('.energy-particles');
+            
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                
+                const colors = ['#00ffff', '#ff00ff', '#ffff00', '#00ff00', '#ff0000'];
+                particle.style.background = `radial-gradient(circle, ${colors[Math.floor(Math.random() * colors.length)]}, transparent)`;
+                
+                particleContainer.appendChild(particle);
+            }
+        }
+        
+        // Activate energy animation
+        function activateEnergy() {
+            const crystals = document.querySelectorAll('.crystal');
+            const energyFills = document.querySelectorAll('.energy-fill');
+            
+            crystals.forEach(crystal => {
+                crystal.style.animation = 'crystalPulse 0.5s infinite';
+                crystal.style.boxShadow = '0 0 30px rgba(255,255,255,0.8)';
+            });
+            
+            energyFills.forEach(fill => {
+                fill.style.width = '100%';
+                fill.style.boxShadow = '0 0 20px rgba(0,255,255,0.8)';
+            });
+            
+            setTimeout(() => {
+                crystals.forEach(crystal => {
+                    crystal.style.animation = 'crystalPulse 2s infinite';
+                    crystal.style.boxShadow = 'none';
+                });
+            }, 3000);
+        }
+        
+        // Harmonize crystals
+        function harmonizeCrystals() {
+            const crystalCards = document.querySelectorAll('.crystal-card');
+            
+            crystalCards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.transform = 'translateY(-20px) scale(1.05)';
+                    card.style.boxShadow = '0 30px 60px rgba(0,255,255,0.5)';
+                    
+                    setTimeout(() => {
+                        card.style.transform = 'translateY(0) scale(1)';
+                        card.style.boxShadow = 'none';
+                    }, 1000);
+                }, index * 200);
+            });
+        }
+        
+        // Charge energy field
+        function chargeField() {
+            const nexusCore = document.querySelector('.nexus-core');
+            const mysticalGlow = document.querySelector('.mystical-glow');
+            
+            nexusCore.style.background = 'radial-gradient(circle, #ffffff, #00ffff)';
+            nexusCore.style.boxShadow = '0 0 100px rgba(255,255,255,0.8)';
+            
+            mysticalGlow.style.background = 'radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%)';
+            
+            setTimeout(() => {
+                nexusCore.style.background = 'radial-gradient(circle, #00ffff, #ff00ff)';
+                nexusCore.style.boxShadow = 'none';
+                mysticalGlow.style.background = 'radial-gradient(circle, rgba(0,255,255,0.1) 0%, transparent 70%)';
+            }, 2000);
+        }
+        
+        // Reset energy
+        function resetEnergy() {
+            const energyFills = document.querySelectorAll('.energy-fill');
+            const originalWidths = ['85%', '92%', '78%', '88%', '75%', '95%'];
+            
+            energyFills.forEach((fill, index) => {
+                fill.style.width = '0%';
+                setTimeout(() => {
+                    fill.style.width = originalWidths[index];
+                }, 500);
+            });
+        }
+        
+        // Create energy connections between crystals
+        function createEnergyConnections() {
+            const connections = document.querySelector('.energy-connections');
+            const crystalCards = document.querySelectorAll('.crystal-card');
+            
+            crystalCards.forEach((card, index) => {
+                if (index < crystalCards.length - 1) {
+                    const line = document.createElement('div');
+                    line.className = 'connection-line';
+                    line.style.top = `${20 + index * 15}%`;
+                    line.style.left = '10%';
+                    line.style.width = '80%';
+                    line.style.animationDelay = `${index * 0.5}s`;
+                    connections.appendChild(line);
+                }
+            });
+        }
+        
+        // Crystal card hover effects
+        document.querySelectorAll('.crystal-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                const crystal = this.querySelector('.crystal');
+                crystal.style.transform = 'scale(1.2) rotate(45deg)';
+                crystal.style.boxShadow = '0 0 30px rgba(255,255,255,0.6)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                const crystal = this.querySelector('.crystal');
+                crystal.style.transform = 'scale(1) rotate(0deg)';
+                crystal.style.boxShadow = 'none';
+            });
+        });
+        
+        // Button click effects
+        document.querySelectorAll('.energy-button').forEach(button => {
+            button.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                this.style.boxShadow = '0 0 50px rgba(0,255,255,0.8)';
+                
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                    this.style.boxShadow = '0 10px 30px rgba(0,255,255,0.3)';
+                }, 150);
+            });
+        });
+        
+        // Initialize the crystal energy board
+        function initializeCrystalBoard() {
+            createParticles();
+            createEnergyConnections();
+            
+            // Add sparkle effects
+            setInterval(() => {
+                const sparkle = document.createElement('div');
+                sparkle.style.position = 'fixed';
+                sparkle.style.width = '4px';
+                sparkle.style.height = '4px';
+                sparkle.style.background = 'rgba(255,255,255,0.8)';
+                sparkle.style.borderRadius = '50%';
+                sparkle.style.left = Math.random() * 100 + 'vw';
+                sparkle.style.top = Math.random() * 100 + 'vh';
+                sparkle.style.animation = 'sparkle 1s ease-out';
+                sparkle.style.zIndex = '5';
+                sparkle.style.pointerEvents = 'none';
+                
+                document.body.appendChild(sparkle);
+                
+                setTimeout(() => {
+                    if (sparkle.parentNode) {
+                        sparkle.parentNode.removeChild(sparkle);
+                    }
+                }, 1000);
+            }, 500);
+        }
+        
+        // Add sparkle animation
+        const sparkleStyle = document.createElement('style');
+        sparkleStyle.textContent = `
+            @keyframes sparkle {
+                0% { opacity: 0; transform: scale(0); }
+                50% { opacity: 1; transform: scale(1); }
+                100% { opacity: 0; transform: scale(0); }
+            }
+        `;
+        document.head.appendChild(sparkleStyle);
+        
+        // Initialize when page loads
+        window.addEventListener('load', initializeCrystalBoard);
+    </script>
+<footer style="text-align:center; font-size: 0.85rem; color: #fffafa; margin-top: 2rem;">
+  © Copyright AnchorStack.pro 2025
+</footer>
+</body>
+</html>

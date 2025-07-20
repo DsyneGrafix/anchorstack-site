@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreatorOS Content Planning Grid – Weekly/Monthly Planning Layout</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for the Inter font and general aesthetics */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        /* Ensure the main container takes full height on small screens */
+        .min-h-screen {
+            min-height: 100vh;
+        }
+        /* Visual feedback for completed planning items */
+        .planning-completed {
+            opacity: 0.7; /* Slightly dim the card */
+            border-style: dashed; /* Change border style */
+        }
+        /* Change title text to subtle grey when completed */
+        .planning-completed .planning-title {
+            color: #6b7280; /* text-gray-500 */
+        }
+        /* Style for textareas to make them look like content blocks */
+        textarea {
+            resize: vertical; /* Allow vertical resizing */
+            min-height: 60px; /* Minimum height for notes */
+            width: 100%;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            border: 1px solid #d1d5db; /* Light gray border */
+            background-color: #f9fafb; /* Slightly darker background for input */
+            font-size: 0.875rem; /* text-sm */
+            line-height: 1.25rem; /* leading-5 */
+            color: #1f2937; /* text-gray-900 */
+        }
+        textarea:focus {
+            outline: none;
+            border-color: #3b82f6; /* blue-500 */
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25); /* focus-ring-blue-500 */
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-green-100 to-teal-100 min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl w-full bg-white rounded-3xl shadow-xl p-8 md:p-12 lg:p-16">
+        <!-- Page Title -->
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-center text-gray-900 mb-10 leading-tight">
+            CreatorOS Content Planning Grid
+            <span class="block text-2xl sm:text-3xl lg:text-4xl font-semibold text-teal-600 mt-2">
+                Weekly/Monthly Content Planning Layout
+            </span>
+        </h1>
+<center><p style="font-weight: 600; color: #008000;">Another AnchorStack Micro Module</p></center>
+        <!-- Planning Period Selection (e.g., Weeks/Months) -->
+        <div class="mb-8 flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+            <label for="planningPeriod" class="text-lg font-semibold text-gray-700">Select Period:</label>
+            <select id="planningPeriod" class="p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 text-gray-800 text-base sm:w-auto w-full max-w-xs">
+                <option value="weeks">Weekly Planning (4 Weeks)</option>
+                <option value="months">Monthly Planning (12 Months)</option>
+                <option value="days">Daily Planning (7 Days)</option>
+            </select>
+        </div>
+<footer style="text-align:center; font-size: 0.85rem; color: #008000; margin-top: 2rem;">
+  © Copyright AnchorStack.pro 2025
+</footer>
+        <!-- Mood Board Grid for Content Planning -->
+        <div id="planningGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Planning blocks will be dynamically loaded here by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        // Data structure for planning periods and their items
+        const planningPeriods = {
+            weeks: {
+                count: 4,
+                prefix: "Week",
+                color: "green"
+            },
+            months: {
+                count: 12,
+                prefix: "Month",
+                color: "purple"
+            },
+            days: {
+                count: 7,
+                prefix: "Day",
+                color: "blue"
+            }
+        };
+
+        const planningPeriodSelect = document.getElementById('planningPeriod');
+        const planningGrid = document.getElementById('planningGrid');
+
+        /**
+         * Generates a unique key for local storage based on period type and item number.
+         * @param {string} periodType - 'weeks', 'months', or 'days'.
+         * @param {number} itemNumber - The item number (e.g., week 1, month 2).
+         * @returns {string} - The unique storage key.
+         */
+        function getStorageKey(periodType, itemNumber) {
+            return `contentPlanningData_${periodType}_${itemNumber}`;
+        }
+
+        /**
+         * Saves the data for a specific planning item to local storage.
+         * @param {string} periodType - The type of planning period.
+         * @param {number} itemNumber - The item number.
+         * @param {object} data - An object containing { completed: boolean, contentIdeas: string, notes: string }.
+         */
+        function savePlanningData(periodType, itemNumber, data) {
+            const key = getStorageKey(periodType, itemNumber);
+            localStorage.setItem(key, JSON.stringify(data));
+            console.log(`Data saved for ${periodType} ${itemNumber}:`, data);
+        }
+
+        /**
+         * Loads the data for a specific planning item from local storage.
+         * @param {string} periodType - The type of planning period.
+         * @param {number} itemNumber - The item number.
+         * @returns {object} - An object containing { completed: boolean, contentIdeas: string, notes: string }.
+         */
+        function loadPlanningData(periodType, itemNumber) {
+            const key = getStorageKey(periodType, itemNumber);
+            const storedData = localStorage.getItem(key);
+            if (storedData) {
+                return JSON.parse(storedData);
+            }
+            // Return default structure if no data found
+            return { completed: false, contentIdeas: '', notes: '' };
+        }
+
+        // Function to generate and display planning blocks for a selected period
+        function displayPlanningBlocks(periodType) {
+            planningGrid.innerHTML = ''; // Clear existing blocks
+
+            const selectedPeriod = planningPeriods[periodType];
+
+            if (selectedPeriod) {
+                for (let i = 1; i <= selectedPeriod.count; i++) {
+                    const itemData = loadPlanningData(periodType, i); // Load saved state and notes
+
+                    const planningBlock = document.createElement('div');
+                    // Assign a color based on the period's defined color
+                    const borderColorClass = `border-${selectedPeriod.color}-200`;
+                    const textColorClass = `text-${selectedPeriod.color}-800`;
+                    const bgColorClass = `bg-${selectedPeriod.color}-50`;
+                    const notesTextColorClass = `text-${selectedPeriod.color}-700`;
+                    const checkboxColorClass = `text-${selectedPeriod.color}-600 focus:ring-${selectedPeriod.color}-500`;
+
+                    // Add 'planning-completed' class if the item is marked as complete
+                    planningBlock.className = `bg-white rounded-2xl shadow-md p-6 border ${borderColorClass} hover:shadow-lg transition-all duration-300 ${itemData.completed ? 'planning-completed' : ''}`;
+
+                    planningBlock.innerHTML = `
+                        <div class="flex items-center justify-between mb-4">
+                            <h2 class="text-xl font-bold ${textColorClass} planning-title">${selectedPeriod.prefix} ${i}</h2>
+                            <input type="checkbox" id="checkbox-${periodType}-${i}"
+                                data-period-type="${periodType}" data-item-number="${i}"
+                                class="form-checkbox h-6 w-6 ${checkboxColorClass} rounded-md border-gray-300 cursor-pointer"
+                                ${itemData.completed ? 'checked' : ''}>
+                        </div>
+                        <div class="mb-4">
+                            <label for="contentIdeas-${periodType}-${i}" class="font-semibold text-gray-700 block mb-1">Content Ideas:</label>
+                            <textarea id="contentIdeas-${periodType}-${i}"
+                                data-period-type="${periodType}" data-item-number="${i}" data-field="contentIdeas"
+                                class="text-gray-800 text-sm"
+                                placeholder="Brainstorm ideas for ${selectedPeriod.prefix} ${i}...">${itemData.contentIdeas}</textarea>
+                        </div>
+                        <div class="${bgColorClass} p-4 rounded-xl border ${borderColorClass}">
+                            <label for="notes-${periodType}-${i}" class="font-semibold ${notesTextColorClass} mb-2 block">Notes/Tasks:</label>
+                            <textarea id="notes-${periodType}-${i}"
+                                data-period-type="${periodType}" data-item-number="${i}" data-field="notes"
+                                class="text-gray-800 text-sm italic"
+                                placeholder="Add specific tasks or detailed notes for ${selectedPeriod.prefix} ${i}...">${itemData.notes}</textarea>
+                        </div>
+                    `;
+                    planningGrid.appendChild(planningBlock);
+
+                    // Add event listeners to the newly created elements
+                    const checkbox = document.getElementById(`checkbox-${periodType}-${i}`);
+                    if (checkbox) {
+                        checkbox.addEventListener('change', (event) => {
+                            const pType = event.target.dataset.periodType;
+                            const iNum = parseInt(event.target.dataset.itemNumber);
+                            const isChecked = event.target.checked;
+
+                            const currentData = loadPlanningData(pType, iNum);
+                            currentData.completed = isChecked;
+                            savePlanningData(pType, iNum, currentData);
+
+                            // Toggle visual class on the parent block
+                            if (isChecked) {
+                                planningBlock.classList.add('planning-completed');
+                            } else {
+                                planningBlock.classList.remove('planning-completed');
+                            }
+                        });
+                    }
+
+                    const contentIdeasTextarea = document.getElementById(`contentIdeas-${periodType}-${i}`);
+                    if (contentIdeasTextarea) {
+                        contentIdeasTextarea.addEventListener('input', (event) => {
+                            const pType = event.target.dataset.periodType;
+                            const iNum = parseInt(event.target.dataset.itemNumber);
+                            const currentData = loadPlanningData(pType, iNum);
+                            currentData.contentIdeas = event.target.value;
+                            savePlanningData(pType, iNum, currentData);
+                        });
+                    }
+
+                    const notesTextarea = document.getElementById(`notes-${periodType}-${i}`);
+                    if (notesTextarea) {
+                        notesTextarea.addEventListener('input', (event) => {
+                            const pType = event.target.dataset.periodType;
+                            const iNum = parseInt(event.target.dataset.itemNumber);
+                            const currentData = loadPlanningData(pType, iNum);
+                            currentData.notes = event.target.value;
+                            savePlanningData(pType, iNum, currentData);
+                        });
+                    }
+                }
+            }
+        }
+
+        // Event listener for planning period selection change
+        planningPeriodSelect.addEventListener('change', (event) => {
+            displayPlanningBlocks(event.target.value);
+        });
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            // Display weekly planning by default
+            planningPeriodSelect.value = 'weeks'; // Set default selection
+            displayPlanningBlocks('weeks');
+        });
+    </script>
+
+</body>
+</html>
+

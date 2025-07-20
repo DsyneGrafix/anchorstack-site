@@ -1,3 +1,7 @@
+/downloads/*  /downloads/:splat  200
+/*            /index.html        200
+
+
 /subscribe         /vault               301
 /mid               /vault               301
 /top               /vault               301

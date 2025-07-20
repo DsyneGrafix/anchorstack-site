@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christian Idea Lab - Faith Creator Mood Board</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .background-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+            background-image: 
+                radial-gradient(circle at 25% 25%, white 2px, transparent 2px),
+                radial-gradient(circle at 75% 75%, white 2px, transparent 2px);
+            background-size: 100px 100px;
+            background-position: 0 0, 50px 50px;
+            z-index: -1;
+            animation: patternMove 20s linear infinite;
+        }
+
+        @keyframes patternMove {
+            0% { transform: translateX(0) translateY(0); }
+            100% { transform: translateX(100px) translateY(100px); }
+        }
+
+        .container {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: slideInFromTop 1.2s ease-out;
+        }
+
+        .main-title {
+            font-size: 4rem;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            position: relative;
+        }
+
+        .main-title::before {
+            content: '✨';
+            position: absolute;
+            left: -60px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        .main-title::after {
+            content: '💡';
+            position: absolute;
+            right: -60px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            animation: sparkle 2s ease-in-out infinite 1s;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.95);
+            font-style: italic;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .tagline {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.8);
+            background: rgba(255,255,255,0.1);
+            padding: 10px 25px;
+            border-radius: 25px;
+            display: inline-block;
+            backdrop-filter: blur(10px);
+        }
+
+        .creative-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .idea-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255,255,255,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .idea-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s;
+            opacity: 0;
+        }
+
+        .idea-card:hover::before {
+            opacity: 1;
+            transform: rotate(45deg) translate(50%, 50%);
+        }
+
+        .idea-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+            border-color: rgba(255,255,255,0.4);
+        }
+
+        .card-emoji {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 20px;
+            display: block;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .card-title {
+            font-size: 1.6rem;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 18px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .card-description {
+            color: #34495e;
+            line-height: 1.7;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .inspiration-section {
+            margin: 60px 0;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 600;
+        }
+
+        .inspiration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .inspiration-card {
+            height: 250px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .inspiration-card:hover {
+            transform: scale(1.08) rotate(2deg);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .inspo-1 { background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); }
+        .inspo-2 { background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%); }
+        .inspo-3 { background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); }
+        .inspo-4 { background: linear-gradient(135deg, #ff8a80 0%, #ea80fc 100%); }
+        .inspo-5 { background: linear-gradient(135deg, #8fd3f4 0%, #84fab0 100%); }
+        .inspo-6 { background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%); }
+
+        .inspiration-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: all 0.4s ease;
+        }
+
+        .inspiration-card:hover .inspiration-content {
+            transform: translateY(0);
+        }
+
+        .tools-section {
+            background: rgba(255,255,255,0.95);
+            border-radius: 30px;
+            padding: 40px;
+            margin: 50px 0;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .tools-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tool-bubble {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .tool-bubble:hover {
+            transform: scale(1.15) translateY(-10px);
+        }
+
+        .tool-1 { background: linear-gradient(45deg, #667eea, #764ba2); }
+        .tool-2 { background: linear-gradient(45deg, #f093fb, #f5576c); }
+        .tool-3 { background: linear-gradient(45deg, #4facfe, #00f2fe); }
+        .tool-4 { background: linear-gradient(45deg, #43e97b, #38f9d7); }
+        .tool-5 { background: linear-gradient(45deg, #fa709a, #fee140); }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-icon {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.1;
+            animation: floatAround 15s linear infinite;
+            color: white;
+        }
+
+        .icon-1 { top: 10%; left: 5%; animation-delay: 0s; }
+        .icon-2 { top: 20%; right: 10%; animation-delay: 3s; }
+        .icon-3 { bottom: 30%; left: 15%; animation-delay: 6s; }
+        .icon-4 { bottom: 10%; right: 5%; animation-delay: 9s; }
+        .icon-5 { top: 50%; left: 2%; animation-delay: 12s; }
+
+        @keyframes floatAround {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(20px, -20px) rotate(90deg); }
+            50% { transform: translate(-10px, -40px) rotate(180deg); }
+            75% { transform: translate(-30px, -10px) rotate(270deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
+
+        @keyframes slideInFromTop {
+            from {
+                opacity: 0;
+                transform: translateY(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: translateY(-50%) scale(1); opacity: 1; }
+            50% { transform: translateY(-70%) scale(1.2); opacity: 0.7; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .content-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .content-pill {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            text-align: center;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .content-pill:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5rem;
+            }
+            
+            .main-title::before,
+            .main-title::after {
+                display: none;
+            }
+            
+            .creative-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tools-grid {
+                gap: 20px;
+            }
+            
+            .tool-bubble {
+                width: 100px;
+                height: 100px;
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-pattern"></div>
+    
+    <div class="floating-elements">
+        <div class="floating-icon icon-1">📝</div>
+        <div class="floating-icon icon-2">🎨</div>
+        <div class="floating-icon icon-3">💭</div>
+        <div class="floating-icon icon-4">🌟</div>
+        <div class="floating-icon icon-5">🚀</div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <h1 class="main-title">Christian Idea Lab</h1>
+            <p class="subtitle">Where Faith Meets Creativity</p>
+            <div class="tagline">Generating Content Ideas Aligned with Christian Values</div>
+        </header>
+
+        <div class="creative-grid">
+            <div class="idea-card">
+                <span class="card-emoji">🎬</span>
+                <h3 class="card-title">Video Content Studio</h3>
+                <p class="card-description">Create engaging video concepts from devotionals to testimonies, with scriptwriting support and visual storytelling guidance rooted in biblical principles.</p>
+            </div>
+
+            <div class="idea-card">
+                <span class="card-emoji">📱</span>
+                <h3 class="card-title">Social Media Ministry</h3>
+                <p class="card-description">Generate compelling posts, stories, and campaigns that spread hope and faith across all platforms while staying authentic to your Christian values.</p>
+            </div>
+
+            <div class="idea-card">
+                <span class="card-emoji">📚</span>
+                <h3 class="card-title">Blog & Article Ideas</h3>
+                <p class="card-description">Discover fresh angles for faith-based writing, from personal testimonies to theological insights that resonate with modern audiences.</p>
+            </div>
+
+            <div class="idea-card">
+                <span class="card-emoji">🎵</span>
+                <h3 class="card-title">Creative Worship</h3>
+                <p class="card-description">Brainstorm innovative worship experiences, music concepts, and artistic expressions that glorify God and inspire communities.</p>
+            </div>
+
+            <div class="idea-card">
+                <span class="card-emoji">💌</span>
+                <h3 class="card-title">Newsletter Ministry</h3>
+                <p class="card-description">Craft meaningful email content that nurtures spiritual growth and builds authentic community connections with your audience.</p>
+            </div>
+
+            <div class="idea-card">
+                <span class="card-emoji">🎯</span>
+                <h3 class="card-title">Mission-Driven Campaigns</h3>
+                <p class="card-description">Develop impactful content strategies for outreach, fundraising, and awareness campaigns that align with your ministry's calling.</p>
+            </div>
+        </div>
+
+        <section class="inspiration-section">
+            <h2 class="section-title">Creative Inspiration</h2>
+            <div class="inspiration-grid">
+                <div class="inspiration-card inspo-1">
+                    <div class="inspiration-content">
+                        <h4>Scripture-Based Stories</h4>
+                        <p>Modern parables and biblical narratives</p>
+                    </div>
+                </div>
+                
+                <div class="inspiration-card inspo-2">
+                    <div class="inspiration-content">
+                        <h4>Faith & Culture</h4>
+                        <p>Bridging timeless truth with contemporary life</p>
+                    </div>
+                </div>
+                
+                <div class="inspiration-card inspo-3">
+                    <div class="inspiration-content">
+                        <h4>Community Focus</h4>
+                        <p>Building connections through shared faith</p>
+                    </div>
+                </div>
+                
+                <div class="inspiration-card inspo-4">
+                    <div class="inspiration-content">
+                        <h4>Hope & Healing</h4>
+                        <p>Content that brings comfort and restoration</p>
+                    </div>
+                </div>
+                
+                <div class="inspiration-card inspo-5">
+                    <div class="inspiration-content">
+                        <h4>Youth Engagement</h4>
+                        <p>Reaching the next generation with relevant messages</p>
+                    </div>
+                </div>
+                
+                <div class="inspiration-card inspo-6">
+                    <div class="inspiration-content">
+                        <h4>Seasonal Ministry</h4>
+                        <p>Holiday and seasonal content opportunities</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="tools-section">
+            <h2 class="section-title" style="color: #2c3e50; margin-bottom: 30px;">Creative Tools</h2>
+            <div class="tools-grid">
+                <div class="tool-bubble tool-1" title="Brainstorming">🧠</div>
+                <div class="tool-bubble tool-2" title="Design">🎨</div>
+                <div class="tool-bubble tool-3" title="Writing">✍️</div>
+                <div class="tool-bubble tool-4" title="Planning">📅</div>
+                <div class="tool-bubble tool-5" title="Analytics">📊</div>
+            </div>
+        </section>
+
+        <div class="content-types">
+            <div class="content-pill">Devotionals</div>
+            <div class="content-pill">Testimonies</div>
+            <div class="content-pill">Bible Studies</div>
+            <div class="content-pill">Prayer Guides</div>
+            <div class="content-pill">Youth Content</div>
+            <div class="content-pill">Family Resources</div>
+            <div class="content-pill">Worship Ideas</div>
+            <div class="content-pill">Community Events</div>
+        </div>
+    </div>
+
+    <script>
+        // Enhanced interactivity
+        document.querySelectorAll('.idea-card').forEach((card, index) => {
+            card.addEventListener('mouseenter', function() {
+                this.style.background = `rgba(255,255,255,1)`;
+                createIdeaSpark(this);
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.background = `rgba(255,255,255,0.95)`;
+            });
+            
+            // Staggered animation on load
+            setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, index * 200);
+        });
+
+        // Initialize cards as hidden for animation
+        document.querySelectorAll('.idea-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(50px)';
+            card.style.transition = 'all 0.8s ease';
+        });
+
+        function createIdeaSpark(element) {
+            const spark = document.createElement('div');
+            spark.innerHTML = '✨';
+            spark.style.position = 'absolute';
+            spark.style.fontSize = '1.5rem';
+            spark.style.color = '#f39c12';
+            spark.style.pointerEvents = 'none';
+            spark.style.zIndex = '1000';
+            
+            const rect = element.getBoundingClientRect();
+            spark.style.left = (rect.left + rect.width * 0.8) + 'px';
+            spark.style.top = (rect.top + 20) + 'px';
+            
+            document.body.appendChild(spark);
+            
+            spark.animate([
+                { opacity: 0, transform: 'scale(0) rotate(0deg)' },
+                { opacity: 1, transform: 'scale(1) rotate(180deg)' },
+                { opacity: 0, transform: 'scale(0.5) rotate(360deg) translateY(-30px)' }
+            ], {
+                duration: 1500,
+                easing: 'ease-out'
+            }).onfinish = () => spark.remove();
+        }
+
+        // Tool bubble interactions
+        document.querySelectorAll('.tool-bubble').forEach(bubble => {
+            bubble.addEventListener('click', function() {
+                this.style.transform = 'scale(1.3) translateY(-15px) rotate(360deg)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1) translateY(0) rotate(0deg)';
+                }, 300);
+                
+                // Create ripple effect
+                const ripple = document.createElement('div');
+                ripple.style.position = 'absolute';
+                ripple.style.width = '200px';
+                ripple.style.height = '200px';
+                ripple.style.background = 'rgba(255,255,255,0.3)';
+                ripple.style.borderRadius = '50%';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.left = '50%';
+                ripple.style.top = '50%';
+                ripple.style.marginLeft = '-100px';
+                ripple.style.marginTop = '-100px';
+                ripple.style.pointerEvents = 'none';
+                
+                this.appendChild(ripple);
+                
+                ripple.animate([
+                    { transform: 'scale(0)', opacity: 0.7 },
+                    { transform: 'scale(1)', opacity: 0 }
+                ], {
+                    duration: 600,
+                    easing: 'ease-out'
+                }).onfinish = () => ripple.remove();
+            });
+        });
+
+        // Content pill hover effects
+        document.querySelectorAll('.content-pill').forEach(pill => {
+            pill.addEventListener('mouseenter', function() {
+                this.style.background = `linear-gradient(45deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1))`;
+            });
+            
+            pill.addEventListener('mouseleave', function() {
+                this.style.background = `rgba(255,255,255,0.2)`;
+            });
+        });
+
+        // Parallax effect for floating elements
+        let mouseX = 0, mouseY = 0;
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX - window.innerWidth / 2) * 0.01;
+            mouseY = (e.clientY - window.innerHeight / 2) * 0.01;
+            
+            document.querySelectorAll('.floating-icon').forEach((icon, index) => {
+                const speed = (index + 1) * 0.5;
+                icon.style.transform = `translate(${mouseX * speed}px, ${mouseY * speed}px)`;
+            });
+        });
+
+        // Smooth reveal animation for inspiration cards
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0) scale(1)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.inspiration-card').forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(50px) scale(0.9)';
+            card.style.transition = `all 0.8s ease ${index * 0.1}s`;
+            observer.observe(card);
+        });
+    </script>
+<center><p style="font-weight: 600; color: #fffafa;">Another AnchorStack Micro Module</p></center>
+
+<footer style="text-align:center; font-size: 0.85rem; color: #fffafa; margin-top: 2rem;">
+  © Copyright AnchorStack.pro 2025
+</footer>
+</body>
+</html>

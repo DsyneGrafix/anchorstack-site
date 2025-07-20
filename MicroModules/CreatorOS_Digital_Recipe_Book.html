@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreatorOS Digital Recipe Book</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+        .recipe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .recipe-card {
+            background-color: #f9fafb;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            display: flex;
+            flex-direction: column;
+        }
+        .recipe-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        .recipe-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        .recipe-card-content {
+            padding: 1rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .recipe-card h3 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        .recipe-card p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 700px;
+            max-height: 90vh; /* Limit height for scrollability */
+            overflow-y: auto; /* Enable scrolling for long content */
+            padding: 2rem;
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.3s ease-in-out;
+        }
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+        .close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.2s;
+        }
+        .close-button:hover {
+            color: #333;
+        }
+        .modal-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+        .modal-content h2 {
+            font-size: 2.25rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        .modal-content h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #444;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .modal-content ul {
+            list-style: disc;
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+            color: #555;
+        }
+        .modal-content ol {
+            list-style: decimal;
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+            color: #555;
+        }
+        .modal-content li {
+            margin-bottom: 0.5rem;
+        }
+        .timer-display {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #28a745; /* Green for timer */
+            text-align: center;
+            margin-top: 1rem;
+            padding: 0.75rem;
+            background-color: #e6ffe6;
+            border-radius: 8px;
+            border: 1px solid #28a745;
+        }
+        .timer-controls button {
+            background-color: #007bff;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            margin: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .timer-controls button:hover {
+            background-color: #0056b3;
+        }
+        .timer-controls button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        /* Form styles for adding recipe */
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group input[type="file"],
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            box-sizing: border-box; /* Include padding in width */
+        }
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        .form-group input[type="file"] {
+            padding: 0.5rem;
+        }
+        #image-preview {
+            max-width: 100%;
+            height: auto;
+            margin-top: 1rem;
+            border-radius: 8px;
+            display: block;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="container">
+        <h1 class="text-4xl font-extrabold text-center text-gray-900 mb-6">CreatorOS Digital Recipe Book</h1>
+<center><p style="font-weight: 600; color: #b22222;">Another AnchorStack Micro Module</p></center>
+        <div class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
+            <input
+                type="text"
+                id="search-input"
+                placeholder="Search recipes by name or ingredient..."
+                class="flex-grow px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 w-full sm:w-auto"
+            >
+            <button
+                id="add-recipe-button"
+                class="bg-green-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition duration-300 shadow-md"
+            >
+                Add New Recipe
+            </button>
+        </div>
+
+        <div id="recipe-list" class="recipe-grid">
+            <!-- Recipes will be loaded here -->
+        </div>
+    </div>
+
+    <!-- Recipe Detail Modal -->
+    <div id="recipe-detail-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-button" onclick="closeModal('recipe-detail-modal')">&times;</button>
+            <img id="detail-image" src="" alt="Recipe Image">
+            <h2 id="detail-name"></h2>
+            <p class="text-gray-700 mb-4" id="detail-description"></p>
+
+            <div class="flex justify-between items-center text-sm text-gray-600 mb-4">
+                <span id="detail-prep-time"></span>
+                <span id="detail-cook-time"></span>
+            </div>
+
+            <h3>Ingredients</h3>
+            <ul id="detail-ingredients"></ul>
+
+            <h3>Instructions</h3>
+            <ol id="detail-instructions"></ol>
+
+            <div class="timer-section mt-6">
+                <h3 class="text-center">Cooking Timer</h3>
+                <div id="timer-display" class="timer-display">00:00</div>
+                <div class="timer-controls flex justify-center mt-4">
+                    <button id="start-timer-button">Start Timer</button>
+                    <button id="pause-timer-button" disabled>Pause Timer</button>
+                    <button id="reset-timer-button" disabled>Reset Timer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Recipe Modal -->
+    <div id="add-recipe-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-button" onclick="closeModal('add-recipe-modal')">&times;</button>
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Add New Recipe</h2>
+            <form id="add-recipe-form">
+                <div class="form-group">
+                    <label for="recipe-name">Recipe Name:</label>
+                    <input type="text" id="recipe-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="recipe-description">Description:</label>
+                    <textarea id="recipe-description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="recipe-ingredients">Ingredients (one per line):</label>
+                    <textarea id="recipe-ingredients" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="recipe-instructions">Instructions (one step per line):</label>
+                    <textarea id="recipe-instructions" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="prep-time">Preparation Time (minutes):</label>
+                    <input type="number" id="prep-time" min="0" value="10" required>
+                </div>
+                <div class="form-group">
+                    <label for="cook-time">Cook Time (minutes):</label>
+                    <input type="number" id="cook-time" min="0" value="30" required>
+                </div>
+                <div class="form-group">
+                    <label for="recipe-image">Recipe Image:</label>
+                    <input type="file" id="recipe-image" accept="image/*">
+                    <img id="image-preview" src="#" alt="Image Preview" class="hidden">
+                </div>
+                <button
+                    type="submit"
+                    class="w-full bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-300 shadow-md"
+                >
+                    Save Recipe
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // --- Global Variables and Initial Setup ---
+        let recipes = []; // Array to hold all recipe objects
+        let currentTimerInterval = null; // Stores the interval ID for the cooking timer
+        let timeLeft = 0; // Stores the remaining time for the timer
+        let currentRecipeCookTime = 0; // Stores the cook time of the currently viewed recipe
+
+        // Get DOM elements
+        const recipeListDiv = document.getElementById('recipe-list');
+        const searchInput = document.getElementById('search-input');
+        const addRecipeButton = document.getElementById('add-recipe-button');
+
+        // Modals and their elements
+        const recipeDetailModal = document.getElementById('recipe-detail-modal');
+        const addRecipeModal = document.getElementById('add-recipe-modal');
+        const addRecipeForm = document.getElementById('add-recipe-form');
+        const recipeImageInput = document.getElementById('recipe-image');
+        const imagePreview = document.getElementById('image-preview');
+
+        // Recipe Detail Modal Elements
+        const detailImage = document.getElementById('detail-image');
+        const detailName = document.getElementById('detail-name');
+        const detailDescription = document.getElementById('detail-description');
+        const detailPrepTime = document.getElementById('detail-prep-time');
+        const detailCookTime = document.getElementById('detail-cook-time');
+        const detailIngredients = document.getElementById('detail-ingredients');
+        const detailInstructions = document.getElementById('detail-instructions');
+
+        // Timer Elements
+        const timerDisplay = document.getElementById('timer-display');
+        const startTimerButton = document.getElementById('start-timer-button');
+        const pauseTimerButton = document.getElementById('pause-timer-button');
+        const resetTimerButton = document.getElementById('reset-timer-button');
+
+        // --- Helper Functions ---
+
+        /**
+         * Generates a unique ID for a new recipe.
+         * @returns {string} A unique ID string.
+         */
+        function generateUniqueId() {
+            return 'recipe_' + Date.now() + Math.random().toString(16).slice(2);
+        }
+
+        /**
+         * Saves the current recipes array to localStorage.
+         */
+        function saveRecipes() {
+            localStorage.setItem('digitalRecipeBook', JSON.stringify(recipes));
+        }
+
+        /**
+         * Loads recipes from localStorage or initializes with sample data if none exist.
+         */
+        function loadRecipes() {
+            const storedRecipes = localStorage.getItem('digitalRecipeBook');
+            if (storedRecipes) {
+                recipes = JSON.parse(storedRecipes);
+            } else {
+                // Sample recipes for initial load
+                recipes = [
+                    {
+                        id: generateUniqueId(),
+                        name: "Classic Spaghetti Bolognese",
+                        description: "A rich and hearty Italian meat sauce, perfect with pasta.",
+                        ingredients: [
+                            "1 tbsp olive oil", "1 large onion, chopped", "2 cloves garlic, minced",
+                            "500g ground beef", "400g can chopped tomatoes", "150ml red wine (optional)",
+                            "1 beef stock cube", "1 tsp dried oregano", "Salt and pepper to taste",
+                            "400g spaghetti"
+                        ],
+                        instructions: [
+                            "Heat oil in a large pan. Add onion and cook until softened (5 mins).",
+                            "Add garlic and cook for 1 minute more.",
+                            "Stir in ground beef and cook until browned, breaking up with a spoon.",
+                            "Drain any excess fat.",
+                            "Pour in chopped tomatoes, red wine (if using), stock cube, and oregano.",
+                            "Bring to a simmer, then reduce heat, cover, and cook for at least 30 minutes (preferably 1-2 hours) for flavors to meld.",
+                            "Season with salt and pepper.",
+                            "Cook spaghetti according to package instructions.",
+                            "Serve bolognese over spaghetti, garnished with fresh basil or Parmesan if desired."
+                        ],
+                        prepTime: 15,
+                        cookTime: 60,
+                        imageUrl: "https://placehold.co/600x400/FFD700/000000?text=Spaghetti+Bolognese"
+                    },
+                    {
+                        id: generateUniqueId(),
+                        name: "Simple Chicken Stir-Fry",
+                        description: "A quick and healthy weeknight meal packed with vegetables.",
+                        ingredients: [
+                            "2 chicken breasts, sliced", "1 tbsp soy sauce", "1 tsp ginger, grated",
+                            "1 tsp sesame oil", "1 tbsp vegetable oil", "1 head broccoli, chopped",
+                            "2 carrots, julienned", "1 bell pepper, sliced", "100g snow peas",
+                            "Cooked rice, for serving"
+                        ],
+                        instructions: [
+                            "Marinate chicken in soy sauce, ginger, and sesame oil for 15 minutes.",
+                            "Heat vegetable oil in a large wok or pan over high heat.",
+                            "Add chicken and stir-fry until cooked through (5-7 mins). Remove from pan.",
+                            "Add broccoli and carrots to the pan, stir-fry for 3-4 minutes until tender-crisp.",
+                            "Add bell pepper and snow peas, stir-fry for another 2-3 minutes.",
+                            "Return chicken to the pan, toss everything together.",
+                            "Serve immediately with cooked rice."
+                        ],
+                        prepTime: 20,
+                        cookTime: 15,
+                        imageUrl: "https://placehold.co/600x400/90EE90/000000?text=Chicken+Stir-Fry"
+                    }
+                ];
+                saveRecipes(); // Save sample data to localStorage
+            }
+        }
+
+        /**
+         * Opens a specified modal.
+         * @param {string} modalId - The ID of the modal to open.
+         */
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        /**
+         * Closes a specified modal.
+         * @param {string} modalId - The ID of the modal to close.
+         */
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+            // Reset timer when detail modal is closed
+            if (modalId === 'recipe-detail-modal') {
+                resetTimer();
+            }
+        }
+
+        // --- Recipe Rendering and Display ---
+
+        /**
+         * Renders recipe cards in the main grid.
+         * @param {Array} filteredRecipes - The array of recipes to display (can be all or filtered).
+         */
+        function renderRecipes(filteredRecipes = recipes) {
+            recipeListDiv.innerHTML = ''; // Clear existing recipes
+
+            if (filteredRecipes.length === 0) {
+                recipeListDiv.innerHTML = '<p class="text-center text-gray-500 col-span-full">No recipes found. Try adding one!</p>';
+                return;
+            }
+
+            filteredRecipes.forEach(recipe => {
+                const card = document.createElement('div');
+                card.classList.add('recipe-card');
+                card.innerHTML = `
+                    <img src="${recipe.imageUrl || 'https://placehold.co/600x400?text=No+Image'}" alt="${recipe.name}">
+                    <div class="recipe-card-content">
+                        <div>
+                            <h3>${recipe.name}</h3>
+                            <p>${recipe.description}</p>
+                        </div>
+                        <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-200" onclick="event.stopPropagation(); openRecipeDetail(${JSON.stringify(recipe.id)})">View Recipe</button>
+                    </div>
+                `;
+                recipeListDiv.appendChild(card);
+            });
+        }
+
+        /**
+         * Opens the recipe detail modal and populates it with data.
+         * @param {string} recipeId - The ID of the recipe to display.
+         */
+        function openRecipeDetail(recipeId) {
+            const recipe = recipes.find(r => r.id === recipeId);
+            if (!recipe) return;
+
+            detailImage.src = recipe.imageUrl || 'https://placehold.co/600x400?text=No+Image';
+            detailName.textContent = recipe.name;
+            detailDescription.textContent = recipe.description;
+            detailPrepTime.textContent = `Prep: ${recipe.prepTime} mins`;
+            detailCookTime.textContent = `Cook: ${recipe.cookTime} mins`;
+
+            detailIngredients.innerHTML = '';
+            recipe.ingredients.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                detailIngredients.appendChild(li);
+            });
+
+            detailInstructions.innerHTML = '';
+            recipe.instructions.forEach(step => {
+                const li = document.createElement('li');
+                li.textContent = step;
+                detailInstructions.appendChild(li);
+            });
+
+            currentRecipeCookTime = recipe.cookTime; // Set cook time for timer
+            resetTimer(); // Initialize timer display
+
+            openModal('recipe-detail-modal');
+        }
+
+        // --- Search Functionality ---
+
+        /**
+         * Filters recipes based on search input and re-renders the list.
+         */
+        function searchRecipes() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const filtered = recipes.filter(recipe =>
+                recipe.name.toLowerCase().includes(searchTerm) ||
+                recipe.ingredients.some(ingredient => ingredient.toLowerCase().includes(searchTerm))
+            );
+            renderRecipes(filtered);
+        }
+
+        // --- Add Recipe Functionality ---
+
+        /**
+         * Handles image file selection for preview.
+         */
+        recipeImageInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    imagePreview.src = e.target.result;
+                    imagePreview.classList.remove('hidden');
+                };
+                reader.readAsDataURL(file);
+            } else {
+                imagePreview.src = '#';
+                imagePreview.classList.add('hidden');
+            }
+        });
+
+        /**
+         * Handles the submission of the add recipe form.
+         * @param {Event} event - The form submission event.
+         */
+        addRecipeForm.addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent default form submission
+
+            const newRecipe = {
+                id: generateUniqueId(),
+                name: document.getElementById('recipe-name').value,
+                description: document.getElementById('recipe-description').value,
+                ingredients: document.getElementById('recipe-ingredients').value.split('\n').filter(line => line.trim() !== ''),
+                instructions: document.getElementById('recipe-instructions').value.split('\n').filter(line => line.trim() !== ''),
+                prepTime: parseInt(document.getElementById('prep-time').value),
+                cookTime: parseInt(document.getElementById('cook-time').value),
+                imageUrl: imagePreview.src !== '#' && !imagePreview.classList.contains('hidden') ? imagePreview.src : null // Use base64 image from preview
+            };
+
+            recipes.push(newRecipe);
+            saveRecipes(); // Save updated recipes to localStorage
+            renderRecipes(); // Re-render the list
+
+            addRecipeForm.reset(); // Clear the form
+            imagePreview.src = '#'; // Clear image preview
+            imagePreview.classList.add('hidden');
+            closeModal('add-recipe-modal'); // Close the modal
+        });
+
+        // --- Cooking Timer Functionality ---
+
+        /**
+         * Formats time in minutes into MM:SS string.
+         * @param {number} totalSeconds - Total seconds to format.
+         * @returns {string} Formatted time string.
+         */
+        function formatTime(totalSeconds) {
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = totalSeconds % 60;
+            return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        /**
+         * Updates the timer display and handles countdown.
+         */
+        function updateTimer() {
+            if (timeLeft <= 0) {
+                clearInterval(currentTimerInterval);
+                timerDisplay.textContent = "00:00 - Done!";
+                startTimerButton.disabled = false;
+                pauseTimerButton.disabled = true;
+                resetTimerButton.disabled = false;
+                // Optional: Play a sound or show an alert when timer finishes
+                return;
+            }
+            timerDisplay.textContent = formatTime(timeLeft);
+            timeLeft--;
+        }
+
+        /**
+         * Starts the cooking timer.
+         */
+        startTimerButton.addEventListener('click', () => {
+            if (currentTimerInterval) clearInterval(currentTimerInterval); // Clear any existing interval
+            if (timeLeft === 0 && currentRecipeCookTime > 0) { // If starting fresh
+                timeLeft = currentRecipeCookTime * 60;
+            } else if (timeLeft === 0) { // If no cook time set
+                timerDisplay.textContent = "No cook time set.";
+                return;
+            }
+
+            startTimerButton.disabled = true;
+            pauseTimerButton.disabled = false;
+            resetTimerButton.disabled = false;
+
+            updateTimer(); // Call immediately to avoid 1-second delay
+            currentTimerInterval = setInterval(updateTimer, 1000);
+        });
+
+        /**
+         * Pauses the cooking timer.
+         */
+        pauseTimerButton.addEventListener('click', () => {
+            clearInterval(currentTimerInterval);
+            startTimerButton.disabled = false;
+            pauseTimerButton.disabled = true;
+        });
+
+        /**
+         * Resets the cooking timer to the original cook time.
+         */
+        function resetTimer() {
+            clearInterval(currentTimerInterval);
+            timeLeft = currentRecipeCookTime * 60;
+            timerDisplay.textContent = formatTime(timeLeft);
+            startTimerButton.disabled = false;
+            pauseTimerButton.disabled = true;
+            resetTimerButton.disabled = true;
+        }
+        resetTimerButton.addEventListener('click', resetTimer);
+
+
+        // --- Event Listeners for UI Actions ---
+
+        searchInput.addEventListener('input', searchRecipes);
+        addRecipeButton.addEventListener('click', () => openModal('add-recipe-modal'));
+
+        // --- Initial Load ---
+        document.addEventListener('DOMContentLoaded', () => {
+            loadRecipes(); // Load recipes from localStorage
+            renderRecipes(); // Display them
+        });
+    </script>
+<p><center><h6><span style="display: inline-block; font-size: 12px; color: #000000; background: #cccccc; border-radius: 3px; padding: 2px 8px;">©</span>   Copyright AnchorStack.pro 2025</h6></center></p>
+</body>
+</html>
+

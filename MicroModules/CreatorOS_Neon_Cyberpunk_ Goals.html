@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreatorOS Neon Cyberpunk Goals</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Orbitron', monospace;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a1a 30%, #0a1a1a 60%, #000000 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .cyber-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 1;
+            animation: gridPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        .neon-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #00ffff;
+            border-radius: 50%;
+            animation: floatParticle 10s infinite linear;
+            box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+        }
+
+        @keyframes floatParticle {
+            0% { 
+                transform: translateY(100vh) translateX(0px);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { 
+                transform: translateY(-50px) translateX(50px);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 3;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .title {
+            text-align: center;
+            color: #00ffff;
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff;
+            animation: titleGlitch 3s ease-in-out infinite;
+            letter-spacing: 3px;
+        }
+
+        @keyframes titleGlitch {
+            0%, 100% { 
+                text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff;
+                transform: translateX(0);
+            }
+            20% { 
+                text-shadow: 0 0 20px #ff00ff, 0 0 40px #ff00ff;
+                transform: translateX(-2px);
+            }
+            40% { 
+                text-shadow: 0 0 20px #ffff00, 0 0 40px #ffff00;
+                transform: translateX(2px);
+            }
+            60% { 
+                text-shadow: 0 0 20px #ff0080, 0 0 40px #ff0080;
+                transform: translateX(-1px);
+            }
+            80% { 
+                text-shadow: 0 0 20px #00ff80, 0 0 40px #00ff80;
+                transform: translateX(1px);
+            }
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #ff00ff;
+            font-size: 1.2rem;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: subtitleScan 2s ease-in-out infinite;
+        }
+
+        @keyframes subtitleScan {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; text-shadow: 0 0 10px #ff00ff; }
+        }
+
+        .system-status {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #00ffff;
+            border-radius: 5px;
+            padding: 15px;
+            color: #00ffff;
+            font-size: 0.9rem;
+            z-index: 10;
+            animation: statusBlink 1s infinite;
+        }
+
+        @keyframes statusBlink {
+            0%, 50% { border-color: #00ffff; }
+            51%, 100% { border-color: #ff00ff; }
+        }
+
+        .cyber-grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .cyber-card {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.1));
+            border: 2px solid #00ffff;
+            border-radius: 10px;
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            animation: cardHover 4s ease-in-out infinite;
+        }
+
+        .cyber-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 255, 255, 0.3);
+            border-color: #ff00ff;
+        }
+
+        @keyframes cardHover {
+            0%, 100% { border-color: #00ffff; }
+            50% { border-color: #ff00ff; }
+        }
+
+        .cyber-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cyber-card:hover::before {
+            left: 100%;
+        }
+
+        .cyber-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #00ffff, #ff00ff, #ffff00);
+            animation: sideScan 3s ease-in-out infinite;
+        }
+
+        @keyframes sideScan {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            animation: iconPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); filter: hue-rotate(0deg); }
+            50% { transform: scale(1.1); filter: hue-rotate(180deg); }
+        }
+
+        .card-id {
+            color: #ffff00;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card-title {
+            color: #ffffff;
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: textGlitch 5s ease-in-out infinite;
+        }
+
+        @keyframes textGlitch {
+            0%, 90%, 100% { 
+                text-shadow: 0 0 5px #ffffff;
+                transform: translateX(0);
+            }
+            95% { 
+                text-shadow: 0 0 5px #00ffff, 2px 0 0 #ff00ff;
+                transform: translateX(-2px);
+            }
+            97% { 
+                text-shadow: 0 0 5px #ff00ff, -2px 0 0 #00ffff;
+                transform: translateX(2px);
+            }
+        }
+
+        .card-description {
+            color: #cccccc;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            font-size: 0.9rem;
+        }
+
+        .progress-section {
+            margin-bottom: 15px;
+        }
+
+        .progress-label {
+            color: #00ffff;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #00ffff;
+            border-radius: 3px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #00ffff, #ff00ff, #ffff00);
+            transition: width 0.8s ease;
+            position: relative;
+            animation: progressGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes progressGlow {
+            0%, 100% { 
+                box-shadow: 0 0 5px #00ffff;
+                filter: brightness(1);
+            }
+            50% { 
+                box-shadow: 0 0 15px #00ffff, 0 0 25px #ff00ff;
+                filter: brightness(1.2);
+            }
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: progressScan 3s infinite;
+        }
+
+        @keyframes progressScan {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .progress-text {
+            color: #ffffff;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 5px;
+            text-shadow: 0 0 5px #00ffff;
+        }
+
+        .status-indicators {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            animation: statusPulse 1s infinite;
+        }
+
+        .status-active { background: #00ff00; }
+        .status-warning { background: #ffff00; }
+        .status-error { background: #ff0000; }
+
+        @keyframes statusPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .add-goal-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00ffff, #ff00ff);
+            border: 2px solid #ffffff;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+            animation: btnPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes btnPulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 0 0 20px #00ffff;
+            }
+            50% { 
+                transform: scale(1.1);
+                box-shadow: 0 0 30px #ff00ff, 0 0 40px #00ffff;
+            }
+        }
+
+        .add-goal-btn:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 40px #ffffff;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.1));
+            border: 2px solid #00ffff;
+            border-radius: 10px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            max-width: 500px;
+            width: 90%;
+            animation: modalGlitch 0.5s ease-out;
+        }
+
+        @keyframes modalGlitch {
+            0% { 
+                transform: translate(-50%, -50%) scale(0.8);
+                opacity: 0;
+                filter: hue-rotate(0deg);
+            }
+            50% { 
+                filter: hue-rotate(180deg);
+            }
+            100% { 
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+                filter: hue-rotate(0deg);
+            }
+        }
+
+        .modal-title {
+            color: #00ffff;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px #00ffff;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            color: #ffffff;
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #00ffff;
+            border-radius: 5px;
+            background: rgba(0, 0, 0, 0.7);
+            color: #ffffff;
+            font-size: 1rem;
+            font-family: 'Orbitron', monospace;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #ff00ff;
+            box-shadow: 0 0 10px #ff00ff;
+        }
+
+        .form-group input::placeholder, .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 25px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: 2px solid;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #00ffff, #ff00ff);
+            border-color: #ffffff;
+            color: #ffffff;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border-color: #00ffff;
+            color: #00ffff;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
+        }
+
+        .glitch-effect {
+            position: relative;
+            animation: glitch 2s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="cyber-grid"></div>
+    <div class="neon-particles"></div>
+    
+    <div class="system-status">
+        <div>SYSTEM: ONLINE</div>
+        <div>GOALS: PROCESSING</div>
+        <div>STATUS: ACTIVE</div>
+    </div>
+
+    <div class="container">
+        <h1 class="title">◊ CreatorOS NEON GOALS ◊</h1>
+        <p class="subtitle">Future.exe Loading...</p>
+<center><p style="font-weight: 600; color: #fffafa;">Another AnchorStack Micro Module</p></center>
+<center><p style="font-weight: 600; color: #fffafa;">© Copyright AnchorStack.pro 2025</p></center>
+        <div class="cyber-grid-container" id="cyberGrid">
+            <div class="cyber-card">
+                <div class="card-header">
+                    <div class="card-icon">🚀</div>
+                    <div class="card-id">ID: 001</div>
+                </div>
+                <h3 class="card-title">Career Protocol</h3>
+                <p class="card-description">Upgrading professional systems for maximum efficiency</p>
+                <div class="progress-section">
+                    <div class="progress-label">Progress Status</div>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 75%"></div>
+                    </div>
+                    <p class="progress-text">75% COMPLETE</p>
+                </div>
+                <div class="status-indicators">
+                    <div class="status-dot status-active"></div>
+                    <div class="status-dot status-active"></div>
+                    <div class="status-dot status-warning"></div>
+                </div>
+            </div>
+
+            <div class="cyber-card">
+                <div class="card-header">
+                    <div class="card-icon">🧠</div>
+                    <div class="card-id">ID: 002</div>
+                </div>
+                <h3 class="card-title">Neural Enhancement</h3>
+                <p class="card-description">Optimizing cognitive functions and learning algorithms</p>
+                <div class="progress-section">
+                    <div class="progress-label">Progress Status</div>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 60%"></div>
+                    </div>
+                    <p class="progress-text">60% COMPLETE</p>
+                </div>
+                <div class="status-indicators">
+                    <div class="status-dot status-active"></div>
+                    <div class="status-dot status-active"></div>
+                    <div class="status-dot status-error"></div>
+                </div>
+            </div>
+
+            <div class="cyber-card">
+                <div class="card-header">
+                    <div class="card-icon">💪</div>
+                    <div class="card-id">ID: 003</div>
+                </div>
+                <h3 class="card-title">Bio-System Upgrade</h3>
+                <p class="card-description">Enhancing physical performance and health metrics</p>
+                <div class="progress-section">
+                    <div class="progress-label">Progress Status</div>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 85%"></div>
+                    </div>
+                    <p class="progress-text">85% COMPLETE</p>
+                </div>
+                <div class="status-indicators">
+                    <div class="status-dot status-active"></div>
+                    <div class="status-dot status-active"></div>
+                    <div class="status-dot status-active"></div>
+                </div>
+            </div>
+
+            <div class="cyber-card">
+                <div class="card-header">
+                    <div class="card-icon">🌐</div>
+                    <div class="card-id">ID: 004</div>
+                </div>
+                <h3 class="card-title">Network Expansion</h3>
+                <p class="card-description">Building connections across the digital frontier</p>
+                <div class="progress-section">
+                    <div class="progress-label">Progress Status</div>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 40%"></div>
+                    </div>
+                    <p class="progress-text">40% COMPLETE</p>
+                </div>
+                <div class="status-indicators">
+                    <div class="status-dot status-active"></div>
+                    <div class="status-dot status-warning"></div>
+                    <div class="status-dot status-error"></div>
+                </div>
+            </div>
+
+            <div class="cyber-card">
+                <div class="card-header">
+                    <div class="card-icon">💰</div>
+                    <div class="card-id">ID: 005</div>
+                </div>
+                <h3 class="card-title">Credit Accumulation</h3>
+                <p class="card-description">Maximizing financial resources and crypto assets</p>
+                <div class="progress-section">
+                    <div class="progress-label">Progress Status</div>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 30%"></div>
+                    </div>
+                    <p class="progress-text">30% COMPLETE</p>
+                </div>
+                <div class="status-indicators">
+                    <div class="status-dot status-warning"></div>
+                    <div class="status-dot status-warning"></div>
+                    <div class="status-dot status-error"></div>
+                </div>
+            </div>
+
+            <div class="cyber-card">
+                <div class="card-header">
+                    <div class="card-icon">🎨</div>
+                    <div class="card-id">ID: 006</div>
+                </div>
+                <h3 class="card-title">Creative Matrix</h3>
+                <p class="card-description">Generating innovative content and digital art</p>
+                <div class="progress-section">
+                    <div class="progress-label">Progress Status</div>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 65%"></div>
+                    </div>
+                    <p class="progress-text">65% COMPLETE</p>
+                </div>
+                <div class="status-indicators">
+                    <div class="status-dot status-active"></div>
+                    <div class="status-dot status-active"></div>
+                    <div class="status-dot status-warning"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="add-goal-btn" onclick="openModal()">+</button>
+
+    <div class="modal" id="goalModal">
+        <div class="modal-content">
+            <h2 class="modal-title">New Protocol</h2>
+            <form id="goalForm">
+                <div class="form-group">
+                    <label for="goalTitle">Goal Identifier:</label>
+                    <input type="text" id="goalTitle" placeholder="Enter goal designation...">
+                </div>
+                <div class="form-group">
+                    <label for="goalDescription">Description:</label>
+                    <textarea id="goalDescription" rows="3" placeholder="Define protocol parameters..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="goalIcon">System Icon:</label>
+                    <input type="text" id="goalIcon" placeholder="🔥" maxlength="2">
+                </div>
+                <div class="form-group">
+                    <label for="goalProgress">Progress Level (0-100):</label>
+                    <input type="number" id="goalProgress" min="0" max="100" value="0">
+                </div>
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-primary">Initialize</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Abort</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let goalCounter = 7;
+
+        // Generate neon particles
+        function createParticles() {
+            const particlesContainer = document.querySelector('.neon-particles');
+            
+            setInterval(() => {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                particle.style.animationDelay = Math.random() * 2 + 's';
+                
+                // Random neon colors
+                const colors = ['#00ffff', '#ff00ff', '#ffff00', '#00ff00', '#ff0080'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.background = color;
+                particle.style.boxShadow = `0 0 10px ${color}, 0 0 20px ${color}`;
+                
+                particlesContainer.appendChild(particle);
+                
+                setTimeout(() => {
+                    particle.remove();
+                }, 12000);
+            }, 500);
+        }
+
+        // Add glitch effect to random cards
+        function addGlitchEffect() {
+            const cards = document.querySelectorAll('.cyber-card');
+            setInterval(() => {
+                const randomCard = cards[Math.floor(Math.random() * cards.length)];
+                randomCard.classList.add('glitch-effect');
+                setTimeout(() => {
+                    randomCard.classList.remove('glitch-effect');
+                }, 500);
+            }, 3000);
+        }
+
+        // Update system status
+        function updateSystemStatus() {
+            const statusDiv = document.querySelector('.system-status');
+            const statuses = [
+                'SYSTEM: ONLINE\nGOALS: PROCESSING\nSTATUS: ACTIVE',
+                'SYSTEM: SCANNING\nGOALS: UPDATING\nSTATUS: SYNC',
+                'SYSTEM: ONLINE\nGOALS: OPTIMIZING\nSTATUS: BOOST',
+                'SYSTEM: ACTIVE\nGOALS: LOADING\nSTATUS: READY'
+            ];
+            
+            let currentStatus = 0;
+            setInterval(() => {
+                statusDiv.innerHTML = statuses[currentStatus].replace(/\n/g, '<br>');
+                currentStatus = (currentStatus + 1) % statuses.length;
+            }, 2000);
+        }
+
+        // Modal functions
+        function openModal() {
+            document.getElementById('goalModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('goalModal').style.display = 'none';
+            document.getElementById('goalForm').reset();
+        }
+
+        // Add new goal
+        document.getElementById('goalForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const title = document.getElementById('goalTitle').value;
+            const description = document.getElementById('goalDescription').value;
+            const icon = document.getElementById('goalIcon').value || '🔥';
+            const progress = document.getElementById('goalProgress').value;
+            
+            if (title && description) {
+                const cyberGrid = document.getElementById('cyberGrid');
+                const newCard = document.createElement('div');
+                newCard.className = 'cyber-card';
+                
+                // Generate random status indicators
+                const statusDots = [];
+                for (let i = 0; i < 3; i++) {
+                    const statuses = ['status-active', 'status-warning', 'status-error'];
+                    const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
+                    statusDots.push(`<div class="status-dot ${randomStatus}"></div>`);
+                }
+                
+                newCard.innerHTML = `
+                    <div class="card-header">
+                        <div class="card-icon">${icon}</div>
+                        <div class="card-id">ID: ${goalCounter.toString().padStart(3, '0')}</div>
+                    </div>
+                    <h3 class="card-title">${title.toUpperCase()}</h3>
+                    <p class="card-description">${description}</p>
+                    <div class="progress-section">
+                        <div class="progress-label">Progress Status</div>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: ${progress}%"></div>
+                        </div>
+                        <p class="progress-text">${progress}% COMPLETE</p>
+                    </div>
+                    <div class="status-indicators">
+                        ${statusDots.join('')}
+                    </div>
+                `;
+                
+                cyberGrid.appendChild(newCard);
+                goalCounter++;
+                closeModal();
+            }
+        });
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('goalModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // Card click effect
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.cyber-card')) {
+                const card = e.target.closest('.cyber-card');
+                // A simple animation or class toggle on click
+                card.classList.toggle('glitch-effect'); // Re-use glitch-effect for a quick visual pop
+                setTimeout(() => {
+                    card.classList.remove('glitch-effect');
+                }, 500); // Remove after a short delay
+            }
+        });
+
+        // Initialize all dynamic elements when the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            addGlitchEffect(); // This will add glitch to random cards periodically
+            updateSystemStatus();
+            // No specific 'displayGoals' function in this version, as cards are hardcoded initially.
+            // If dynamic loading from an array was intended, it would be called here.
+        });
+    </script>
+
+
+</body>
+</html>
+
