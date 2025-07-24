@@ -1,13 +1,13 @@
 import React from 'react';
-import FocusTimer from '@/components/FocusTimer';
-import QuickNotes from '@/components/QuickNotes';
 
+const Dashboard = () => {
+  return (
+    <div>
+      <h2>🎯 AnchorStack Dashboard</h2>
+      {/* Insert FocusTimer and QuickNotes here */}
+    </div>
+  );
+};
 
-export const Dashboard: React.FC = () => (
-  <div className="space-y-6">
-    <h2 className="text-2xl font-bold text-anchor-900">Welcome back</h2>
-    <FocusTimer />
-    <QuickNotes />
-  </div>
-);
+export default Dashboard;
 
