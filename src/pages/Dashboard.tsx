@@ -1,6 +1,7 @@
 import React from 'react';
-import { FocusTimer } from '@/components/FocusTimer';
-import { QuickNotes } from '@/components/QuickNotes';
+import FocusTimer from '@/components/FocusTimer';
+import QuickNotes from '@/components/QuickNotes';
+
 
 export const Dashboard: React.FC = () => (
   <div className="space-y-6">

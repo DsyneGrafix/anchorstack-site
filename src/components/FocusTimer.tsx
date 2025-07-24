@@ -1,6 +1,9 @@
+// src/components/FocusTimer.tsx
 import React from 'react';
 
-export default function FocusTimer() {
+const FocusTimer = () => {
   return <div>⏱️ Focus Timer placeholder</div>;
-}
+};
+
+export default FocusTimer; // ✅ This makes it a valid module
 

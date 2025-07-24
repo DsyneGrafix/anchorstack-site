@@ -1,6 +1,9 @@
+// src/components/QuickNotes.tsx
 import React from 'react';
 
-export default function QuickNotes() {
+const QuickNotes = () => {
   return <div>📝 Quick Notes placeholder</div>;
-}
+};
+
+export default QuickNotes; // ✅ Required!
 
