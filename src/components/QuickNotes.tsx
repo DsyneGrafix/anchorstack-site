@@ -1,4 +1,6 @@
 // src/components/QuickNotes.tsx
+// import QuickNotes from './components/QuickNotes'; // 🔥 Breaks build
+
 import React, { useState, useEffect } from 'react'
 import { Plus, Save, Edit3 } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
