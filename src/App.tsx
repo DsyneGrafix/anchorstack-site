@@ -1,6 +1,8 @@
-import React from 'react';
+import Dashboard from './pages/Dashboard';
 
-const App: React.FC = () => <h1 style={{ padding: '2rem' }}>✅ AnchorStack is Alive!</h1>;
+function App() {
+  return <Dashboard />;
+}
 
 export default App;
 
