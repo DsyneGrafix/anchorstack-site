@@ -1,4 +1,7 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import FocusTimer from '@/components/FocusTimer';
 import QuickNotes from '@/components/QuickNotes';
-export const Dashboard = () => (_jsxs("div", { className: "space-y-6", children: [_jsx("h2", { className: "text-2xl font-bold text-anchor-900", children: "Welcome back" }), _jsx(FocusTimer, {}), _jsx(QuickNotes, {})] }));
+const Dashboard = () => {
+    return (_jsxs("div", { style: { padding: '2rem' }, children: [_jsx("h2", { children: "\uD83C\uDFAF AnchorStack Dashboard" }), _jsx(FocusTimer, {}), _jsx(QuickNotes, {})] }));
+};
+export default Dashboard;
