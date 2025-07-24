@@ -67,3 +67,4 @@ export default tseslint.config([
   },
 ])
 ```
+Deployed to Vercel
